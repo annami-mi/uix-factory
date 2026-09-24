@@ -1,0 +1,18 @@
+{
+  "name": "@uix/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./css/*": "./dist/*.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "node scripts/build.mjs",
+    "typecheck": "node scripts/build.mjs && tsc --noEmit",
+    "test": "vitest run"
+  }
+}

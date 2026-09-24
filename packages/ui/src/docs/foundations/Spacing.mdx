@@ -1,0 +1,61 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { scale } from "../tokens-docs";
+
+<Meta title="Foundations/Отступы и размеры" />
+
+# Отступы и размеры
+
+Шкалы 1:1 с Figma collection `primitives` (имена совпадают: `space/4` → `--space-4`). Значения ниже рисуются CSS-переменными.
+
+export const Bar = ({ size }) => (
+  <div style={{ inlineSize: size, blockSize: "var(--space-3)", background: "var(--color-palette-blue)", borderRadius: "var(--radius-1)" }} />
+);
+
+export const ScaleTable = ({ prefix, render }) => (
+  <table>
+    <thead><tr><th>Токен</th><th>Значение</th><th /></tr></thead>
+    <tbody>
+      {scale(prefix).map((t) => (
+        <tr key={t.name}>
+          <td><code>--{t.name}</code>{t.description ? <><br /><small>{t.description}</small></> : null}</td>
+          <td><code>{t.value}</code></td>
+          <td>{render(`var(--${t.name})`)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+## Space — отступы
+
+`space/px` — только оптическая компенсация (напр. нижний отступ лейбла кнопки), не шаг сетки.
+
+<ScaleTable prefix="space" render={(v) => <Bar size={v} />} />
+
+## Size — размеры элементов
+
+`size/44`–`size/48` — комфортная зона для тача; кнопка — `size/48`.
+
+<ScaleTable prefix="size" render={(v) => (
+  <div style={{ inlineSize: v, blockSize: v, background: "var(--color-palette-blue)", borderRadius: "var(--radius-1)" }} />
+)} />
+
+## Radius — скругления
+
+`radius/full` — капсула, сквозной признак «Жидкого стекла».
+
+<ScaleTable prefix="radius" render={(v) => (
+  <div style={{ inlineSize: "var(--size-48)", blockSize: "var(--size-32)", border: "var(--stroke-2) solid var(--color-palette-blue)", borderRadius: v }} />
+)} />
+
+## Stroke — толщина линий
+
+<ScaleTable prefix="stroke" render={(v) => (
+  <div style={{ inlineSize: "var(--size-64)", borderBlockStart: `${v} solid var(--color-palette-blue)` }} />
+)} />
+
+## Blur — размытие стекла
+
+Имя — радиус в Figma, значение — CSS: радиус Figma ≈ 2× CSS `blur()`. Использование: `backdrop-filter: blur(var(--blur-24))`.
+
+<ScaleTable prefix="blur" render={() => null} />

@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { typeStyles } from "../tokens-docs";
+
+<Meta title="Foundations/Типографика" />
+
+# Типографика
+
+Шрифт — **Golos Text** (400 / 500 / 600), раздаётся из `@uix/ui` через `@fontsource/golos-text`, без внешних запросов. Стили — `type/<роль>/<размер>`, 1:1 с текстовыми стилями Figma (кроме `label/lg` — только в коде).
+
+В CSS каждый стиль раскладывается на четыре переменные: `--type-label-md-font-family`, `-font-weight`, `-font-size`, `-line-height`. Образцы ниже рисуются этими переменными вживую.
+
+<table>
+  <thead>
+    <tr><th>Стиль</th><th>Образец</th><th>Размер / интерлиньяж / вес</th></tr>
+  </thead>
+  <tbody>
+    {typeStyles().map((s) => (
+      <tr key={s.name}>
+        <td><code>{s.name}</code>{s.description ? <><br /><small>{s.description}</small></> : null}</td>
+        <td>
+          <span style={{
+            fontFamily: `var(--${s.css}-font-family)`,
+            fontWeight: `var(--${s.css}-font-weight)`,
+            fontSize: `var(--${s.css}-font-size)`,
+            lineHeight: `var(--${s.css}-line-height)`,
+          }}>Съешь же ещё этих мягких булок</span>
+        </td>
+        <td><code>{s.size} / {s.lineHeight} / {s.weight}</code></td>
+      </tr>
+    ))}
+  </tbody>
+</table>

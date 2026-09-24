@@ -1,0 +1,31 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
+import { colorGroups, paletteGroups, themeEntries } from "../tokens-docs";
+
+<Meta title="Foundations/Цвета" />
+
+# Цвета
+
+Компоненты используют только **семантические роли** (`--color-<роль>-<состояние>`). Значения ролей задаёт пара **стилистика × схема** (`data-theme` × `data-scheme`, ADR-0005) — ниже все четыре комбинации, значения собраны из `@uix/tokens` при сборке.
+
+В «Жидком стекле» почти все роли — белый/чёрный или акцент с прозрачностью (как composed color в Figma), поэтому образцы показаны на шахматке.
+
+{Object.entries(themeEntries).flatMap(([theme, byScheme]) => Object.entries(byScheme).map(([scheme, entries]) => (
+  <section key={`${theme}-${scheme}`}>
+    <h2 id={`theme-${theme}-${scheme}`}><code>{theme}</code> · {scheme === "light" ? "светлая" : "тёмная"}</h2>
+    <ColorPalette>
+      {colorGroups(entries).map((group) => (
+        <ColorItem key={group.title} title={group.title} subtitle={`--color-${group.title}-*`} colors={group.colors} />
+      ))}
+    </ColorPalette>
+  </section>
+)))}
+
+## Палитра (примитивы)
+
+Исходные цвета из Figma collection `primitives`. **Компоненты на них не ссылаются** — только темы.
+
+<ColorPalette>
+  {paletteGroups().map((group) => (
+    <ColorItem key={group.title} title={group.title} subtitle={`--color-${group.title}-*`} colors={group.colors} />
+  ))}
+</ColorPalette>

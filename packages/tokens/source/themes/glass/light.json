@@ -1,0 +1,941 @@
+{
+  "$description": "«Жидкое стекло», светлая схема. Токен-first (ADR-0003/0005): в Figma не отрисована. Материал — белые полупрозрачные плашки с белой кромкой и мягкой тенью (Liquid Glass, light). Контраст проверен: текст ≥ 4.5:1 на фоне страницы и плашек.",
+  "color": {
+    "background": {
+      "default": {
+        "$type": "color",
+        "$value": "#f5f5f7"
+      }
+    },
+    "foreground": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.mono.black}"
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.88
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.72
+        }
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "5.3:1 на самом тёмном месте фона (#E5E5EA)",
+        "$extensions": {
+          "uix.alpha": 0.6
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.3
+        }
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "{color.mono.white}"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#c10012",
+        "$description": "5.1:1 на фоне страницы"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$description": "текст ссылки ≥ 4.5:1 на фоне и плашках (акцент как текст на тёмном фоне не проходит)"
+      }
+    },
+    "icon": {
+      "primary": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.8
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.55
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.25
+        }
+      }
+    },
+    "border": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.06
+        }
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.1
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.16
+        }
+      }
+    },
+    "surface": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.35
+        }
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.55
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.7
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.85
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.04
+        }
+      }
+    },
+    "accent": {
+      "base": {
+        "$type": "color",
+        "$value": "#0060cc",
+        "$description": "белый лейбл ≥ 5:1 (iOS-синий #007AFF на светлом — 4.0:1, не проходит)"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.accent.base}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.accent.base}"
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.8
+        }
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.12
+        }
+      },
+      "glass": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.9
+        }
+      },
+      "glass-border": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.35
+        }
+      },
+      "glass-border-hover": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.45
+        }
+      },
+      "glass-border-pressed": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.25
+        }
+      },
+      "loading": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.55
+        }
+      },
+      "shadow": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.25
+        }
+      },
+      "shadow-hover": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.35
+        }
+      },
+      "shadow-pressed": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$extensions": {
+          "uix.alpha": 0.15
+        }
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "#248a3d"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#b25000"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#d70015"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.accent.base}"
+      }
+    },
+    "state": {
+      "active": {
+        "$type": "color",
+        "$value": "{color.status.success}"
+      },
+      "inactive": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.3
+        }
+      },
+      "selected": {
+        "$type": "color",
+        "$value": "{color.accent.default}"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "внутренний бордер фокуса кнопки: тёмный — заметен и на синем, и на белом стекле",
+        "$extensions": {
+          "uix.alpha": 0.85
+        }
+      }
+    },
+    "badge": {
+      "neutral": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.06
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "{color.text.secondary}"
+        }
+      },
+      "accent": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.base}",
+          "$extensions": {
+            "uix.alpha": 0.12
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#004a9f"
+        }
+      },
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.palette.green}",
+          "$extensions": {
+            "uix.alpha": 0.16
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#10592a"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.palette.yellow}",
+          "$extensions": {
+            "uix.alpha": 0.28
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#6b3500"
+        }
+      },
+      "danger": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.palette.red}",
+          "$extensions": {
+            "uix.alpha": 0.12
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#9b0010"
+        }
+      }
+    }
+  },
+  "surface": {
+    "page": {
+      "bg": {
+        "$type": "other",
+        "$value": "linear-gradient(180deg, #f5f5f7 0%, #e5e5ea 100%)"
+      }
+    },
+    "accent": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.glass}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent.glass-border}"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 4px #ffffff40, 0 6px 20px {color.accent.shadow}, 0 8px 24px #0000001a"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur(10px)"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent.glass-border-hover}"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 4px #ffffff4d, 0 6px 24px {color.accent.shadow-hover}, 0 8px 24px #0000001f"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.base}",
+          "$description": "Liquid Glass: при нажатии стекло плотнее и светится — блик и свечение, контраст лейбла сохраняется"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffff80"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 6px #ffffff59, 0 8px 28px #0060cc59, 0 12px 32px #00000024"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "#5ac8ff4d"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.disabled}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffff66"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 4px #ffffff33, 0 4px 12px #00000014"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur(10px)"
+        }
+      },
+      "loading": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.loading}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent.glass-border-pressed}"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 4px #ffffff33, 0 6px 20px {color.accent.shadow-pressed}, 0 8px 24px #00000014"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur(10px)"
+        }
+      }
+    },
+    "neutral": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffffcc"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 0 #ffffffe6, 0 8px 24px #0000001a"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffffe6"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 0 #ffffff, 0 8px 24px #0000001f"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.pressed}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffff"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 0 #ffffff, 0 12px 32px #00000026"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "#ffffff99"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.disabled}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffff80"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "0 4px 12px #0000000f"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        }
+      },
+      "loading": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffffcc"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "inset 0 1px 0 #ffffffe6, 0 8px 24px #0000001a"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.24})"
+        }
+      }
+    },
+    "field": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffffb3"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.12})"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffffcc"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.12})"
+        }
+      },
+      "focused": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.pressed}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffffe6"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.12})"
+        },
+        "ring": {
+          "$type": "color",
+          "$value": "transparent",
+          "$description": "кольцо фокуса поля прозрачное — фокус виден по плашке и курсору"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.status.danger}",
+          "$extensions": {
+            "uix.alpha": 0.06
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.status.danger}",
+          "$extensions": {
+            "uix.alpha": 0.4
+          }
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.12})"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.03
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#ffffff66"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "blur({blur.12})"
+        }
+      }
+    },
+    "popover": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.82
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.9
+        }
+      },
+      "shadow": {
+        "$type": "other",
+        "$value": "inset 0 1px 0 #ffffff, 0 16px 48px #0000002e"
+      },
+      "backdrop": {
+        "$type": "other",
+        "$value": "blur({blur.48})"
+      }
+    },
+    "option": {
+      "highlighted": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.06
+          }
+        }
+      }
+    },
+    "scrim": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.mono.black}",
+        "$extensions": {
+          "uix.alpha": 0.2
+        },
+        "$description": "затемнение под модальной панелью (шторка Select, диалоги)"
+      },
+      "backdrop": {
+        "$type": "other",
+        "$value": "blur({blur.8})"
+      }
+    },
+    "control": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.mono.white}",
+          "$description": "флажок/радио/переключатель — токен-first (в Figma нет)",
+          "$extensions": {
+            "uix.alpha": 0.6
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$description": "граница пустого флажка ≥ 3:1 к фону (WCAG 1.4.11) — без неё не видно ни флажка, ни его состояния",
+          "$extensions": {
+            "uix.alpha": 0.5
+          }
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.mono.white}",
+          "$extensions": {
+            "uix.alpha": 0.85
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.7
+          }
+        }
+      },
+      "checked": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent.default}"
+        },
+        "mark": {
+          "$type": "color",
+          "$value": "{color.text.on-accent}"
+        }
+      },
+      "error": {
+        "border": {
+          "$type": "color",
+          "$value": "{color.text.danger}"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.03
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.15
+          }
+        }
+      }
+    },
+    "ghost": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "transparent",
+          "$description": "ghost-кнопка/иконка: без плашки в покое, плашка при наведении/нажатии (тулбары, «закрыть», третьестепенные действия)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.pressed}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "{color.mono.white}",
+          "$extensions": {
+            "uix.alpha": 0.6
+          }
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "loading": {
+        "bg": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      }
+    },
+    "switch": {
+      "track-off": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "выключенный трек ≥ 3:1 к фону (WCAG 1.4.11)",
+        "$extensions": {
+          "uix.alpha": 0.5
+        }
+      },
+      "track-on": {
+        "$type": "color",
+        "$value": "{color.accent.default}"
+      },
+      "thumb": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "thumb-shadow": {
+        "$type": "other",
+        "$value": "0 1px 2px #0000003d, 0 2px 6px #00000029"
+      }
+    },
+    "card": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.6
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.85
+        }
+      },
+      "shadow": {
+        "$type": "other",
+        "$value": "inset 0 1px 0 #ffffffcc, 0 8px 24px #0000000f"
+      },
+      "backdrop": {
+        "$type": "other",
+        "$value": "blur({blur.24})"
+      },
+      "hover-bg": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.8
+        }
+      }
+    },
+    "skeleton": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.06
+        }
+      },
+      "shine": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.6
+        }
+      }
+    },
+    "segmented": {
+      "track": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.05
+        }
+      },
+      "indicator": {
+        "$type": "color",
+        "$value": "{color.mono.white}",
+        "$extensions": {
+          "uix.alpha": 0.9
+        }
+      },
+      "indicator-border": {
+        "$type": "color",
+        "$value": "{color.mono.white}"
+      },
+      "indicator-shadow": {
+        "$type": "other",
+        "$value": "0 1px 2px #0000001a, 0 2px 8px #00000014"
+      }
+    }
+  }
+}

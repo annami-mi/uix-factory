@@ -1,0 +1,44 @@
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import * as ButtonStories from "../../components/Button/Button.stories";
+import { scale } from "../tokens-docs";
+
+<Meta title="Foundations/Моушн" />
+
+# Моушн
+
+Длительности `instant`–`slower` — из Figma. Пружины, `scale/pressed` и длительности нажатия — **только в коде** (канон Liquid Glass, см. `docs/tokens.md`).
+
+export const TokenTable = ({ prefix }) => (
+  <table>
+    <thead><tr><th>Токен</th><th>Значение</th><th>Описание</th></tr></thead>
+    <tbody>
+      {scale(prefix).map((t) => (
+        <tr key={t.name}>
+          <td><code>--{t.name}</code></td>
+          <td><code style={{ wordBreak: "break-all" }}>{t.value.length > 60 ? `${t.value.slice(0, 60)}…` : t.value}</code></td>
+          <td>{t.description ?? ""}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
+## Длительности
+
+<TokenTable prefix="duration" />
+
+## Кривые
+
+Пружины — затухающие колебания, посчитанные в `linear()`: нажатие — плотное, почти без перелёта; отпускание — мягкий отскок.
+
+<TokenTable prefix="easing" />
+
+## Масштаб
+
+<TokenTable prefix="scale" />
+
+## Pressed — Liquid Glass
+
+Нажми и держи: кнопка увеличивается на пружине, стекло светлеет, из точки касания растекается блик; при отпускании — мягкий отскок. При `prefers-reduced-motion: reduce` масштаба и переходов нет — pressed виден только по материалу.
+
+<Canvas of={ButtonStories.WithIcons} />

@@ -1,0 +1,862 @@
+{
+  "$description": "Плоская стилистика «neutral», светлая схема (бывшая light-neutral). Токен-first (ADR-0003/0005): полупрозрачные плашки без бордеров, без blur, теней и блика.",
+  "color": {
+    "background": {
+      "default": {
+        "$type": "color",
+        "$value": "#ffffff"
+      }
+    },
+    "foreground": {
+      "default": {
+        "$type": "color",
+        "$value": "#15161a"
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "#15161a"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#4b4d54"
+      },
+      "tertiary": {
+        "$type": "color",
+        "$value": "#6b6d74",
+        "$description": "≥4.5:1 на белом — tertiary несёт hint-текст"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "#a9abb1"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "{color.status.danger}",
+        "$description": "4.8:1 на белом"
+      },
+      "link": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$description": "текст ссылки ≥ 4.5:1 на фоне и плашках (акцент как текст на тёмном фоне не проходит)"
+      }
+    },
+    "icon": {
+      "primary": {
+        "$type": "color",
+        "$value": "#15161a"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#5c5e66"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "#a9abb1"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$type": "color",
+        "$value": "#eceef0"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "#dcdee2"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "#c9ccd1"
+      }
+    },
+    "surface": {
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.03
+        }
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "полупрозрачная плашка на тёмной основе — как стекло, без бордера (решение 2026-09-24)",
+        "$extensions": {
+          "uix.alpha": 0.05
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.08
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.11
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.04
+        }
+      }
+    },
+    "accent": {
+      "base": {
+        "$type": "color",
+        "$value": "#2957d6"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.accent.base}"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "#2447b8"
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "#1f3c9e"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "#2957d6",
+        "$extensions": {
+          "uix.alpha": 0.12
+        }
+      },
+      "glass": {
+        "$type": "color",
+        "$value": "{color.accent.base}",
+        "$description": "плоская тема: «стекло» = сплошной акцент"
+      },
+      "glass-border": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "glass-border-hover": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "glass-border-pressed": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "loading": {
+        "$type": "color",
+        "$value": "#4f6fd8",
+        "$description": "белый лейбл 4.57:1"
+      },
+      "shadow": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "shadow-hover": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "shadow-pressed": {
+        "$type": "color",
+        "$value": "transparent"
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "#1a7f37"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#b54708"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#d92d20"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.accent.base}"
+      }
+    },
+    "state": {
+      "active": {
+        "$type": "color",
+        "$value": "{color.status.success}"
+      },
+      "inactive": {
+        "$type": "color",
+        "$value": "#a9abb1"
+      },
+      "selected": {
+        "$type": "color",
+        "$value": "{color.accent.default}"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "#000000",
+        "$description": "фокус — внутренний бордер поверх accent: #000 на #2957d6 = 3.4:1"
+      }
+    },
+    "badge": {
+      "neutral": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.06
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "{color.text.secondary}"
+        }
+      },
+      "accent": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.base}",
+          "$extensions": {
+            "uix.alpha": 0.1
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#1f45b0"
+        }
+      },
+      "success": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.status.success}",
+          "$extensions": {
+            "uix.alpha": 0.12
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#116329"
+        }
+      },
+      "warning": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.status.warning}",
+          "$extensions": {
+            "uix.alpha": 0.12
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#7a3300"
+        }
+      },
+      "danger": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.status.danger}",
+          "$extensions": {
+            "uix.alpha": 0.1
+          }
+        },
+        "fg": {
+          "$type": "color",
+          "$value": "#a3200f"
+        }
+      }
+    }
+  },
+  "surface": {
+    "page": {
+      "bg": {
+        "$type": "other",
+        "$value": "{color.background.default}"
+      }
+    },
+    "accent": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.pressed}",
+          "$description": "плоская тема — без блика"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "transparent"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.disabled}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "loading": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.loading}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      }
+    },
+    "neutral": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.pressed}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "transparent"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.disabled}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "loading": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      }
+    },
+    "field": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "focused": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.pressed}",
+          "$description": "фокус — плашка темнее, без обводки"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "ring": {
+          "$type": "color",
+          "$value": "transparent",
+          "$description": "кольцо фокуса поля; прозрачное — фокус виден по плашке и курсору (решение 2026-09-24, как в Figma). Прозрачный outline проявляется в forced-colors."
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.status.danger}",
+          "$description": "ошибка — красноватая плашка; текст ошибки и подпись красные",
+          "$extensions": {
+            "uix.alpha": 0.08
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.disabled}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      }
+    },
+    "popover": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.background.default}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "shadow": {
+        "$type": "other",
+        "$value": "0 12px 32px #15161a29",
+        "$description": "плоская тема: панель отделяется тенью, без бордера"
+      },
+      "backdrop": {
+        "$type": "other",
+        "$value": "none"
+      }
+    },
+    "option": {
+      "highlighted": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.06
+          }
+        }
+      }
+    },
+    "scrim": {
+      "bg": {
+        "$type": "color",
+        "$value": "#15161a",
+        "$extensions": {
+          "uix.alpha": 0.32
+        },
+        "$description": "затемнение под модальной панелью (шторка Select, диалоги)"
+      },
+      "backdrop": {
+        "$type": "other",
+        "$value": "none"
+      }
+    },
+    "control": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$description": "флажок/радио/переключатель — токен-first (в Figma нет)",
+          "$extensions": {
+            "uix.alpha": 0.03
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$description": "граница пустого флажка ≥ 3:1 к фону (WCAG 1.4.11) — без неё не видно ни флажка, ни его состояния",
+          "$extensions": {
+            "uix.alpha": 0.5
+          }
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.06
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.7
+          }
+        }
+      },
+      "checked": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.accent.default}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.accent.default}"
+        },
+        "mark": {
+          "$type": "color",
+          "$value": "{color.text.on-accent}"
+        }
+      },
+      "error": {
+        "border": {
+          "$type": "color",
+          "$value": "{color.text.danger}"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.03
+          }
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.foreground.default}",
+          "$extensions": {
+            "uix.alpha": 0.15
+          }
+        }
+      }
+    },
+    "ghost": {
+      "default": {
+        "bg": {
+          "$type": "color",
+          "$value": "transparent",
+          "$description": "ghost-кнопка/иконка: без плашки в покое, плашка при наведении/нажатии (тулбары, «закрыть», третьестепенные действия)"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "hover": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.hover}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "pressed": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.surface.pressed}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "highlight": {
+          "$type": "color",
+          "$value": "transparent"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      },
+      "loading": {
+        "bg": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "transparent"
+        },
+        "shadow": {
+          "$type": "other",
+          "$value": "none"
+        },
+        "backdrop": {
+          "$type": "other",
+          "$value": "none"
+        }
+      }
+    },
+    "switch": {
+      "track-off": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "выключенный трек ≥ 3:1 к фону (WCAG 1.4.11)",
+        "$extensions": {
+          "uix.alpha": 0.5
+        }
+      },
+      "track-on": {
+        "$type": "color",
+        "$value": "{color.accent.default}"
+      },
+      "thumb": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "thumb-shadow": {
+        "$type": "other",
+        "$value": "0 1px 2px #0000003d, 0 2px 6px #00000029"
+      }
+    },
+    "card": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.03
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "shadow": {
+        "$type": "other",
+        "$value": "none"
+      },
+      "backdrop": {
+        "$type": "other",
+        "$value": "none"
+      },
+      "hover-bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.06
+        }
+      }
+    },
+    "skeleton": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.06
+        }
+      },
+      "shine": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.02
+        }
+      }
+    },
+    "segmented": {
+      "track": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$extensions": {
+          "uix.alpha": 0.05
+        }
+      },
+      "indicator": {
+        "$type": "color",
+        "$value": "{color.background.default}"
+      },
+      "indicator-border": {
+        "$type": "color",
+        "$value": "transparent"
+      },
+      "indicator-shadow": {
+        "$type": "other",
+        "$value": "0 1px 2px #15161a1f, 0 2px 6px #15161a14"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+
+# Зависимости, которым разрешено выполнять install-скрипты (pnpm 11+ блокирует по умолчанию)
+allowBuilds:
+  esbuild: true
+  vue-demi: true
+
+minimumReleaseAgeExclude:
+  - eslint-plugin-vue@10.11.1

@@ -1,0 +1,47 @@
+/*
+  Порядок слоёв каскада — фиксирован здесь, один раз на весь кит (ADR-0002).
+  Компоненты не создают новых @layer, только пишут стили внутри "components".
+*/
+@layer reset, tokens, base, components, sections, overrides;
+
+@import "@uix/tokens/css/index" layer(tokens);
+
+/*
+  Шрифт кита (type/* → "Golos Text") раздаётся из пакета, а не с Google Fonts:
+  приложение получает его вместе с @uix/ui/styles.css, без внешних запросов.
+  Начертания — те, что есть в font/weight: 400 (body, caption), 500 (label), 600 (heading, display).
+  Браузер скачивает файл начертания только когда оно реально используется на странице.
+*/
+@import "@fontsource/golos-text/400.css" layer(base);
+@import "@fontsource/golos-text/500.css" layer(base);
+@import "@fontsource/golos-text/600.css" layer(base);
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+  }
+}
+
+@layer base {
+  /* Фон страницы — на <html> с высотой не меньше вьюпорта, чтобы градиент темы не повторялся полосами */
+  html {
+    min-block-size: 100%;
+    background: var(--surface-page-bg, Canvas);
+    color: var(--color-text-primary, CanvasText);
+    font-family: var(--type-body-md-font-family, system-ui, sans-serif);
+  }
+}

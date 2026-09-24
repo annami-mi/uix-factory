@@ -1,0 +1,684 @@
+{
+  "$description": "Примитивы — тема-независимые шкалы. Источник: Figma collection 'primitives' (выгрузка source/figma-export/2026-09-24.json) + токены, помеченные «только в коде». Компоненты ссылаются на семантику тем, примитивы — только для размеров/отступов/типографики/моушна.",
+  "color": {
+    "mono": {
+      "white": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "black": {
+        "$type": "color",
+        "$value": "#000000"
+      }
+    },
+    "palette": {
+      "blue": {
+        "$type": "color",
+        "$value": "#007aff"
+      },
+      "cyan": {
+        "$type": "color",
+        "$value": "#00c1e9"
+      },
+      "green": {
+        "$type": "color",
+        "$value": "#31c356"
+      },
+      "yellow": {
+        "$type": "color",
+        "$value": "#ffcc00"
+      },
+      "orange": {
+        "$type": "color",
+        "$value": "#ff8d28"
+      },
+      "red": {
+        "$type": "color",
+        "$value": "#ff373b"
+      },
+      "purple": {
+        "$type": "color",
+        "$value": "#cd31e2"
+      },
+      "pink": {
+        "$type": "color",
+        "$value": "#fd2d55"
+      },
+      "indigo": {
+        "$type": "color",
+        "$value": "#5f53f3"
+      }
+    }
+  },
+  "space": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "px": {
+      "$type": "dimension",
+      "$value": "1px",
+      "$description": "только в коде (нет в Figma): оптическая компенсация (напр. нижний отступ лейбла Button), не шаг сетки"
+    },
+    "1": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "10": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": "80px"
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "96px"
+    }
+  },
+  "size": {
+    "12": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "36": {
+      "$type": "dimension",
+      "$value": "36px"
+    },
+    "40": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "44": {
+      "$type": "dimension",
+      "$value": "44px",
+      "$description": "минимальный комфортный touch target"
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": "48px",
+      "$description": "высота Button"
+    },
+    "52": {
+      "$type": "dimension",
+      "$value": "52px"
+    },
+    "56": {
+      "$type": "dimension",
+      "$value": "56px"
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "container": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "640px",
+        "$description": "только в коде: узкая колонка текста/формы"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "960px",
+        "$description": "только в коде: контент страницы"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "1200px",
+        "$description": "только в коде: широкие сетки, лендинг"
+      }
+    },
+    "grid-item": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "160px",
+        "$description": "только в коде: мин. ширина ячейки сетки: мелкие карточки, логотипы"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "260px",
+        "$description": "только в коде: мин. ширина ячейки: карточки товаров/преимуществ (2 колонки от ~560px)"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "340px",
+        "$description": "только в коде: мин. ширина ячейки: крупные карточки, отзывы"
+      }
+    }
+  },
+  "breakpoint": {
+    "md": {
+      "$type": "dimension",
+      "$value": "768px",
+      "$description": "только в коде: от этой ширины — десктопные паттерны (Select: всплывашка вместо шторки). В @media нельзя var() — в JS/CSS брать из @uix/tokens (breakpoints)"
+    }
+  },
+  "radius": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "1": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "5": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "999px"
+    },
+    "sheet": {
+      "$type": "dimension",
+      "$value": "{radius.8}",
+      "$description": "верхние углы шторки"
+    }
+  },
+  "layout": {
+    "gutter": {
+      "$type": "dimension",
+      "$value": "clamp({space.4}, 4vw, {space.10})",
+      "$description": "только в коде: поля контейнера: 16px на телефоне → 40px на десктопе, плавно (без media query)"
+    },
+    "section": {
+      "$type": "dimension",
+      "$value": "clamp({space.12}, 8vw, {space.24})",
+      "$description": "только в коде: вертикальный отступ секции: 48 → 96px плавно"
+    }
+  },
+  "stroke": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "1": {
+      "$type": "dimension",
+      "$value": "1px"
+    },
+    "2": {
+      "$type": "dimension",
+      "$value": "2px"
+    },
+    "3": {
+      "$type": "dimension",
+      "$value": "3px"
+    },
+    "icon": {
+      "$type": "dimension",
+      "$value": "1.5px",
+      "$description": "только в коде: толщина линии иконок Lucide (по умолчанию 2 — выглядит жирно; иконки в Figma тоньше)"
+    }
+  },
+  "opacity": {
+    "0": {
+      "$type": "number",
+      "$value": "0"
+    },
+    "5": {
+      "$type": "number",
+      "$value": "0.05"
+    },
+    "10": {
+      "$type": "number",
+      "$value": "0.1"
+    },
+    "20": {
+      "$type": "number",
+      "$value": "0.2"
+    },
+    "30": {
+      "$type": "number",
+      "$value": "0.3"
+    },
+    "40": {
+      "$type": "number",
+      "$value": "0.4"
+    },
+    "50": {
+      "$type": "number",
+      "$value": "0.5"
+    },
+    "60": {
+      "$type": "number",
+      "$value": "0.6"
+    },
+    "70": {
+      "$type": "number",
+      "$value": "0.7"
+    },
+    "80": {
+      "$type": "number",
+      "$value": "0.8"
+    },
+    "90": {
+      "$type": "number",
+      "$value": "0.9"
+    },
+    "100": {
+      "$type": "number",
+      "$value": "1"
+    }
+  },
+  "blur": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "4": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Figma blur/4 (радиус) → CSS 2px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Figma blur/8 (радиус) → CSS 4px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$description": "Figma blur/12 (радиус) → CSS 6px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Figma blur/16 (радиус) → CSS 8px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Figma blur/24 (радиус) → CSS 12px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Figma blur/32 (радиус) → CSS 16px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "Figma blur/48 (радиус) → CSS 24px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": "32px",
+      "$description": "Figma blur/64 (радиус) → CSS 32px: радиус в Figma ≈ 2× CSS blur()"
+    }
+  },
+  "scale": {
+    "pressed": {
+      "$type": "number",
+      "$value": "1.08",
+      "$description": "только в коде (нет в Figma): pressed как у iOS — scale всей кнопки на пружине вместо роста размеров"
+    },
+    "popover-enter": {
+      "$type": "number",
+      "$value": "0.96",
+      "$description": "только в коде: стартовый масштаб всплывающих панелей (Select) — появляются на пружине"
+    },
+    "pressed-surface": {
+      "$type": "number",
+      "$value": "0.98",
+      "$description": "только в коде: нажатие крупной кликабельной поверхности (Card) — лёгкое «вдавливание», без скачка раскладки вокруг"
+    }
+  },
+  "duration": {
+    "instant": {
+      "$type": "duration",
+      "$value": "0ms"
+    },
+    "fast": {
+      "$type": "duration",
+      "$value": "100ms"
+    },
+    "normal": {
+      "$type": "duration",
+      "$value": "200ms"
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": "300ms"
+    },
+    "slower": {
+      "$type": "duration",
+      "$value": "500ms"
+    },
+    "press": {
+      "$type": "duration",
+      "$value": "{duration.slow}",
+      "$description": "только в коде (нет в Figma): пружина нажатия (ζ 0.8)"
+    },
+    "release": {
+      "$type": "duration",
+      "$value": "650ms",
+      "$description": "только в коде (нет в Figma): пружина отпускания (ζ 0.5, лёгкий отскок)"
+    },
+    "spinner": {
+      "$type": "duration",
+      "$value": "1600ms",
+      "$description": "из Figma: spiner, 4 фазы × 400ms smart animate, linear = один оборот"
+    },
+    "spinner-reduced": {
+      "$type": "duration",
+      "$value": "3200ms",
+      "$description": "только в коде (нет в Figma): замедленный оборот при prefers-reduced-motion"
+    },
+    "toast": {
+      "$type": "duration",
+      "$value": "5000ms",
+      "$description": "только в коде: сколько висит уведомление (Toast) без наведения/фокуса; ≥ 5 с — успеть прочитать (WCAG 2.2.1 — можно продлить наведением)"
+    }
+  },
+  "easing": {
+    "spring-press": {
+      "$type": "other",
+      "$value": "linear(0, 0.091, 0.28, 0.483, 0.66, 0.796, 0.891, 0.953, 0.988, 1.007, 1.014, 1.015, 1.013, 1.01, 1.007, 1.005, 1)",
+      "$description": "только в коде (нет в Figma): затухающая пружина ζ=0.8, ω=26 — быстро, почти без перелёта"
+    },
+    "spring-release": {
+      "$type": "other",
+      "$value": "linear(0, 0.075, 0.255, 0.478, 0.698, 0.886, 1.025, 1.114, 1.156, 1.162, 1.143, 1.11, 1.073, 1.039, 1.01, 0.99, 0.979, 0.974, 0.974, 0.978, 0.984, 0.99, 0.995, 0.999, 1.002, 1.004, 1.004, 1.004, 1)",
+      "$description": "только в коде (нет в Figma): затухающая пружина ζ=0.5, ω=18 — мягкий отскок при отпускании"
+    }
+  },
+  "z-index": {
+    "popover": {
+      "$type": "number",
+      "$value": "100",
+      "$description": "только в коде: слой всплывающих панелей (Select, Menu, Tooltip) над контентом страницы"
+    }
+  },
+  "font": {
+    "family": {
+      "sans": {
+        "$type": "fontFamily",
+        "$value": "\"Golos Text\", sans-serif",
+        "$description": "шрифт раздаётся из @uix/ui (@fontsource/golos-text)"
+      }
+    },
+    "weight": {
+      "regular": {
+        "$type": "fontWeight",
+        "$value": "400"
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": "500"
+      },
+      "semibold": {
+        "$type": "fontWeight",
+        "$value": "600"
+      }
+    },
+    "size": {
+      "11": {
+        "$type": "dimension",
+        "$value": "11px"
+      },
+      "12": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "32": {
+        "$type": "dimension",
+        "$value": "32px"
+      },
+      "48": {
+        "$type": "dimension",
+        "$value": "48px"
+      },
+      "64": {
+        "$type": "dimension",
+        "$value": "64px"
+      }
+    },
+    "line-height": {
+      "14": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "18": {
+        "$type": "dimension",
+        "$value": "18px"
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "22": {
+        "$type": "dimension",
+        "$value": "22px"
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "26": {
+        "$type": "dimension",
+        "$value": "26px"
+      },
+      "30": {
+        "$type": "dimension",
+        "$value": "30px"
+      },
+      "38": {
+        "$type": "dimension",
+        "$value": "38px"
+      },
+      "tight": {
+        "$type": "number",
+        "$value": "1.1",
+        "$description": "только в коде: межстрочный для плавного заголовка героя (px-шкала не подходит для плавного кегля)"
+      }
+    }
+  },
+  "type": {
+    "hero": {
+      "$type": "typography",
+      "$description": "только в коде: заголовок первого экрана: 32px на телефоне → 64px на десктопе, плавно",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontWeight": "{font.weight.semibold}",
+        "fontSize": "clamp({font.size.32}, 5vw + {font.size.12}, {font.size.64})",
+        "lineHeight": "{font.line-height.tight}"
+      }
+    },
+    "display": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontWeight": "{font.weight.semibold}",
+        "fontSize": "{font.size.32}",
+        "lineHeight": "{font.line-height.38}"
+      }
+    },
+    "heading": {
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.semibold}",
+          "fontSize": "{font.size.24}",
+          "lineHeight": "{font.line-height.30}"
+        }
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.semibold}",
+          "fontSize": "{font.size.20}",
+          "lineHeight": "{font.line-height.26}"
+        }
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.semibold}",
+          "fontSize": "{font.size.16}",
+          "lineHeight": "{font.line-height.22}"
+        }
+      }
+    },
+    "body": {
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.regular}",
+          "fontSize": "{font.size.16}",
+          "lineHeight": "{font.line-height.24}"
+        }
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.regular}",
+          "fontSize": "{font.size.14}",
+          "lineHeight": "{font.line-height.20}"
+        }
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.regular}",
+          "fontSize": "{font.size.12}",
+          "lineHeight": "{font.line-height.16}"
+        }
+      }
+    },
+    "label": {
+      "lg": {
+        "$type": "typography",
+        "$description": "только в коде (нет в Figma): используется в Button; добавить в Figma (docs/figma-todo.md)",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.medium}",
+          "fontSize": "{font.size.16}",
+          "lineHeight": "{font.line-height.20}"
+        }
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.medium}",
+          "fontSize": "{font.size.14}",
+          "lineHeight": "{font.line-height.16}"
+        }
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.medium}",
+          "fontSize": "{font.size.12}",
+          "lineHeight": "{font.line-height.16}"
+        }
+      }
+    },
+    "caption": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontWeight": "{font.weight.regular}",
+        "fontSize": "{font.size.11}",
+        "lineHeight": "{font.line-height.14}"
+      }
+    }
+  }
+}

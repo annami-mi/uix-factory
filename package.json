@@ -1,0 +1,27 @@
+{
+  "name": "uix-factory",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.6.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build:tokens": "pnpm --filter @uix/tokens build",
+    "storybook": "pnpm --filter @uix/ui storybook",
+    "build-storybook": "pnpm --filter @uix/ui build-storybook",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "lint": "eslint .",
+    "test:stories": "pnpm --filter @uix/ui test:stories"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "eslint": "^10.11.0",
+    "eslint-plugin-storybook": "^10.6.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^4.1.11"
+  }
+}
