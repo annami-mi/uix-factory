@@ -48,7 +48,7 @@ const props = withDefaults(
 /** Текущая страница, с 1 (v-model:page) */
 const page = defineModel<number>("page", { default: 1 });
 
-const isNarrow = useMediaQuery(`(width < ${breakpoints.md}px)`);
+const isNarrow = useMediaQuery(`(width < ${breakpoints.m}px)`);
 const siblings = computed(() => (isNarrow.value ? 0 : 1));
 const pages = computed(() => Math.max(1, Math.ceil(props.total / props.pageSize)));
 const linkProps = (p: number) => (props.hrefFor ? { as: "a", href: props.hrefFor(p) } : {});
@@ -132,10 +132,10 @@ const linkProps = (p: number) => (props.hrefFor ? { as: "a", href: props.hrefFor
     border-radius: var(--radius-full);
     background: none;
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-label-md-font-family);
-    font-weight: var(--type-label-md-font-weight);
-    font-size: var(--type-label-md-font-size);
-    line-height: var(--type-label-md-line-height);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
     font-variant-numeric: tabular-nums;
     text-decoration: none;
   }

@@ -2,13 +2,15 @@
 /**
  * Фильтр периода дашборда: пресеты (сегодня, 7/30/90 дней, с начала месяца) и свой диапазон.
  * Одна строка фильтров над всеми графиками, которые она ограничивает (не внутри карточки графика).
- * Список — Select (всплывашка на десктопе, шторка на мобильном); «Свой период» — два поля даты рядом.
+ * Список — Select (всплывашка на десктопе, шторка на мобильном); «Свой период» — DatePicker рядом
+ * (календарь: два месяца во всплывашке, лента месяцев в шторке), не позже «сегодня».
  * Значение — `{ preset, from, to }` (YYYY-MM-DD, включительно): графики получают готовый диапазон.
  */
 import { computed } from "vue";
-import Input from "../Input/Input.vue";
+import type { DateRangeValue } from "../Calendar/Calendar.vue";
+import DatePicker from "../DatePicker/DatePicker.vue";
 import Select from "../Select/Select.vue";
-import { PERIOD_LABELS, resolvePeriod, type Period, type PeriodPreset } from "../../utils/period";
+import { isoDay, PERIOD_LABELS, resolvePeriod, type Period, type PeriodPreset } from "../../utils/period";
 
 const props = withDefaults(
   defineProps<{
@@ -16,21 +18,18 @@ const props = withDefaults(
     label?: string;
     /** Какие пресеты показать (порядок сохраняется); «Свой период» — отдельным флагом */
     presets?: Exclude<PeriodPreset, "custom">[];
-    /** Показывать «Свой период» с полями дат */
+    /** Показывать «Свой период» с календарём */
     custom?: boolean;
     /** «Сегодня» — для тестов и серверного рендера; по умолчанию текущая дата */
     now?: Date;
-    /** Подпись поля начала */
-    fromLabel?: string;
-    /** Подпись поля конца */
-    toLabel?: string;
+    /** Подпись поля своего периода */
+    rangeLabel?: string;
   }>(),
   {
     label: "Период",
     presets: () => ["today", "7d", "30d", "90d", "mtd"],
     custom: true,
-    fromLabel: "С",
-    toLabel: "По",
+    rangeLabel: "Даты",
   },
 );
 
@@ -49,15 +48,14 @@ const preset = computed({
   },
 });
 
-/** Свой диапазон: «с» не позже «по» — второе поле подтягивается */
-function setFrom(from: string) {
-  if (!from) return;
-  model.value = { preset: "custom", from, to: model.value.to < from ? from : model.value.to };
-}
-function setTo(to: string) {
-  if (!to) return;
-  model.value = { preset: "custom", from: model.value.from > to ? to : model.value.from, to };
-}
+/** Свой период — календарь; будущее недоступно (статистика — по прошедшим дням) */
+const today = computed(() => isoDay(props.now ?? new Date()));
+const range = computed<DateRangeValue | null>({
+  get: () => ({ from: model.value.from, to: model.value.to }),
+  set: (v) => {
+    if (v) model.value = { preset: "custom", from: v.from, to: v.to };
+  },
+});
 </script>
 
 <template>
@@ -72,17 +70,12 @@ function setTo(to: string) {
       v-if="model.preset === 'custom'"
       class="ui-period-select__range"
     >
-      <Input
-        type="date"
-        :label="fromLabel"
-        :model-value="model.from"
-        @update:model-value="(v?: string) => setFrom(v ?? '')"
-      />
-      <Input
-        type="date"
-        :label="toLabel"
-        :model-value="model.to"
-        @update:model-value="(v?: string) => setTo(v ?? '')"
+      <DatePicker
+        v-model="range"
+        mode="range"
+        :label="rangeLabel"
+        :max="today"
+        :now="today"
       />
     </div>
   </div>
@@ -98,16 +91,10 @@ function setTo(to: string) {
     min-inline-size: 0;
   }
 
-  .ui-period-select__range {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-
-  /* size/container/sm (640px; в @container нельзя var()) */
+  /* size/container/s (640px; в @container нельзя var()) */
   @container (min-width: 640px) {
     .ui-period-select {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       align-items: end;
     }
   }

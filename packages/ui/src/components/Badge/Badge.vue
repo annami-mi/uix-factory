@@ -49,10 +49,10 @@ defineSlots<{
     border-radius: var(--radius-full);
     background: var(--_bg);
     color: var(--_fg);
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
-    line-height: var(--type-label-sm-line-height);
+    font-family: var(--type-label-xs-font-family);
+    font-weight: var(--type-label-xs-font-weight);
+    font-size: var(--type-label-xs-font-size);
+    line-height: var(--type-label-xs-line-height);
     white-space: nowrap;
   }
 

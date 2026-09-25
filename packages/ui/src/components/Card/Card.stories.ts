@@ -19,14 +19,14 @@ const meta = {
           "Плашка для группы контента: товар, преимущество, отзыв, тариф. Материал — `surface/card/*` (в glass — Figma `effect/glass/default`), скругление 24.",
           "",
           "- `as=\"a\"`, `as=\"button\"`, `NuxtLink` — вся карточка кликабельна: подсветка, лёгкое «вдавливание» на пружине, кольцо фокуса. Внутри такой карточки — без других ссылок и кнопок.",
-          "- `padding`: `md` (16, мобильный), `lg` (24), `none` (картинка во всю карточку).",
+          "- `padding`: `m` (16, мобильный), `l` (24), `none` (картинка во всю карточку).",
         ].join("\n"),
       },
     },
   },
-  args: { padding: "md" },
+  args: { padding: "m" },
   argTypes: {
-    padding: { control: "inline-radio", options: ["none", "md", "lg"] },
+    padding: { control: "inline-radio", options: ["none", "m", "l"] },
     as: { control: false },
     default: { control: false },
   },
@@ -37,8 +37,8 @@ const meta = {
       <Card v-bind="args" as="article">
         <Stack gap="3">
           <Badge tone="success">В наличии</Badge>
-          <Heading :level="3" size="sm">Фермерский творог 5%</Heading>
-          <Text size="md" tone="secondary">400 г · Ферма «Заречье»</Text>
+          <Heading :level="3" size="s">Фермерский творог 5%</Heading>
+          <Text size="s" tone="secondary">400 г · Ферма «Заречье»</Text>
           <Stack direction="horizontal" justify="between" align="center">
             <Text>189 ₽</Text>
             <Button variant="secondary">В корзину</Button>
@@ -70,8 +70,8 @@ export const AsLink: Story = {
     template: `
       <Card as="a" href="/catalog/dairy" @click="onClick">
         <Stack gap="2">
-          <Heading :level="3" size="sm">Молочные продукты</Heading>
-          <Text size="md" tone="secondary">124 товара</Text>
+          <Heading :level="3" size="s">Молочные продукты</Heading>
+          <Text size="s" tone="secondary">124 товара</Text>
         </Stack>
       </Card>
     `,
@@ -92,11 +92,11 @@ export const FeatureGrid: Story = {
   render: () => ({
     components: { Card, Grid, Stack, Heading, Text },
     template: `
-      <Grid min="md" gap="4">
-        <Card v-for="f in ['Доставка за 30 минут', 'Фермерские продукты', 'Оплата при получении']" :key="f" padding="lg">
+      <Grid min="m" gap="4">
+        <Card v-for="f in ['Доставка за 30 минут', 'Фермерские продукты', 'Оплата при получении']" :key="f" padding="l">
           <Stack gap="2">
-            <Heading :level="3" size="sm">{{ f }}</Heading>
-            <Text size="md" tone="secondary">Короткое пояснение преимущества в одну-две строки.</Text>
+            <Heading :level="3" size="s">{{ f }}</Heading>
+            <Text size="s" tone="secondary">Короткое пояснение преимущества в одну-две строки.</Text>
           </Stack>
         </Card>
       </Grid>
@@ -117,8 +117,8 @@ export const StateMatrix: Story = {
       <Stack gap="4">
         <Card v-for="s in ['default', 'hover', 'focused']" :id="'card-' + s" :key="s" as="button">
           <Stack gap="1">
-            <Heading :level="3" size="sm">{{ s }}</Heading>
-            <Text size="md" tone="secondary">Вторичный текст на карточке</Text>
+            <Heading :level="3" size="s">{{ s }}</Heading>
+            <Text size="s" tone="secondary">Вторичный текст на карточке</Text>
           </Stack>
         </Card>
       </Stack>

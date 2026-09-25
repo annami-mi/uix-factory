@@ -26,7 +26,7 @@ const meta = {
         component: [
           "Выбор одного значения. Источник — Figma «Inputs» (149:723), `select` = капсула `field` + шеврон. Раскрытый список в макете не нарисован — спроектирован в коде.",
           "",
-          "- **Десктоп** (≥ `breakpoint/md`, 768px) — всплывашка у поля (Reka UI Select: listbox, typeahead, стрелки).",
+          "- **Десктоп** (≥ `breakpoint/m`, 768px) — всплывашка у поля (Reka UI Select: listbox, typeahead, стрелки).",
           "- **Мобильный** — шторка снизу (**Sheet**, Reka Dialog + Listbox): затемнение, ручка, заголовок = подпись поля, safe-area.",
           "- `presentation`: `auto` (по ширине экрана), `popover`, `sheet`. До монтирования (SSR) — popover.",
           "- Поле, подпись, подсказка, ошибка — общие с Input (**FormField** + **Field**), вся капсула кликабельна.",
@@ -223,10 +223,10 @@ const combo = (theme: string, scheme: string): Story => ({
   globals: { theme, scheme },
 });
 
-export const MatrixGlassDark = combo("glass", "dark");
-export const MatrixGlassLight = combo("glass", "light");
-export const MatrixNeutralLight = combo("neutral", "light");
-export const MatrixNeutralDark = combo("neutral", "dark");
+export const MatrixGlassDark = { ...combo("glass", "dark"), tags: ["!dev", "!autodocs"] };
+export const MatrixGlassLight = { ...combo("glass", "light"), tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralLight = { ...combo("neutral", "light"), tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralDark = { ...combo("neutral", "dark"), tags: ["!dev", "!autodocs"] };
 
 /** Открытая панель во всех комбинациях — контраст опций на материале панели. */
 const openCombo = (theme: string, scheme: string, presentation: "popover" | "sheet"): Story => ({

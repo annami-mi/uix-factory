@@ -3,7 +3,7 @@
  * Выбор одного значения из списка. Источник: Figma "select" (Inputs 149:723) = FormField + Field
  * с шевроном. Раскрытый список в Figma не нарисован — спроектирован в коде (токен-first):
  *
- * - **Десктоп** (ширина ≥ breakpoint/md) — всплывашка у поля: Reka UI Select (listbox, typeahead).
+ * - **Десктоп** (ширина ≥ breakpoint/m) — всплывашка у поля: Reka UI Select (listbox, typeahead).
  * - **Мобильный** — шторка снизу: Sheet (Reka Dialog) + Reka Listbox.
  * Режим — проп `presentation` (`auto` по ширине экрана, или явно `popover` / `sheet`).
  * До монтирования (SSR) — всегда popover, чтобы гидратация совпадала.
@@ -84,7 +84,7 @@ const controlAttrs = computed(() =>
   Object.fromEntries(Object.entries(attrs).filter(([key]) => key !== "class" && key !== "style")),
 );
 
-const isNarrow = useMediaQuery(`(width < ${breakpoints.md}px)`);
+const isNarrow = useMediaQuery(`(width < ${breakpoints.m}px)`);
 const mode = computed(() =>
   props.presentation === "auto" ? (isNarrow.value ? "sheet" : "popover") : props.presentation,
 );
@@ -265,10 +265,10 @@ function onSheetSelect(value: unknown) {
     border-radius: inherit;
     background: none;
     color: inherit;
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     text-align: start;
     cursor: pointer;
     outline: none; /* фокус показывает капсула Field (:focus-within) */
@@ -389,10 +389,10 @@ function onSheetSelect(value: unknown) {
     min-block-size: var(--size-44);
     padding-inline: var(--space-4);
     border-radius: var(--radius-full);
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     cursor: pointer;
     outline: none;
     user-select: none;

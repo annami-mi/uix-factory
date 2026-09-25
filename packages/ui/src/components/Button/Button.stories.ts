@@ -31,7 +31,7 @@ const meta = {
   },
   argTypes: {
     variant: { control: "inline-radio", options: ["primary", "secondary", "ghost"] },
-    size: { control: false },
+    size: { control: "inline-radio", options: ["s", "m", "l"] },
     as: { control: "inline-radio", options: ["button", "a"] },
     onClick: { table: { disable: true } },
     // Слоты показываются в таблице Docs, но без контрола: содержимое задают истории
@@ -120,6 +120,27 @@ export const WithIcons: Story = {
   },
 };
 
+/** Размеры: m — по умолчанию (48, тач); l — крупный CTA (56); s — компактный для тулбаров и плотных экранов (40). */
+export const Sizes: Story = {
+  render: (args) => ({
+    components: { Button, Send },
+    setup: () => ({ args }),
+    template: `
+      <div style="display: grid; gap: var(--space-4); justify-items: start">
+        <div v-for="size in ['l', 'm', 's']" :key="size" style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3)">
+          <Button v-bind="args" :size="size"><template #start><Send /></template>{{ size }}</Button>
+          <Button v-bind="args" :size="size" variant="secondary">{{ size }}</Button>
+          <Button v-bind="args" :size="size" variant="ghost">{{ size }}</Button>
+        </div>
+      </div>
+    `,
+  }),
+  play: async ({ canvas }) => {
+    const heights = ["l", "m", "s"].map((n) => canvas.getAllByRole("button", { name: n })[1]!.getBoundingClientRect().height);
+    await expect(heights).toEqual([56, 48, 40]);
+  },
+};
+
 /** CTA-ссылка с визуалом кнопки. Disabled-ссылка остаётся в tab-порядке, но клик гасится. */
 export const AsLink: Story = {
   name: "As link",
@@ -203,7 +224,7 @@ const combo = (theme: string, scheme: string): Story => ({
   globals: { theme, scheme },
 });
 
-export const MatrixGlassDark = combo("glass", "dark");
-export const MatrixGlassLight = combo("glass", "light");
-export const MatrixNeutralLight = combo("neutral", "light");
-export const MatrixNeutralDark = combo("neutral", "dark");
+export const MatrixGlassDark = { ...combo("glass", "dark"), tags: ["!dev", "!autodocs"] };
+export const MatrixGlassLight = { ...combo("glass", "light"), tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralLight = { ...combo("neutral", "light"), tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralDark = { ...combo("neutral", "dark"), tags: ["!dev", "!autodocs"] };

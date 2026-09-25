@@ -26,7 +26,7 @@ export const colorGroups = (entries: TokenEntry[]) => {
 /** Палитра примитивов: color/mono/*, color/palette/* */
 export const paletteGroups = () => colorGroups(primitives);
 
-/** Текстовые стили: type/label/lg → { name: "label/lg", css: "type-label-lg" } */
+/** Текстовые стили: type/label/m → { name: "label/m", css: "type-label-m" } */
 export const typeStyles = () =>
   [...new Set(primitives.filter((t) => t.path.startsWith("type/")).map((t) => t.path))].map((path) => ({
     name: path.replace(/^type\//, ""),

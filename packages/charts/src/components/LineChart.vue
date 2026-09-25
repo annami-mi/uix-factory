@@ -46,8 +46,8 @@ const props = withDefaults(
     xLabel?: string;
     /** Формат X: опции Intl для дат или функция */
     xFormat?: Intl.DateTimeFormatOptions | ((value: unknown) => string);
-    /** Высота: size/chart/{sm,md,lg} */
-    height?: "sm" | "md" | "lg";
+    /** Высота: size/chart/{s,m,l} */
+    height?: "s" | "m" | "l";
     /** Сглаживание линии */
     curve?: "smooth" | "linear";
     /** Имя графика без ChartCard (для скринридера и подписи таблицы) */
@@ -56,7 +56,7 @@ const props = withDefaults(
     emptyText?: string;
   }>(),
   {
-    height: "md",
+    height: "m",
     curve: "smooth",
     xLabel: "Дата",
     emptyText: "Нет данных за этот период",
@@ -420,15 +420,15 @@ const keyboardLabel = computed(
 
   .ui-line-chart__plot {
     position: relative;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
   }
 
-  .ui-line-chart[data-height="sm"] .ui-line-chart__plot {
-    block-size: var(--size-chart-sm);
+  .ui-line-chart[data-height="s"] .ui-line-chart__plot {
+    block-size: var(--size-chart-s);
   }
 
-  .ui-line-chart[data-height="lg"] .ui-line-chart__plot {
-    block-size: var(--size-chart-lg);
+  .ui-line-chart[data-height="l"] .ui-line-chart__plot {
+    block-size: var(--size-chart-l);
   }
 
   svg {
@@ -500,11 +500,11 @@ const keyboardLabel = computed(
   .ui-line-chart__empty {
     display: grid;
     place-items: center;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
     margin: 0;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
+    font-family: var(--type-body-s-font-family);
+    font-size: var(--type-body-s-font-size);
   }
 
   .ui-line-chart__live {

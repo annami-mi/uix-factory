@@ -13,9 +13,9 @@ const meta = {
       },
     },
   },
-  args: { size: "lg", tone: "primary" },
+  args: { size: "m", tone: "primary" },
   argTypes: {
-    size: { control: "inline-radio", options: ["lg", "md", "sm", "caption"] },
+    size: { control: "inline-radio", options: ["l", "m", "s", "xs", "caption"] },
     tone: { control: "inline-radio", options: ["primary", "secondary", "tertiary", "danger"] },
     as: { control: false },
     default: { control: false },

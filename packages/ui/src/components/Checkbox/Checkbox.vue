@@ -198,19 +198,19 @@ const describedBy = computed(
   }
 
   .ui-checkbox__label {
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     color: var(--color-text-primary, CanvasText);
   }
 
   .ui-checkbox__description,
   .ui-checkbox__error {
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-tertiary, CanvasText);
   }
 

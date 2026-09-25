@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Заглушка на время загрузки. Декоративная (скрыта от скринридера) — загрузку сообщает контейнер: `aria-busy=\"true\"` на области, которая грузится. Строка `text` — высотой в строку body/lg, без скачка при замене на текст. При reduced motion — без блика.",
+          "Заглушка на время загрузки. Декоративная (скрыта от скринридера) — загрузку сообщает контейнер: `aria-busy=\"true\"` на области, которая грузится. Строка `text` — высотой в строку body/m, без скачка при замене на текст. При reduced motion — без блика.",
       },
     },
   },
@@ -35,7 +35,7 @@ export const ProductCard: Story = {
   render: () => ({
     components: { Skeleton, Card, Stack },
     template: `
-      <Card as="section" aria-busy="true" aria-label="Загрузка товара" style="max-inline-size: var(--size-container-sm)">
+      <Card as="section" aria-busy="true" aria-label="Загрузка товара" style="max-inline-size: var(--size-container-s)">
         <Stack gap="3">
           <div style="block-size: var(--size-64)"><Skeleton shape="rect" /></div>
           <Skeleton :lines="2" />

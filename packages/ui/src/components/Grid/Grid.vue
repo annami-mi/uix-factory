@@ -9,8 +9,8 @@ import { space, type SpaceKey } from "../../types";
 
 const props = withDefaults(
   defineProps<{
-    /** Минимальная ширина ячейки: sm 160 (логотипы), md 260 (карточки), lg 340 (крупные карточки) */
-    min?: "sm" | "md" | "lg";
+    /** Минимальная ширина ячейки: s 160 (логотипы), m 260 (карточки), l 340 (крупные карточки) */
+    min?: "s" | "m" | "l";
     /** Максимум колонок (ограничивает auto-fit на широком экране) */
     columns?: number;
     /** Отступ между ячейками — ключ шкалы space/* */
@@ -18,7 +18,7 @@ const props = withDefaults(
     /** Тег: div, ul… */
     as?: string;
   }>(),
-  { min: "md", gap: "4", as: "div" },
+  { min: "m", gap: "4", as: "div" },
 );
 
 defineSlots<{ default: () => unknown }>();

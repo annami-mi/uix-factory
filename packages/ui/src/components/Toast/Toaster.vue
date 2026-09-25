@@ -4,7 +4,7 @@
  * Поведение — Reka UI Toast: объявление скринридером (danger — сразу, остальные — вежливо),
  * пауза таймера при наведении/фокусе, F8 — перейти к уведомлениям, смахивание вправо закрывает.
  *
- * Внизу по центру, шириной size/container/sm (на телефоне — во всю ширину с полями), с учётом safe-area.
+ * Внизу по центру, шириной size/container/s (на телефоне — во всю ширину с полями), с учётом safe-area.
  * Материал — surface/popover/*, время показа — duration/toast. В Figma нет — токен-первый.
  */
 import { computed } from "vue";
@@ -112,7 +112,7 @@ function onOpenChange(id: number, open: boolean) {
     flex-direction: column;
     gap: var(--space-2);
     box-sizing: border-box;
-    inline-size: min(var(--size-container-sm) + 2 * var(--layout-gutter), 100%);
+    inline-size: min(var(--size-container-s) + 2 * var(--layout-gutter), 100%);
     margin: 0 auto;
     padding: var(--space-2) var(--layout-gutter) calc(var(--space-4) + env(safe-area-inset-bottom));
     list-style: none;
@@ -154,22 +154,22 @@ function onOpenChange(id: number, open: boolean) {
     flex: 1;
     gap: var(--space-px);
     min-inline-size: 0;
-    padding-block: calc((var(--size-48) - var(--type-label-md-line-height)) / 2);
+    padding-block: calc((var(--size-48) - var(--type-label-s-line-height)) / 2);
   }
 
   .ui-toast__title {
-    font-family: var(--type-label-md-font-family);
-    font-weight: var(--type-label-md-font-weight);
-    font-size: var(--type-label-md-font-size);
-    line-height: var(--type-label-md-line-height);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
   }
 
   .ui-toast__description {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-weight: var(--type-body-md-font-weight);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-weight: var(--type-body-s-font-weight);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
   }
 
   /* Появление снизу на пружине, смахивание вправо — за пальцем */

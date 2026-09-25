@@ -109,7 +109,7 @@ const badgeTone = computed(() => (props.tone === "info" ? "accent" : props.tone)
     flex: none;
     inline-size: var(--size-20);
     block-size: var(--size-20);
-    margin-block-start: calc((var(--type-body-lg-line-height) - var(--size-20)) / 2);
+    margin-block-start: calc((var(--type-body-m-line-height) - var(--size-20)) / 2);
     color: var(--_icon, currentColor);
     stroke-width: var(--stroke-icon);
   }
@@ -123,18 +123,18 @@ const badgeTone = computed(() => (props.tone === "info" ? "accent" : props.tone)
 
   .ui-alert__title {
     margin: 0;
-    font-family: var(--type-label-lg-font-family);
-    font-weight: var(--type-label-lg-font-weight);
-    font-size: var(--type-label-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-label-m-font-family);
+    font-weight: var(--type-label-m-font-weight);
+    font-size: var(--type-label-m-font-size);
+    line-height: var(--type-body-m-line-height);
   }
 
   .ui-alert__text {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-weight: var(--type-body-md-font-weight);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-weight: var(--type-body-s-font-weight);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
   }
 
   .ui-alert__actions {

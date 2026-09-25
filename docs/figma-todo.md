@@ -43,6 +43,7 @@
 - [ ] **IconButton** — ряд в Figma есть; сверить с кодом (круг 48, иконка 24, варианты primary/secondary/ghost) и переименовать `state=state11`.
 - [ ] **Link** — цвет `text/link` (`#5EB0FF` на тёмном стекле: акцент как текст не проходит контраст), подчёркивание.
 - [ ] **RadioGroup, Switch** — пара к Checkbox (`surface/control/*`, `surface/switch/*`).
+- [ ] **Переименовать шкалу текста (2026-09-25): размеры буквами `xs · s · m · l`, `m` — основной.** Figma → код: `body/lg` 16/24 → `body/m`; `body/md` 14/20 → `body/s`; `body/sm` 12/16 → `body/xs`; `label/md` 14/16 → `label/s`; `label/sm` 12/16 → `label/xs`; `heading/lg · md · sm` → `heading/l · m · s`. Добавить `body/l` 18/28 и `label/l` 18/24; `label/m` = 16/20 Medium (в Figma label/lg нет). Размеры кнопок — `s · m · l`, контейнеры и сетка — `size/container/s · m · l`, `size/grid-item/s · m · l`.
 - [ ] **Типографика** — стиль `hero` (плавный 32 → 64, SemiBold, межстрочный 1.1) для первого экрана.
 - [ ] **Card, Badge, Avatar, Skeleton** — `surface/card/*` (материал `effect/glass/default`), `color/badge/*`, `surface/skeleton/*`.
 - [ ] **Accordion, Tabs** — FAQ; сегментированный контрол (`surface/segmented/*`).
@@ -67,6 +68,17 @@
 - [ ] **Field disabled** — фон white @ 2% и бордер white @ 6% не привязаны. Завести роли или привязать к существующим.
 - [ ] **Шеврон Select** — залит `#FAFAFA` (тот самый «White» без роли из аудита); привязать к `color/icon/secondary`.
 - [ ] **`color/glass-border/subtle`** используется в field — после чистки дублей привязать к `color/border/subtle`.
+
+## Тон (2026-09-25)
+
+- [ ] **Без чистых чёрного/белого** — завести `mono/ink` #202227 и `mono/snow` #f1f1f4; `foreground` glass light → ink, glass dark → snow, фон glass dark #000 → #141417; neutral: текст #202227 / #e8e8ec, фон dark #161619; затемнения (scrim) — ink.
+- [ ] **Иерархия текста** — glass light secondary 0.72 → 0.74, tertiary 0.6 → 0.66 (на графите нужна плотнее); glass dark secondary 0.6 → 0.62; `text/on-accent` glass dark — сплошной snow.
+- [ ] **Кромки кнопок стекла ≈ вдвое тише** — `accent/glass-border` light 0.35/0.45/0.25 → 0.18/0.24/0.14, dark 0.18/0.24/0.12 → 0.10/0.14/0.07; secondary (neutral) light #fffc → #fff6 (hover #fff8, pressed #fff9), dark #fff2e → #fff17.
+- [ ] **Таблица** — роли `surface/table/*` (шапка, наведение, выбор) — в Figma нет.
+- [ ] **Разделители** — роль `color/divider` (foreground 6%) для линий аккордеона, меню, таблиц и сетки графиков; в Figma сейчас border/default (10–14%).
+- [ ] **Стекло всплывашек** — `effect/glass/strong` для меню/списков: заливка #232325 @ 68% / #fff @ 66%, blur r80 (CSS 40px) + насыщение 180%; в Figma — 80% и r48.
+- [ ] **Календарь / DatePicker** — в Figma нет: роли `surface/calendar/range` и `preview`, раскладки (всплывашка с пресетами и двумя месяцами, шторка с лентой месяцев).
+- [ ] **Button: размеры `sm` (40, label/sm, иконка 16) и `lg` (56, label/lg, иконка 24)** — в Figma только 48.
 
 ## Графики (ADR-0007, токен-first)
 

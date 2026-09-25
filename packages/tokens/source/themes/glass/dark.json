@@ -4,13 +4,15 @@
     "background": {
       "default": {
         "$type": "color",
-        "$value": "{color.mono.black}"
+        "$value": "#141417",
+        "$description": "решение 2026-09-25: без чистого чёрного/белого — припылённые тона, иерархия текста мягче (docs/figma-todo.md)"
       }
     },
     "foreground": {
       "default": {
         "$type": "color",
-        "$value": "{color.mono.white}"
+        "$value": "{color.mono.snow}",
+        "$description": "решение 2026-09-25: без чистого чёрного/белого — припылённые тона, иерархия текста мягче (docs/figma-todo.md)"
       }
     },
     "text": {
@@ -25,7 +27,7 @@
         "$type": "color",
         "$value": "{color.foreground.default}",
         "$extensions": {
-          "uix.alpha": 0.6
+          "uix.alpha": 0.62
         }
       },
       "tertiary": {
@@ -45,7 +47,8 @@
       },
       "on-accent": {
         "$type": "color",
-        "$value": "{color.text.primary}"
+        "$value": "{color.mono.snow}",
+        "$description": "сплошной припылённый белый: на цветном стекле альфа текста роняет контраст ниже 4.5:1"
       },
       "danger": {
         "$type": "color",
@@ -102,6 +105,14 @@
         "$extensions": {
           "uix.alpha": 0.24
         }
+      }
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.foreground.default}",
+      "$description": "вспомогательные линии — разделители аккордеона, меню, строк таблиц, Divider: еле видимые (2026-09-25). Рамки контролов — color/border/*",
+      "$extensions": {
+        "uix.alpha": 0.06
       }
     },
     "surface": {
@@ -182,22 +193,25 @@
         "$type": "color",
         "$value": "{color.mono.white}",
         "$extensions": {
-          "uix.alpha": 0.18
-        }
+          "uix.alpha": 0.1
+        },
+        "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
       },
       "glass-border-hover": {
         "$type": "color",
         "$value": "{color.mono.white}",
         "$extensions": {
-          "uix.alpha": 0.24
-        }
+          "uix.alpha": 0.14
+        },
+        "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
       },
       "glass-border-pressed": {
         "$type": "color",
         "$value": "{color.mono.white}",
         "$extensions": {
-          "uix.alpha": 0.12
-        }
+          "uix.alpha": 0.07
+        },
+        "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
       },
       "loading": {
         "$type": "color",
@@ -427,11 +441,8 @@
       },
       "grid": {
         "$type": "color",
-        "$value": "{color.foreground.default}",
-        "$description": "сетка: тонкая, на шаг от фона, сплошная",
-        "$extensions": {
-          "uix.alpha": 0.08
-        }
+        "$value": "{color.divider}",
+        "$description": "сетка графиков — тем же еле видимым тоном, что разделители"
       },
       "axis": {
         "$type": "color",
@@ -565,8 +576,8 @@
         },
         "border": {
           "$type": "color",
-          "$value": "#ffffff2e",
-          "$description": "Figma: 0.18 — как accent/glass-border, семантической роли нет (docs/figma-todo.md)"
+          "$value": "#ffffff17",
+          "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
         },
         "shadow": {
           "$type": "other",
@@ -584,7 +595,8 @@
         },
         "border": {
           "$type": "color",
-          "$value": "{color.border.strong}"
+          "$value": "#ffffff24",
+          "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
         },
         "shadow": {
           "$type": "other",
@@ -603,7 +615,8 @@
         },
         "border": {
           "$type": "color",
-          "$value": "#ffffff4d"
+          "$value": "#ffffff29",
+          "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
         },
         "shadow": {
           "$type": "other",
@@ -625,7 +638,8 @@
         },
         "border": {
           "$type": "color",
-          "$value": "#ffffff2e"
+          "$value": "#ffffff14",
+          "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
         },
         "shadow": {
           "$type": "other",
@@ -643,7 +657,8 @@
         },
         "border": {
           "$type": "color",
-          "$value": "{color.border.default}"
+          "$value": "#ffffff17",
+          "$description": "смягчено 2026-09-25 (≈ вдвое к Figma): кромка стекла — еле заметный блик, не обводка (docs/figma-todo.md)"
         },
         "shadow": {
           "$type": "other",
@@ -750,9 +765,9 @@
       "bg": {
         "$type": "color",
         "$value": "#232325",
-        "$description": "код: в Figma выпадающий список не нарисован; плотнее glass/strong, чтобы опции читались поверх контента",
+        "$description": "Liquid Glass (2026-09-25): всплывающие панели — «толстое» стекло: тоньше заливка, сильное размытие и насыщение — подложка угадывается цветом, но не читается",
         "$extensions": {
-          "uix.alpha": 0.8
+          "uix.alpha": 0.68
         }
       },
       "border": {
@@ -769,8 +784,8 @@
       },
       "backdrop": {
         "$type": "other",
-        "$value": "blur({blur.48})",
-        "$description": "из Figma: effect/glass/strong, BACKGROUND_BLUR r48"
+        "$value": "blur({blur.80}) saturate(180%)",
+        "$description": "Liquid Glass (2026-09-25): всплывающие панели — «толстое» стекло: тоньше заливка, сильное размытие и насыщение — подложка угадывается цветом, но не читается; saturate — как у системных материалов"
       }
     },
     "option": {
@@ -787,7 +802,7 @@
     "scrim": {
       "bg": {
         "$type": "color",
-        "$value": "{color.mono.black}",
+        "$value": "{color.mono.ink}",
         "$extensions": {
           "uix.alpha": 0.5
         },
@@ -1056,6 +1071,55 @@
       "indicator-shadow": {
         "$type": "other",
         "$value": "inset 0 1px 0 #ffffff1f, 0 2px 8px #00000052"
+      }
+    },
+    "table": {
+      "header-bg": {
+        "$type": "color",
+        "$value": "#272727",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: липкая шапка — почти в цвет страницы, полупрозрачная, чтобы строки уходили под неё без полосы",
+        "$extensions": {
+          "uix.alpha": 0.72
+        }
+      },
+      "header-backdrop": {
+        "$type": "other",
+        "$value": "blur({blur.24})",
+        "$description": "размытие строк под липкой шапкой"
+      },
+      "row-hover-bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: наведение на строку — 3–4% тона",
+        "$extensions": {
+          "uix.alpha": 0.04
+        }
+      },
+      "row-selected-bg": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: выбранная строка — лёгкий оттенок акцента (выбор виден и по флажку)",
+        "$extensions": {
+          "uix.alpha": 0.12
+        }
+      }
+    },
+    "calendar": {
+      "range": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "календарь (2026-09-25): полоса выбранного диапазона и предпросмотр при наведении — оттенок акцента, тише выбранных краёв: дни внутри диапазона",
+        "$extensions": {
+          "uix.alpha": 0.18
+        }
+      },
+      "preview": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "календарь (2026-09-25): полоса выбранного диапазона и предпросмотр при наведении — оттенок акцента, тише выбранных краёв: предпросмотр диапазона до второго клика",
+        "$extensions": {
+          "uix.alpha": 0.08
+        }
       }
     }
   }

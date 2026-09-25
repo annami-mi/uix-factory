@@ -40,11 +40,11 @@ const meta = {
     valueFormat: rubK,
     orientation: "vertical",
     stacked: false,
-    height: "md",
+    height: "m",
   },
   argTypes: {
     orientation: { control: "inline-radio", options: ["vertical", "horizontal"] },
-    height: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    height: { control: "inline-radio", options: ["s", "m", "l"] },
     data: { control: false },
     series: { control: false },
     valueFormat: { control: false },

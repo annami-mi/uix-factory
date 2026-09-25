@@ -66,6 +66,10 @@ const cell = (row: Datum, col: TableColumn) => (col.format ? col.format(row[col.
   .ui-chart-table {
     max-inline-size: 100%;
     overflow-x: auto;
+    /* Скроллбар невидим, пока указатель не над областью: место занято всегда — без скачка раскладки */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color var(--duration-normal) ease;
     border-radius: var(--radius-2);
   }
 
@@ -77,9 +81,9 @@ const cell = (row: Datum, col: TableColumn) => (col.format ? col.format(row[col.
   table {
     inline-size: 100%;
     border-collapse: collapse;
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     color: var(--color-text-primary, CanvasText);
   }
 
@@ -95,23 +99,31 @@ const cell = (row: Datum, col: TableColumn) => (col.format ? col.format(row[col.
   th,
   td {
     padding: var(--space-2) var(--space-3);
-    border-block-end: var(--stroke-1) solid var(--color-chart-grid, GrayText);
+    border-block-end: var(--stroke-1) solid var(--color-divider, GrayText);
     text-align: start;
     white-space: nowrap;
   }
 
+  /* Заголовки колонок — label/s 14px, ячейки — body/m 16px (основной текст) */
   thead th {
     color: var(--color-text-secondary, CanvasText);
-    font-weight: var(--type-label-md-font-weight);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
   }
 
   tbody th {
-    font-weight: var(--type-body-md-font-weight);
+    font-weight: var(--type-body-m-font-weight);
   }
 
   [data-numeric] {
     text-align: end;
     font-variant-numeric: tabular-nums;
+  }
+
+  .ui-chart-table:is(:hover, :focus-visible) {
+    scrollbar-color: var(--color-border-default, GrayText) transparent;
   }
 }
 </style>

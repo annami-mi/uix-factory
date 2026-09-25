@@ -167,7 +167,7 @@ const combo = (theme: string, scheme: string): Story => ({
   globals: { theme, scheme },
 });
 
-export const MatrixGlassDark = combo("glass", "dark");
-export const MatrixGlassLight = combo("glass", "light");
-export const MatrixNeutralLight = combo("neutral", "light");
-export const MatrixNeutralDark = combo("neutral", "dark");
+export const MatrixGlassDark = { ...combo("glass", "dark"), tags: ["!dev", "!autodocs"] };
+export const MatrixGlassLight = { ...combo("glass", "light"), tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralLight = { ...combo("neutral", "light"), tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralDark = { ...combo("neutral", "dark"), tags: ["!dev", "!autodocs"] };

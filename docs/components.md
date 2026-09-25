@@ -14,7 +14,7 @@
 | Focus | `color-state-focus`, `stroke-2` (внутренний бордер surface) |
 | Форма, размер, отступы | `radius-full`, `size-48`, `space-2`, `space-4`, `space-px` (снизу, оптическая компенсация), `stroke-1` |
 | Pressed (Liquid Glass: scale на пружине + блик из точки касания `surface-*-pressed-highlight`, слой `::after`) | `scale-pressed`, `duration-press` + `easing-spring-press` (нажатие), `duration-release` + `easing-spring-release` (отпускание); при `prefers-reduced-motion` — без scale |
-| Типографика | `type-label-lg-*` (16/20 Medium — не сверено с Figma) |
+| Типографика | `type-label-m-*` (16/20 Medium — не сверено с Figma) |
 | Иконки (слоты `#start`/`#end`) | `size-20`, `stroke-icon`, цвет — `currentColor` |
 | Спиннер | `size-20`, `stroke-2`, `opacity-30`, `duration-spinner`, `duration-spinner-reduced` |
 | Переходы | `duration-normal` (отключаются при `prefers-reduced-motion`) |
@@ -31,6 +31,8 @@
 - Иконки — слоты `#start`/`#end`, библиотека кита Lucide (`@lucide/vue`); Button к ней не привязан. В loading иконки скрыты.
 - Focus — только нативный `:focus-visible`, без пропа.
 
+**Размеры (`size`):** `s` — `size-40` (на тач-экране, `pointer: coarse`, — `size-44`), `space-3`, `type-label-s-*`, иконка `size-16` (компактный: тулбары, плотные экраны — не по умолчанию); `m` — `size-48`, `space-4`, `type-label-m-*`, иконка `size-20` (по умолчанию, тач); `l` — `size-56`, `space-6`, `type-label-l-*`, иконка `size-24` (CTA). IconButton — квадрат высоты кнопки.
+
 ## Spinner (`packages/ui/src/components/Spinner/Spinner.vue`)
 
 Figma `spiner`. Декоративный (`aria-hidden`): загрузку сообщает контрол через `aria-busy`. Используется в Button и Field.
@@ -46,11 +48,11 @@ Figma `spiner`. Декоративный (`aria-hidden`): загрузку со�
 
 | Что | Токены |
 |---|---|
-| Подпись | `type-label-sm-*`, `color-text-secondary`; ошибка — `color-text-danger` |
-| Подсказка / ошибка | `type-body-sm-*`, `color-text-tertiary`; ошибка — `color-text-danger`; disabled — `color-text-disabled` |
+| Подпись | `type-label-xs-*`, `color-text-secondary`; ошибка — `color-text-danger` |
+| Подсказка / ошибка | `type-body-xs-*`, `color-text-tertiary`; ошибка — `color-text-danger`; disabled — `color-text-disabled` |
 | Отступы | `space-2` |
 
-Ошибка заменяет подсказку (в Figma error красит тот же hint). Без `label` контролу нужен `aria-label`. Слот `#aside` — справа от подсказки (счётчик символов Textarea), `type-body-sm-*`, `color-text-tertiary`, цифры моноширинные.
+Ошибка заменяет подсказку (в Figma error красит тот же hint). Без `label` контролу нужен `aria-label`. Слот `#aside` — справа от подсказки (счётчик символов Textarea), `type-body-xs-*`, `color-text-tertiary`, цифры моноширинные.
 
 ## Field (`packages/ui/src/components/Field/Field.vue`)
 
@@ -73,7 +75,7 @@ FormField + Field + нативный `<input>`. `v-model`, `label`, `hint`, `err
 
 | Что | Токены |
 |---|---|
-| Текст | `type-body-lg-*` (16px — без зума в iOS Safari) |
+| Текст | `type-body-m-*` (16px — без зума в iOS Safari) |
 | Placeholder | `color-text-tertiary`; disabled — `color-text-disabled` |
 | Курсор | `color-accent-default` |
 | Кнопка очистки | иконка `size-20` в `size-24`, зона касания `size-44`, фокус — `color-state-focus` |
@@ -93,18 +95,18 @@ FormField + Field (`flush`) + триггер. `v-model`, `options: SelectOption[
 
 | Режим | Когда | Как |
 |---|---|---|
-| `popover` | ширина ≥ `breakpoint/md` (768px) | всплывашка у поля — Reka UI Select (listbox, typeahead, стрелки) |
-| `sheet` | уже `breakpoint/md` | шторка снизу — Sheet + Reka Listbox |
+| `popover` | ширина ≥ `breakpoint/m` (768px) | всплывашка у поля — Reka UI Select (listbox, typeahead, стрелки) |
+| `sheet` | уже `breakpoint/m` | шторка снизу — Sheet + Reka Listbox |
 
 До монтирования (SSR) — всегда popover, режим уточняется на клиенте (`useMediaQuery`).
 
 | Что | Токены |
 |---|---|
-| Поле | как у Field; значение — `type-body-lg-*`, плейсхолдер — `color-text-tertiary` |
+| Поле | как у Field; значение — `type-body-m-*`, плейсхолдер — `color-text-tertiary` |
 | Шеврон | `size-20`, `color-icon-secondary`; открыт — поворот 180° (`duration-normal`) |
 | Панель | `surface-popover-{bg,border,shadow,backdrop}`, `radius-6`, `space-1`, `z-index-popover` |
 | Появление | `scale-popover-enter` → 1 на пружине `duration-press` + `easing-spring-press` |
-| Опция | `size-44`, `space-4`, `radius-full`, `type-body-lg-*`; подсветка — `surface-option-highlighted-bg`; выбранная — галочка `color-accent-default`; отключённая — `color-text-disabled` |
+| Опция | `size-44`, `space-4`, `radius-full`, `type-body-m-*`; подсветка — `surface-option-highlighted-bg`; выбранная — галочка `color-accent-default`; отключённая — `color-text-disabled` |
 
 Поведение:
 - Вся капсула — триггер; подпись связана с ним (`for`), ошибка — `aria-invalid` + `aria-describedby`.
@@ -122,7 +124,7 @@ Storybook: истории «Popover · open» и «Sheet · open» (открыт
 |---|---|
 | Материал | `surface-popover-{bg,border,shadow,backdrop}`, верхние углы `radius-sheet` |
 | Затемнение | `surface-scrim-{bg,backdrop}` |
-| Ручка, заголовок | `size-36` × `space-1`, `color-border-strong`; `type-heading-sm-*` |
+| Ручка, заголовок | `size-36` × `space-1`, `color-border-strong`; `type-heading-s-*` |
 | Анимация | выезд снизу `duration-release` + `easing-spring-press`; при reduced motion — только проявление |
 | Отступы | `space-2`, `space-4`; снизу — `env(safe-area-inset-bottom)` |
 
@@ -137,8 +139,8 @@ FormField + Field (`multiline`) + `<textarea>`. `v-model`, `label`, `hint`, `err
 | Что | Токены |
 |---|---|
 | Материал, фокус, ошибка, disabled | как у Field (`surface-field-*`), скругление `radius-6` |
-| Текст | `type-body-lg-*`, курсор `color-accent-default`, плейсхолдер `color-text-tertiary` |
-| Высота | `rows` … `maxRows` × `type-body-lg-line-height` |
+| Текст | `type-body-m-*`, курсор `color-accent-default`, плейсхолдер `color-text-tertiary` |
+| Высота | `rows` … `maxRows` × `type-body-m-line-height` |
 | Счётчик | слот `#aside` FormField |
 
 Поведение:
@@ -155,7 +157,7 @@ FormField + Field (`multiline`) + `<textarea>`. `v-model`, `label`, `hint`, `err
 | Пустой / hover / disabled | `surface-control-{default,hover,disabled}-{bg,border}` — обводка ≥ 3:1 к фону (WCAG 1.4.11) |
 | Отмечен / частично | `surface-control-checked-{bg,border,mark}`; галочка / черта Lucide `size-20`, `stroke-3` |
 | Ошибка | `surface-control-error-border`, текст `color-text-danger` |
-| Строка | зона касания `size-44`, отступ `space-3`; подпись `type-body-lg-*`, описание/ошибка `type-body-sm-*` |
+| Строка | зона касания `size-44`, отступ `space-3`; подпись `type-body-m-*`, описание/ошибка `type-body-xs-*` |
 | Фокус | `color-state-focus`, `stroke-2`, отступ `stroke-2` |
 | Нажатие | `scale-pressed` на пружине (как Button); появление отметки — пружина `duration-press` |
 
@@ -184,39 +186,39 @@ Button с модификатором `ui-button--icon`: круг `size-48`, ик
 `<input type="checkbox" role="switch">`, трек `size-52` × `size-32` (`surface-switch-track-off` ≥ 3:1 к фону, `-track-on` — акцент), бегунок `size-24` (`surface-switch-thumb`, `-thumb-shadow`), при нажатии растягивается на `space-2`. Подпись слева, переключатель справа. Для согласий в формах — Checkbox.
 
 ### Container / Section / Stack / Grid / Divider
-- **Container** — ширина `size-container-{sm,md,lg}` или `full`, поля `layout-gutter` (16 → 40px, `clamp`).
+- **Container** — ширина `size-container-{s,m,l}` или `full`, поля `layout-gutter` (16 → 40px, `clamp`).
 - **Section** — `padding-block: layout-section` (48 → 96px), Container внутри, `tone="subtle"` — плашка `color-surface-subtle`.
 - **Stack** — flex с `gap` из шкалы `space-*` (проп — ключ шкалы, не пиксели).
-- **Grid** — `auto-fit` с минимальной ячейкой `size-grid-item-{sm,md,lg}`; `columns` — максимум колонок. Без media query.
+- **Grid** — `auto-fit` с минимальной ячейкой `size-grid-item-{s,m,l}`; `columns` — максимум колонок. Без media query.
 - **Divider** — `color-border-default`, `stroke-1`; по умолчанию декоративный, `semantic` → `role=separator`.
 
 ### Heading / Text
-- **Heading** — `level` (h1…h6) и `size` (`hero` / `display` / `lg` / `md` / `sm` → `type-*`) независимы; `hero` — плавный 32 → 64px (`type-hero`, `font-line-height-tight`); `text-wrap: balance`.
-- **Text** — `size` (`lg`/`md`/`sm`/`caption`), `tone` (`primary`/`secondary`/`tertiary`/`danger`), `as`.
+- **Heading** — `level` (h1…h6) и `size` (`hero` / `display` / `l` / `m` / `s` → `type-*`) независимы; `hero` — плавный 32 → 64px (`type-hero`, `font-line-height-tight`); `text-wrap: balance`.
+- **Text** — `size` (`l`/`m`/`s`/`caption`), `tone` (`primary`/`secondary`/`tertiary`/`danger`), `as`.
 
 ### Card
-Материал `surface-card-{bg,border,shadow,backdrop}`, `radius-6`, `padding` `md` (`space-4`) / `lg` (`space-6`) / `none`. Кликабельная (`as="a" | "button"` / NuxtLink) — `surface-card-hover-bg`, `scale-pressed-surface` на пружине, кольцо фокуса.
+Материал `surface-card-{bg,border,shadow,backdrop}`, `radius-6`, `padding` `m` (`space-4`) / `l` (`space-6`) / `none`. Кликабельная (`as="a" | "button"` / NuxtLink) — `surface-card-hover-bg`, `scale-pressed-surface` на пружине, кольцо фокуса.
 
 ### Badge
-`color-badge-{neutral,accent,success,warning,danger}-{bg,fg}` (текст ≥ 4.5:1 на плашке — тест токенов), `size-24`, `space-2`, `radius-full`, `type-label-sm-*`, ширина по содержимому; иконка — слот `#start` (`size-16`).
+`color-badge-{neutral,accent,success,warning,danger}-{bg,fg}` (текст ≥ 4.5:1 на плашке — тест токенов), `size-24`, `space-2`, `radius-full`, `type-label-xs-*`, ширина по содержимому; иконка — слот `#start` (`size-16`).
 
 ### Avatar
 Фото или инициалы (если фото нет или не загрузилось), `size-{32,40,48}`, `color-surface-hover` + `color-text-secondary`. `name` — доступное имя; `decorative` — скрыт, если имя написано рядом.
 
 ### Skeleton
-`surface-skeleton-{bg,shine}`, блик за `duration-spinner`, без блика при reduced motion. Формы `text` (строки высотой в body/lg) / `rect` / `circle`. Декоративный — `aria-busy` ставит контейнер.
+`surface-skeleton-{bg,shine}`, блик за `duration-spinner`, без блика при reduced motion. Формы `text` (строки высотой в body/m) / `rect` / `circle`. Декоративный — `aria-busy` ставит контейнер.
 
 ### Accordion
-Reka Accordion; `items` (`value`, `title`, `content?`, `disabled?`), `type` single/multiple, `headingLevel`; строка `size-56`, заголовок `type-heading-sm-*`, текст `color-text-secondary`, раскрытие по высоте на пружине, разделители `color-border-default`. Разметка содержимого — слот с именем `value`.
+Reka Accordion; `items` (`value`, `title`, `content?`, `disabled?`), `type` single/multiple, `headingLevel`; строка `size-56`, заголовок `type-heading-s-*`, текст `color-text-secondary`, раскрытие по высоте на пружине, разделители `color-border-default`. Разметка содержимого — слот с именем `value`.
 
 ### Tabs
-Reka Tabs; сегментированный контрол `surface-segmented-{track,indicator,indicator-border,indicator-shadow}`, плашка активной вкладки перетекает на пружине (`duration-release` + `easing-spring-release`). Вкладка `size-40`, `type-label-md-*`; `stretch` — поровну на всю ширину; иначе — горизонтальная прокрутка. Панель — слот с именем `value`.
+Reka Tabs; сегментированный контрол `surface-segmented-{track,indicator,indicator-border,indicator-shadow}`, плашка активной вкладки перетекает на пружине (`duration-release` + `easing-spring-release`). Вкладка `size-40`, `type-label-s-*`; `stretch` — поровну на всю ширину; иначе — горизонтальная прокрутка. Панель — слот с именем `value`.
 
 ### Dialog
-`presentation` auto / dialog / sheet (по `breakpoint/md`, SSR — dialog). Окно: `surface-popover-*`, `radius-8`, ширина `size-container-{sm,md}` в пределах полей, `z-index-popover`, затемнение `surface-scrim-*`, появление `scale-popover-enter` на пружине. Шторка — Sheet (`closable`, `initialFocus="container"`). Фокус при открытии — на окно (скринридер читает заголовок, без кольца на «Закрыть»), при закрытии — обратно на кнопку.
+`presentation` auto / dialog / sheet (по `breakpoint/m`, SSR — dialog). Окно: `surface-popover-*`, `radius-8`, ширина `size-container-{sm,md}` в пределах полей, `z-index-popover`, затемнение `surface-scrim-*`, появление `scale-popover-enter` на пружине. Шторка — Sheet (`closable`, `initialFocus="container"`). Фокус при открытии — на окно (скринридер читает заголовок, без кольца на «Закрыть»), при закрытии — обратно на кнопку.
 
 ### Tooltip
-Reka Tooltip: наведение и фокус с клавиатуры, Esc, `aria-describedby`; задержка `duration-slower`, отступ `space-2`; материал `surface-popover-*`, `radius-3`, `type-body-md-*`. На сенсорных экранах не показывается — ничего важного.
+Reka Tooltip: наведение и фокус с клавиатуры, Esc, `aria-describedby`; задержка `duration-slower`, отступ `space-2`; материал `surface-popover-*`, `radius-3`, `type-body-s-*`. На сенсорных экранах не показывается — ничего важного.
 
 ### DropdownMenu
 Reka DropdownMenu: `items` — действия (`value`, `label`, `icon?`, `danger?`, `disabled?`), `separator`, `label`; событие `select(value)`. Панель и пункты — как у Select (`surface-popover-*`, `surface-option-highlighted-bg`), опасное действие — `color-text-danger`.
@@ -225,7 +227,7 @@ Reka DropdownMenu: `items` — действия (`value`, `label`, `icon?`, `dan
 `<Toaster />` один раз в layout + `useToast().toast({ title, description, tone, action })`. Reka Toast: `danger` — объявляется сразу, остальные — вежливо; таймер `duration-toast` замирает при наведении/фокусе; F8; смахивание вправо. Внизу по центру, ширина узкого контейнера, safe-area; `surface-popover-*`, `radius-6`. `action` требует `altText`.
 
 ### Alert
-Тонированная плашка `color-badge-<tone>-bg` (info → accent), иконка `color-badge-<tone>-fg`, заголовок `type-label-lg-*`, текст `color-text-secondary` (оба ≥ 4.5:1 на плашке — тест токенов). `live` → `role=alert` (danger/warning) или `status`; `dismissible` → событие `dismiss`; действия — слот `#actions`.
+Тонированная плашка `color-badge-<tone>-bg` (info → accent), иконка `color-badge-<tone>-fg`, заголовок `type-label-m-*`, текст `color-text-secondary` (оба ≥ 4.5:1 на плашке — тест токенов). `live` → `role=alert` (danger/warning) или `status`; `dismissible` → событие `dismiss`; действия — слот `#actions`.
 
 ### Breadcrumbs
 `<nav aria-label>` + `<ol>`, текущая — `aria-current="page"` без ссылки, разделители `ChevronRight` декоративные; ссылки `color-text-secondary` → `primary` при наведении; `linkAs` — NuxtLink.
@@ -249,7 +251,7 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 `Card as="figure"` + figcaption (`Heading` уровня `headingLevel`, по умолчанию 3), слот `#actions`, переключатель «График / Таблица» (IconButton ghost). `loading` — прежний рендер `opacity-50` + `aria-busy`, без скелетона. Передаёт графику контекст (вид, заголовок).
 
 ### ChartLegend / ChartTooltip / ChartTable
-Легенда — кнопки `aria-pressed` (последнюю видимую серию скрыть нельзя), образец — линия или прямоугольник. Подсказка — материал `surface/popover/*`, значение `type/label/md`, подпись `color-text-secondary`, `aria-hidden` (дублирует живой регион). Таблица — region с `tabindex`, подпись = заголовок графика, числа вправо, `tabular-nums`.
+Легенда — кнопки `aria-pressed` (последнюю видимую серию скрыть нельзя), образец — линия или прямоугольник. Подсказка — материал `surface/popover/*`, значение `type/label/s`, подпись `color-text-secondary`, `aria-hidden` (дублирует живой регион). Таблица — region с `tabindex`, подпись = заголовок графика, числа вправо, `tabular-nums`.
 
 ### LineChart
 Линия `stroke/2`, конечные точки `space/1` с кольцом `color-chart-surface`, подложка `opacity/10`, сетка `color-chart-grid`, подписи осей `type/caption` + `color-text-tertiary`. Появление — прорисовка (clip), смена данных — пружина значений и шкалы. `emphasis` — остальные серии `color-chart-muted`.
@@ -258,11 +260,11 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 Вертикальный/горизонтальный, группа/стек. Столбец ≤ `size/chart/bar`, конец скруглён `radius/1`, зазор `stroke/2`; появление волной по категориям. Подложка категории — `color-chart-grid`. Горизонтальный — высота по числу строк, подписи обрезаются многоточием.
 
 ### DonutChart
-Доля от целого: ≤ 6 сегментов (хвост → «Другое», `color-chart-muted`), по убыванию; кольцо толщиной `size/chart/bar`, зазор `stroke/2`, скругление `radius/1`. Центр — итог (`type/heading/md`) или выбранная доля; остальные сегменты `opacity/30`. Легенда — прямые подписи на subgrid (доля `color-text-secondary`, значение `tabular-nums`), не шире `size/grid-item/lg`; в контейнере ≥ `size/container/sm` — справа от кольца. Появление — заметание, смена данных — пружина.
+Доля от целого: ≤ 6 сегментов (хвост → «Другое», `color-chart-muted`), по убыванию; кольцо толщиной `size/chart/bar`, зазор `stroke/2`, скругление `radius/1`. Центр — итог (`type/heading/m`) или выбранная доля; остальные сегменты `opacity/30`. Легенда — прямые подписи на subgrid (доля `color-text-secondary`, значение `tabular-nums`), не шире `size/grid-item/l`; в контейнере ≥ `size/container/s` — справа от кольца. Появление — заметание, смена данных — пружина.
 
 ### Sparkline / StatTile / Meter / Heatmap
 - **Sparkline** — `role="img"` с фразой «от … до …, минимум, максимум»; высота `size/40`.
-- **StatTile** — Card: подпись `type/label/md`, значение `type/heading/lg` (пропорциональные цифры, счётчик на пружине), дельта — иконка Lucide + текст `color-status-success/danger`, `upIsGood`. Ряд KPI — `Grid min="sm"`.
+- **StatTile** — Card: подпись `type/label/s`, значение `type/heading/l` (пропорциональные цифры, счётчик на пружине), дельта — иконка Lucide + текст `color-status-success/danger`, `upIsGood`. Ряд KPI — `Grid min="s"`.
 - **Meter** — `role="meter"`, дорожка `color-chart-grid`, заливка `color-chart-series-1` / `status-warning` / `status-critical` + иконка и текст статуса.
 - **Heatmap** — 7 классов `color-chart-sequential-*`, зазор `stroke/2`, ячейка ≤ `size/40` (строка не ниже строки подписи), легенда шкалы; стрелки по двум осям.
 
@@ -270,10 +272,17 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 Пара к RadioGroup: `<fieldset>`/`<legend>`, v-model — массив `value` в порядке опций. `variant="list"` — Checkbox строками, `variant="tiles"` — плитки.
 
 ### ChoiceTile (внутренний, `@uix/ui`)
-Плитка RadioGroup/CheckboxGroup `variant="tiles"`: `<label>` с визуально скрытым нативным input (имя — `aria-labelledby` на подпись, цена/пояснение — `aria-describedby`). Материал secondary-кнопки `surface/neutral/{default,hover,pressed,disabled}/*`, нажатие — `scale/pressed-surface` на пружине. Выбранная — кольцо `surface-control-checked-border` (слой `::after`, outline остаётся фокусу) + галочка `surface-control-checked-bg/mark` в углу; ошибка — `surface-control-error-border`. Сетка — `auto-fill` по `size/grid-item/sm` (на телефоне две колонки).
+Плитка RadioGroup/CheckboxGroup `variant="tiles"`: `<label>` с визуально скрытым нативным input (имя — `aria-labelledby` на подпись, цена/пояснение — `aria-describedby`). Материал secondary-кнопки `surface/neutral/{default,hover,pressed,disabled}/*`, нажатие — `scale/pressed-surface` на пружине. Выбранная — кольцо `surface-control-checked-border` (слой `::after`, outline остаётся фокусу) + галочка `surface-control-checked-bg/mark` в углу; ошибка — `surface-control-error-border`. Сетка — `auto-fill` по `size/grid-item/s` (на телефоне две колонки).
 
 ### DataTable (`@uix/ui`)
-Generic по строке. Mobile-first: в контейнере уже `size/container/sm` строки — карточки `surface-card-bg`, шапка — чипы сортировки `surface-neutral-default-bg`; шире — таблица, липкая шапка `color-chart-surface`, разделители `color-border-subtle`, наведение `surface-ghost-hover-bg`, выбранная строка `surface-option-highlighted-bg`. `aria-sort`, Checkbox для выбора (частичное «выбрать всё»), слоты `#cell-<key>`.
+Generic по строке. Mobile-first: в контейнере уже `size/container/s` строки — карточки `surface-card-bg`, шапка — чипы сортировки `surface-neutral-default-bg`; шире — таблица, липкая шапка `color-chart-surface`, разделители `color-border-subtle`, наведение `surface-ghost-hover-bg`, выбранная строка `surface-option-highlighted-bg`. `aria-sort`, Checkbox для выбора (частичное «выбрать всё»), слоты `#cell-<key>`.
+
+Типографика: ячейки `type-body-m-*` (16px — основной текст, как везде), заголовки колонок и чипы сортировки `type-label-s-*` (14px). Табличный двойник графиков — так же.
+### Calendar (`@uix/ui`)
+Reka UI Calendar / RangeCalendar (одна разметка на оба режима): `mode` `single`/`range`, `layout` `paged` (месяцы рядом, `months` 1–2) / `scroll` (вертикальная лента месяцев со своей прокруткой — мобильный). Значения `YYYY-MM-DD`. Ячейка `size-44` (точный указатель, `paged` — `size-40`), число `type-body-m-*` + `tabular-nums`; выбранный день и края диапазона — `surface-accent-default-bg` + `color-text-on-accent`; полоса — `surface-calendar-range` (предпросмотр до второго клика — `surface-calendar-preview`), от центра краёв, у краёв недели — скругление; сегодня — точка `color-accent-default`; дни других месяцев скрыты; недоступные — `color-text-disabled`, `unavailable` — зачёркнуты. Событие `pending` — диапазон начат, но не завершён.
+
+### DatePicker (`@uix/ui`)
+FormField + Field-кнопка (иконка календаря, значение словами через `Intl.DateTimeFormat#formatRange`). Десктоп — Reka Popover (кнопка поля своя, Reka — якорь), материал `surface-popover-*` на обёртке панели: пресеты `presets` слева (`surface-option-highlighted-bg` при наведении, галочка у активного), справа Calendar на 2 месяца; выбор закрывает. Мобильный — Sheet: пресеты чипами (`surface-neutral-default-bg`, активный — акцент), Calendar `layout="scroll"`, период применяется «Готово» (черновик; недоступна, пока период не завершён), одна дата — сразу.
 
 ### PeriodSelect (`@uix/ui`)
-Select пресетов (сегодня, 7/30/90 дней, с начала месяца, свой) + два `Input type="date"`. Значение `{ preset, from, to }`; утилиты `resolvePeriod`, `previousPeriod`, `periodDays` (`utils/period.ts`, юнит-тесты).
+Select пресетов (сегодня, 7/30/90 дней, с начала месяца, свой) + DatePicker для своего периода (не позже «сегодня»). Значение `{ preset, from, to }`; утилиты `resolvePeriod`, `previousPeriod`, `periodDays` (`utils/period.ts`, юнит-тесты).

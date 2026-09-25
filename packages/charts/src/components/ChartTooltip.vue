@@ -82,10 +82,10 @@ defineProps<{
 
   .ui-chart-tooltip__title {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
-    line-height: var(--type-label-sm-line-height);
+    font-family: var(--type-label-xs-font-family);
+    font-weight: var(--type-label-xs-font-weight);
+    font-size: var(--type-label-xs-font-size);
+    line-height: var(--type-label-xs-line-height);
   }
 
   .ui-chart-tooltip__row {
@@ -109,18 +109,18 @@ defineProps<{
 
   /* Значение — главное: крупнее и ярче подписи */
   .ui-chart-tooltip__value {
-    font-family: var(--type-label-md-font-family);
-    font-weight: var(--type-label-md-font-weight);
-    font-size: var(--type-label-md-font-size);
-    line-height: var(--type-label-md-line-height);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
     font-variant-numeric: tabular-nums;
   }
 
   .ui-chart-tooltip__label {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-sm-font-family);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
   }
 
   @media (prefers-reduced-motion: reduce) {

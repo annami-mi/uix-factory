@@ -17,7 +17,7 @@ let themes: Record<string, Record<string, Entry[]>>;
 const PAGE: Record<string, string> = {
   "glass/dark": "#272727",
   "glass/light": "#e5e5ea",
-  "neutral/dark": "#141416",
+  "neutral/dark": "#161619",
   "neutral/light": "#ffffff",
 };
 
@@ -64,6 +64,9 @@ const PAIRS: [string, string, number][] = [
   ["surface-switch-track-off", "page", 3],
   ["surface-switch-track-on", "page", 3],
   ["color-state-focus", "page", 3],
+  // Календарь: дни внутри выбранного диапазона и в предпросмотре
+  ["color-text-primary", "surface-calendar-range", 4.5],
+  ["color-text-primary", "surface-calendar-preview", 4.5],
   // Badge: текст на тонированной плашке
   ...(["neutral", "accent", "success", "warning", "danger"] as const).map(
     (tone) => [`color-badge-${tone}-fg`, `color-badge-${tone}-bg`, 4.5] as [string, string, number],

@@ -113,10 +113,10 @@ const rootAttrs = computed(() => ({ class: attrs.class, style: attrs.style }));
     background: none;
     color: inherit;
     caret-color: var(--color-accent-default, currentColor);
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-label-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-label-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     font-variant-numeric: tabular-nums;
     text-align: center;
   }

@@ -348,11 +348,11 @@ const tableRows = computed<Datum[]>(() =>
   .ui-heatmap__empty {
     display: grid;
     place-items: center;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
     margin: 0;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
+    font-family: var(--type-body-s-font-family);
+    font-size: var(--type-body-s-font-size);
   }
 
   .ui-heatmap__live {

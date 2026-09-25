@@ -42,6 +42,6 @@
     min-block-size: 100%;
     background: var(--surface-page-bg, Canvas);
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-body-md-font-family, system-ui, sans-serif);
+    font-family: var(--type-body-s-font-family, system-ui, sans-serif);
   }
 }

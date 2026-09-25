@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * Подпись + подсказка/ошибка вокруг любого контрола формы (Input, позже Select, Textarea).
- * Источник: Figma "input"/"select" (Inputs 149:723): label (label/sm) — поле — hint (body/sm), gap space/2.
+ * Источник: Figma "input"/"select" (Inputs 149:723): label (Figma label/s → код label/xs) — поле — hint (Figma body/s → код body/xs), gap space/2.
  *
  * Связывает контрол с подписью и описанием: отдаёт в слот `id`, `describedBy`, `invalid` —
  * контрол ставит их на себя (`id`, `aria-describedby`, `aria-invalid`). Ошибка заменяет подсказку
@@ -80,10 +80,10 @@ const invalid = computed(() => Boolean(props.error));
   }
 
   .ui-form-field__label {
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
-    line-height: var(--type-label-sm-line-height);
+    font-family: var(--type-label-xs-font-family);
+    font-weight: var(--type-label-xs-font-weight);
+    font-size: var(--type-label-xs-font-size);
+    line-height: var(--type-label-xs-line-height);
     color: var(--color-text-secondary, CanvasText);
   }
 
@@ -95,20 +95,20 @@ const invalid = computed(() => Boolean(props.error));
   .ui-form-field__message {
     flex: 1;
     margin: 0;
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-tertiary, CanvasText);
   }
 
   .ui-form-field__aside {
     flex: none;
     margin-inline-start: auto;
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-tertiary, CanvasText);
     font-variant-numeric: tabular-nums;
   }

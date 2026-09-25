@@ -63,10 +63,10 @@ const offset = computed(() => tokenNumber("--space-2", 8));
     box-shadow: var(--surface-popover-shadow, none);
     backdrop-filter: var(--surface-popover-backdrop, none);
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-weight: var(--type-body-md-font-weight);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-weight: var(--type-body-s-font-weight);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
     transform-origin: var(--reka-tooltip-content-transform-origin);
   }
 

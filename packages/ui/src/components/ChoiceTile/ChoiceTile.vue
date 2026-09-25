@@ -162,18 +162,18 @@ const emit = defineEmits<{
   }
 
   .ui-choice-tile__label {
-    font-family: var(--type-label-lg-font-family);
-    font-weight: var(--type-label-lg-font-weight);
-    font-size: var(--type-label-lg-font-size);
-    line-height: var(--type-label-lg-line-height);
+    font-family: var(--type-label-m-font-family);
+    font-weight: var(--type-label-m-font-weight);
+    font-size: var(--type-label-m-font-size);
+    line-height: var(--type-label-m-line-height);
     color: var(--color-text-primary, CanvasText);
   }
 
   .ui-choice-tile__description {
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-secondary, CanvasText);
   }
 

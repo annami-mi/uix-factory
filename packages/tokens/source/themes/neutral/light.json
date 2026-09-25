@@ -10,21 +10,22 @@
     "foreground": {
       "default": {
         "$type": "color",
-        "$value": "#15161a"
+        "$value": "#202227",
+        "$description": "решение 2026-09-25: без чистого чёрного/белого — припылённые тона, иерархия текста мягче (docs/figma-todo.md)"
       }
     },
     "text": {
       "primary": {
         "$type": "color",
-        "$value": "#15161a"
+        "$value": "#202227"
       },
       "secondary": {
         "$type": "color",
-        "$value": "#4b4d54"
+        "$value": "#5d5f67"
       },
       "tertiary": {
         "$type": "color",
-        "$value": "#6b6d74",
+        "$value": "#6c6e76",
         "$description": "≥4.5:1 на белом — tertiary несёт hint-текст"
       },
       "disabled": {
@@ -49,7 +50,7 @@
     "icon": {
       "primary": {
         "$type": "color",
-        "$value": "#15161a"
+        "$value": "{color.foreground.default}"
       },
       "secondary": {
         "$type": "color",
@@ -72,6 +73,14 @@
       "strong": {
         "$type": "color",
         "$value": "#c9ccd1"
+      }
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.foreground.default}",
+      "$description": "вспомогательные линии — разделители аккордеона, меню, строк таблиц, Divider: еле видимые (2026-09-25). Рамки контролов — color/border/*",
+      "$extensions": {
+        "uix.alpha": 0.06
       }
     },
     "surface": {
@@ -204,8 +213,8 @@
       },
       "focus": {
         "$type": "color",
-        "$value": "#000000",
-        "$description": "фокус — внутренний бордер поверх accent: #000 на #2957d6 = 3.4:1"
+        "$value": "{color.mono.ink}",
+        "$description": "фокус — внутренний бордер поверх accent: графит на акценте ≥ 3:1"
       }
     },
     "badge": {
@@ -368,11 +377,8 @@
       },
       "grid": {
         "$type": "color",
-        "$value": "{color.foreground.default}",
-        "$description": "сетка: тонкая, на шаг от фона, сплошная",
-        "$extensions": {
-          "uix.alpha": 0.07
-        }
+        "$value": "{color.divider}",
+        "$description": "сетка графиков — тем же еле видимым тоном, что разделители"
       },
       "axis": {
         "$type": "color",
@@ -685,7 +691,7 @@
       },
       "shadow": {
         "$type": "other",
-        "$value": "0 12px 32px #15161a29",
+        "$value": "0 12px 32px #20222729",
         "$description": "плоская тема: панель отделяется тенью, без бордера"
       },
       "backdrop": {
@@ -707,7 +713,7 @@
     "scrim": {
       "bg": {
         "$type": "color",
-        "$value": "#15161a",
+        "$value": "{color.mono.ink}",
         "$extensions": {
           "uix.alpha": 0.32
         },
@@ -971,7 +977,56 @@
       },
       "indicator-shadow": {
         "$type": "other",
-        "$value": "0 1px 2px #15161a1f, 0 2px 6px #15161a14"
+        "$value": "0 1px 2px #2022271f, 0 2px 6px #20222714"
+      }
+    },
+    "table": {
+      "header-bg": {
+        "$type": "color",
+        "$value": "{color.background.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: липкая шапка — почти в цвет страницы, полупрозрачная, чтобы строки уходили под неё без полосы",
+        "$extensions": {
+          "uix.alpha": 0.94
+        }
+      },
+      "header-backdrop": {
+        "$type": "other",
+        "$value": "none",
+        "$description": "плоская стилистика — без размытия"
+      },
+      "row-hover-bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: наведение на строку — 3–4% тона",
+        "$extensions": {
+          "uix.alpha": 0.03
+        }
+      },
+      "row-selected-bg": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: выбранная строка — лёгкий оттенок акцента (выбор виден и по флажку)",
+        "$extensions": {
+          "uix.alpha": 0.07
+        }
+      }
+    },
+    "calendar": {
+      "range": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "календарь (2026-09-25): полоса выбранного диапазона и предпросмотр при наведении — оттенок акцента, тише выбранных краёв: дни внутри диапазона",
+        "$extensions": {
+          "uix.alpha": 0.1
+        }
+      },
+      "preview": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "календарь (2026-09-25): полоса выбранного диапазона и предпросмотр при наведении — оттенок акцента, тише выбранных краёв: предпросмотр диапазона до второго клика",
+        "$extensions": {
+          "uix.alpha": 0.05
+        }
       }
     }
   }

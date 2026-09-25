@@ -24,7 +24,7 @@ const meta = {
   render: (args) => ({
     components: { NumberField },
     setup: () => ({ args, value: ref(args.modelValue ?? 1) }),
-    template: '<div style="max-inline-size: var(--size-grid-item-md)"><NumberField v-bind="args" v-model="value" /></div>',
+    template: '<div style="max-inline-size: var(--size-grid-item-m)"><NumberField v-bind="args" v-model="value" /></div>',
   }),
 } satisfies Meta<typeof NumberField>;
 
@@ -65,7 +65,7 @@ export const StateMatrix: Story = {
   render: () => ({
     components: { NumberField },
     template: `
-      <div style="display: grid; gap: var(--space-6); max-inline-size: var(--size-grid-item-md)">
+      <div style="display: grid; gap: var(--space-6); max-inline-size: var(--size-grid-item-m)">
         <NumberField label="default" hint="Hint text" :model-value="2" :min="1" :max="10" />
         <NumberField label="error" error="Текст ошибки" :model-value="11" :min="1" :max="10" />
         <NumberField label="disabled" hint="Hint text" :model-value="2" disabled />

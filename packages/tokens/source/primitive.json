@@ -9,6 +9,16 @@
       "black": {
         "$type": "color",
         "$value": "#000000"
+      },
+      "ink": {
+        "$type": "color",
+        "$value": "#202227",
+        "$description": "припылённый графит вместо чистого чёрного: текст светлых схем, затемнения, фон тёмной схемы (решение 2026-09-25)"
+      },
+      "snow": {
+        "$type": "color",
+        "$value": "#f1f1f4",
+        "$description": "припылённый белый вместо чистого: текст тёмных схем (решение 2026-09-25)"
       }
     },
     "palette": {
@@ -161,51 +171,51 @@
       "$value": "64px"
     },
     "container": {
-      "sm": {
+      "s": {
         "$type": "dimension",
         "$value": "640px",
         "$description": "только в коде: узкая колонка текста/формы"
       },
-      "md": {
+      "m": {
         "$type": "dimension",
         "$value": "960px",
         "$description": "только в коде: контент страницы"
       },
-      "lg": {
+      "l": {
         "$type": "dimension",
         "$value": "1200px",
         "$description": "только в коде: широкие сетки, лендинг"
       }
     },
     "grid-item": {
-      "sm": {
+      "s": {
         "$type": "dimension",
         "$value": "160px",
         "$description": "только в коде: мин. ширина ячейки сетки: мелкие карточки, логотипы"
       },
-      "md": {
+      "m": {
         "$type": "dimension",
         "$value": "260px",
         "$description": "только в коде: мин. ширина ячейки: карточки товаров/преимуществ (2 колонки от ~560px)"
       },
-      "lg": {
+      "l": {
         "$type": "dimension",
         "$value": "340px",
         "$description": "только в коде: мин. ширина ячейки: крупные карточки, отзывы"
       }
     },
     "chart": {
-      "sm": {
+      "s": {
         "$type": "dimension",
         "$value": "160px",
         "$description": "только в коде (графики, ADR-0007): высота компактного графика (карточка KPI, мобильный)"
       },
-      "md": {
+      "m": {
         "$type": "dimension",
         "$value": "240px",
         "$description": "только в коде (графики, ADR-0007): высота графика по умолчанию"
       },
-      "lg": {
+      "l": {
         "$type": "dimension",
         "$value": "320px",
         "$description": "только в коде (графики, ADR-0007): высота крупного графика (главный на дашборде)"
@@ -223,7 +233,7 @@
     }
   },
   "breakpoint": {
-    "md": {
+    "m": {
       "$type": "dimension",
       "$value": "768px",
       "$description": "только в коде: от этой ширины — десктопные паттерны (Select: всплывашка вместо шторки). В @media нельзя var() — в JS/CSS брать из @uix/tokens (breakpoints)"
@@ -401,6 +411,11 @@
       "$type": "dimension",
       "$value": "32px",
       "$description": "Figma blur/64 (радиус) → CSS 32px: радиус в Figma ≈ 2× CSS blur()"
+    },
+    "80": {
+      "$type": "dimension",
+      "$value": "40px",
+      "$description": "только в коде: «толстое» стекло всплывающих панелей (Liquid Glass: меню и списки поверх контента)"
     }
   },
   "scale": {
@@ -539,6 +554,10 @@
         "$type": "dimension",
         "$value": "16px"
       },
+      "18": {
+        "$type": "dimension",
+        "$value": "18px"
+      },
       "20": {
         "$type": "dimension",
         "$value": "20px"
@@ -589,6 +608,10 @@
         "$type": "dimension",
         "$value": "26px"
       },
+      "28": {
+        "$type": "dimension",
+        "$value": "28px"
+      },
       "30": {
         "$type": "dimension",
         "$value": "30px"
@@ -625,7 +648,7 @@
       }
     },
     "heading": {
-      "lg": {
+      "l": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{font.family.sans}",
@@ -634,7 +657,7 @@
           "lineHeight": "{font.line-height.30}"
         }
       },
-      "md": {
+      "m": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{font.family.sans}",
@@ -643,7 +666,7 @@
           "lineHeight": "{font.line-height.26}"
         }
       },
-      "sm": {
+      "s": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{font.family.sans}",
@@ -654,38 +677,61 @@
       }
     },
     "body": {
-      "lg": {
+      "l": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.regular}",
+          "fontSize": "{font.size.18}",
+          "lineHeight": "{font.line-height.28}"
+        },
+        "$description": "лид, вводный абзац (18/28)"
+      },
+      "m": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontWeight": "{font.weight.regular}",
           "fontSize": "{font.size.16}",
           "lineHeight": "{font.line-height.24}"
-        }
+        },
+        "$description": "основной текст — размер по умолчанию (16/24)"
       },
-      "md": {
+      "s": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontWeight": "{font.weight.regular}",
           "fontSize": "{font.size.14}",
           "lineHeight": "{font.line-height.20}"
-        }
+        },
+        "$description": "вторичный текст: пояснения, таблицы, подсказки (14/20)"
       },
-      "sm": {
+      "xs": {
         "$type": "typography",
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontWeight": "{font.weight.regular}",
           "fontSize": "{font.size.12}",
           "lineHeight": "{font.line-height.16}"
-        }
+        },
+        "$description": "сноски, мета (12/16)"
       }
     },
     "label": {
-      "lg": {
+      "l": {
         "$type": "typography",
-        "$description": "только в коде (нет в Figma): используется в Button; добавить в Figma (docs/figma-todo.md)",
+        "$description": "крупная подпись (18/24)",
+        "$value": {
+          "fontFamily": "{font.family.sans}",
+          "fontWeight": "{font.weight.medium}",
+          "fontSize": "{font.size.18}",
+          "lineHeight": "{font.line-height.24}"
+        }
+      },
+      "m": {
+        "$type": "typography",
+        "$description": "подпись по умолчанию: кнопки, пункты меню (16/20)",
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontWeight": "{font.weight.medium}",
@@ -693,8 +739,9 @@
           "lineHeight": "{font.line-height.20}"
         }
       },
-      "md": {
+      "s": {
         "$type": "typography",
+        "$description": "компактная подпись: легенды, заголовки колонок (14/16)",
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontWeight": "{font.weight.medium}",
@@ -702,8 +749,9 @@
           "lineHeight": "{font.line-height.16}"
         }
       },
-      "sm": {
+      "xs": {
         "$type": "typography",
+        "$description": "мелкая подпись: бейджи, подписи полей (12/16)",
         "$value": {
           "fontFamily": "{font.family.sans}",
           "fontWeight": "{font.weight.medium}",

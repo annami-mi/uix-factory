@@ -10,8 +10,8 @@ const props = withDefaults(
   defineProps<{
     /** Уровень в структуре документа: h1…h6 */
     level?: 1 | 2 | 3 | 4 | 5 | 6;
-    /** Размер: hero (первый экран), display, lg, md, sm. По умолчанию — по уровню */
-    size?: "hero" | "display" | "lg" | "md" | "sm";
+    /** Размер: hero (первый экран), display, l, m, s. По умолчанию — по уровню */
+    size?: "hero" | "display" | "l" | "m" | "s";
   }>(),
   { level: 2 },
 );
@@ -19,7 +19,7 @@ const props = withDefaults(
 defineSlots<{ default: () => unknown }>();
 
 const role = computed(() => {
-  const size = props.size ?? (props.level === 1 ? "display" : props.level === 2 ? "lg" : props.level === 3 ? "md" : "sm");
+  const size = props.size ?? (props.level === 1 ? "display" : props.level === 2 ? "l" : props.level === 3 ? "m" : "s");
   return size === "hero" ? "hero" : size === "display" ? "display" : `heading-${size}`;
 });
 </script>

@@ -33,11 +33,11 @@ const meta = {
     series: [{ key: "revenue", label: "Выручка" }],
     area: true,
     valueFormat: rub,
-    height: "md",
+    height: "m",
     curve: "smooth",
   },
   argTypes: {
-    height: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    height: { control: "inline-radio", options: ["s", "m", "l"] },
     curve: { control: "inline-radio", options: ["smooth", "linear"] },
     data: { control: false },
     series: { control: false },

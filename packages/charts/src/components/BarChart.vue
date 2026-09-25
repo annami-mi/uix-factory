@@ -48,8 +48,8 @@ const props = withDefaults(
     xLabel?: string;
     /** Формат категории: опции Intl для дат или функция */
     xFormat?: Intl.DateTimeFormatOptions | ((value: unknown) => string);
-    /** Высота вертикального графика: size/chart/{sm,md,lg}; горизонтальный растёт по числу строк */
-    height?: "sm" | "md" | "lg";
+    /** Высота вертикального графика: size/chart/{s,m,l}; горизонтальный растёт по числу строк */
+    height?: "s" | "m" | "l";
     /** Имя графика без ChartCard */
     label?: string;
     /** Подпись итога стека в подсказке и таблице */
@@ -60,7 +60,7 @@ const props = withDefaults(
   {
     orientation: "vertical",
     stacked: false,
-    height: "md",
+    height: "m",
     xLabel: "Категория",
     totalLabel: "Всего",
     emptyText: "Нет данных за этот период",
@@ -488,15 +488,15 @@ const tableRows = computed(() =>
 
   .ui-bar-chart__plot {
     position: relative;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
   }
 
-  .ui-bar-chart[data-height="sm"] .ui-bar-chart__plot {
-    block-size: var(--size-chart-sm);
+  .ui-bar-chart[data-height="s"] .ui-bar-chart__plot {
+    block-size: var(--size-chart-s);
   }
 
-  .ui-bar-chart[data-height="lg"] .ui-bar-chart__plot {
-    block-size: var(--size-chart-lg);
+  .ui-bar-chart[data-height="l"] .ui-bar-chart__plot {
+    block-size: var(--size-chart-l);
   }
 
   svg {
@@ -551,11 +551,11 @@ const tableRows = computed(() =>
   .ui-bar-chart__empty {
     display: grid;
     place-items: center;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
     margin: 0;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
+    font-family: var(--type-body-s-font-family);
+    font-size: var(--type-body-s-font-size);
   }
 
   .ui-bar-chart__live {

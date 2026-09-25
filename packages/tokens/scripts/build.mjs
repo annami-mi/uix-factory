@@ -206,7 +206,7 @@ export function buildTokens({ sourceDir = DEFAULT_SOURCE_DIR, distDir = DEFAULT_
   );
   const constantsTs =
     "// Сгенерировано scripts/build.mjs — не редактировать вручную.\n" +
-    "/** Брейкпоинты в px (primitive breakpoint/*). Для matchMedia: `(width >= ${breakpoints.md}px)` */\n" +
+    "/** Брейкпоинты в px (primitive breakpoint/*). Для matchMedia: `(width >= ${breakpoints.m}px)` */\n" +
     `export const breakpoints = ${JSON.stringify(breakpoints)} as const;\n`;
   writeFileSync(join(distDir, "constants.ts"), constantsTs);
   log("✓ dist/constants.ts");

@@ -32,10 +32,10 @@ const meta = {
     valueLabel: "Визиты",
     valueFormat: { maximumFractionDigits: 0 },
     maxSegments: 6,
-    height: "md",
+    height: "m",
   },
   argTypes: {
-    height: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    height: { control: "inline-radio", options: ["s", "m", "l"] },
     maxSegments: { control: { type: "range", min: 2, max: 6 } },
     data: { control: false },
     valueFormat: { control: false },

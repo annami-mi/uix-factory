@@ -83,7 +83,7 @@ defineSlots<Record<string, (props: { item: AccordionEntry }) => unknown>>();
   }
 
   .ui-accordion__item {
-    border-block-end: var(--stroke-1) solid var(--color-border-default, GrayText);
+    border-block-end: var(--stroke-1) solid var(--color-divider, GrayText);
   }
 
   .ui-accordion__header {
@@ -101,10 +101,10 @@ defineSlots<Record<string, (props: { item: AccordionEntry }) => unknown>>();
     border-radius: var(--radius-2);
     background: none;
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-heading-sm-font-family);
-    font-weight: var(--type-heading-sm-font-weight);
-    font-size: var(--type-heading-sm-font-size);
-    line-height: var(--type-heading-sm-line-height);
+    font-family: var(--type-heading-s-font-family);
+    font-weight: var(--type-heading-s-font-weight);
+    font-size: var(--type-heading-s-font-size);
+    line-height: var(--type-heading-s-line-height);
     text-align: start;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
@@ -153,10 +153,10 @@ defineSlots<Record<string, (props: { item: AccordionEntry }) => unknown>>();
   .ui-accordion__body {
     padding-block-end: var(--space-4);
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
   }
 
   @keyframes ui-accordion-open {

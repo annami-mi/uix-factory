@@ -3,7 +3,7 @@
  * Таблица данных SaaS: сортировка, выбор строк, липкая шапка, мобильная раскладка.
  *
  * - **Mobile-first:** в узком контейнере строка — карточка (первая колонка — заголовок, остальные —
- *   «подпись: значение»), шапка — ряд кнопок сортировки. С ширины контейнера size/container/sm — таблица.
+ *   «подпись: значение»), шапка — ряд кнопок сортировки. С ширины контейнера size/container/s — таблица.
  *   Контейнерный запрос: раскладка зависит от места, а не от экрана (таблица в боковой панели — карточками).
  * - **Сортировка:** кнопка в заголовке, `aria-sort`; по кругу: по возрастанию → по убыванию → без.
  *   По умолчанию — на клиенте; `manualSort` — только событие (сортирует сервер).
@@ -245,13 +245,17 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
     container-type: inline-size;
     min-inline-size: 0;
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
   }
 
   .ui-data-table__scroll {
     overflow: auto;
+    /* Скроллбар невидим, пока указатель не над областью: место занято всегда — без скачка раскладки */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color var(--duration-normal) ease;
     border-radius: var(--radius-3);
   }
 
@@ -262,10 +266,10 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
 
   .ui-data-table__caption {
     padding-block-end: var(--space-3);
-    font-family: var(--type-heading-sm-font-family);
-    font-weight: var(--type-heading-sm-font-weight);
-    font-size: var(--type-heading-sm-font-size);
-    line-height: var(--type-heading-sm-line-height);
+    font-family: var(--type-heading-s-font-family);
+    font-weight: var(--type-heading-s-font-weight);
+    font-size: var(--type-heading-s-font-size);
+    line-height: var(--type-heading-s-line-height);
     text-align: start;
   }
 
@@ -317,7 +321,7 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
   }
 
   tbody tr[data-selected] {
-    background: var(--surface-option-highlighted-bg, Highlight);
+    background: var(--surface-table-row-selected-bg, Highlight);
   }
 
   tbody td {
@@ -342,8 +346,8 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
   tbody td:nth-child(1 of :not(.ui-data-table__select)) {
     display: block;
     padding-inline-end: var(--size-44);
-    font-family: var(--type-label-lg-font-family);
-    font-weight: var(--type-label-lg-font-weight);
+    font-family: var(--type-label-m-font-family);
+    font-weight: var(--type-label-m-font-weight);
     text-align: start;
   }
 
@@ -387,9 +391,9 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
     background: var(--surface-neutral-default-bg, ButtonFace);
     color: var(--color-text-secondary, ButtonText);
     font: inherit;
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
     cursor: pointer;
     transition: scale var(--duration-press) var(--easing-spring-press);
   }
@@ -424,7 +428,7 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
     opacity: var(--opacity-50);
   }
 
-  /* ---------- Таблица: с ширины size/container/sm (640px; в @container нельзя var()) ---------- */
+  /* ---------- Таблица: с ширины size/container/s (640px; в @container нельзя var()) ---------- */
   @container (min-width: 640px) {
     thead tr {
       display: table-row;
@@ -445,13 +449,15 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
       inset-block-start: 0;
       z-index: 1;
       padding: var(--space-2) var(--space-3);
-      border-block-end: var(--stroke-1) solid var(--color-border-subtle, GrayText);
-      background: var(--color-chart-surface, Canvas);
+      border-block-end: var(--stroke-1) solid var(--color-divider, GrayText);
+      /* Шапка — почти в цвет страницы, полупрозрачная: при прокрутке строки уходят под неё без полосы */
+      background: var(--surface-table-header-bg, Canvas);
+      backdrop-filter: var(--surface-table-header-backdrop, none);
       color: var(--color-text-secondary, CanvasText);
-      font-family: var(--type-label-sm-font-family);
-      font-weight: var(--type-label-sm-font-weight);
-      font-size: var(--type-label-sm-font-size);
-      line-height: var(--type-label-sm-line-height);
+      font-family: var(--type-label-s-font-family);
+      font-weight: var(--type-label-s-font-weight);
+      font-size: var(--type-label-s-font-size);
+      line-height: var(--type-label-s-line-height);
       text-align: start;
       white-space: nowrap;
     }
@@ -489,11 +495,11 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
     }
 
     tbody tr:hover {
-      background: var(--surface-ghost-hover-bg, transparent);
+      background: var(--surface-table-row-hover-bg, transparent);
     }
 
     tbody tr[data-selected] {
-      background: var(--surface-option-highlighted-bg, Highlight);
+      background: var(--surface-table-row-selected-bg, Highlight);
     }
 
     tbody td,
@@ -502,7 +508,7 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
       position: static;
       display: table-cell;
       padding: var(--space-3);
-      border-block-end: var(--stroke-1) solid var(--color-border-subtle, GrayText);
+      border-block-end: var(--stroke-1) solid var(--color-divider, GrayText);
       font-family: inherit;
       font-weight: inherit;
       text-align: start;
@@ -510,7 +516,7 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
     }
 
     tbody td:nth-child(1 of :not(.ui-data-table__select)) {
-      font-weight: var(--type-label-md-font-weight);
+      font-weight: var(--type-label-s-font-weight);
     }
 
     tbody td[data-numeric] {
@@ -530,6 +536,10 @@ const colspan = computed(() => props.columns.length + (props.selectable ? 1 : 0)
       padding-block: var(--space-8);
       text-align: center;
     }
+  }
+
+  .ui-data-table__scroll:is(:hover, :focus-visible) {
+    scrollbar-color: var(--color-border-default, GrayText) transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {

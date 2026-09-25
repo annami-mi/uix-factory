@@ -133,8 +133,8 @@ defineExpose({
   .ui-textarea__control {
     flex: 1;
     min-inline-size: 0;
-    min-block-size: calc(var(--type-body-lg-line-height) * var(--_rows));
-    max-block-size: calc(var(--type-body-lg-line-height) * var(--_max-rows));
+    min-block-size: calc(var(--type-body-m-line-height) * var(--_rows));
+    max-block-size: calc(var(--type-body-m-line-height) * var(--_max-rows));
     margin: 0;
     padding: 0;
     border: 0;
@@ -142,10 +142,10 @@ defineExpose({
     background: none;
     color: inherit;
     caret-color: var(--color-accent-default, currentColor);
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     resize: vertical;
   }
 

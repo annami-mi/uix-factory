@@ -12,11 +12,11 @@ const props = withDefaults(
     name: string;
     /** URL фото */
     src?: string;
-    size?: "sm" | "md" | "lg";
+    size?: "s" | "m" | "l";
     /** Имя уже есть рядом текстом — скрыть аватар от скринридера */
     decorative?: boolean;
   }>(),
-  { size: "md", decorative: false },
+  { size: "m", decorative: false },
 );
 
 const failed = ref(false);
@@ -73,19 +73,19 @@ const initials = computed(() =>
     border-radius: var(--radius-full);
     background: var(--color-surface-hover, Canvas);
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-label-md-font-family);
-    font-weight: var(--type-label-md-font-weight);
-    font-size: var(--type-label-md-font-size);
-    line-height: var(--type-label-md-line-height);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
   }
 
-  .ui-avatar[data-size="sm"] {
+  .ui-avatar[data-size="s"] {
     --_size: var(--size-32);
 
-    font-size: var(--type-label-sm-font-size);
+    font-size: var(--type-label-xs-font-size);
   }
 
-  .ui-avatar[data-size="lg"] {
+  .ui-avatar[data-size="l"] {
     --_size: var(--size-48);
   }
 

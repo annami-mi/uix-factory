@@ -160,16 +160,16 @@ defineSlots<{
 
   /* С кнопкой закрытия: первая строка заголовка — на оси кнопки (size/48) */
   .ui-sheet__header[data-closable] .ui-sheet__heading {
-    padding-block-start: calc((var(--size-48) - var(--type-heading-sm-line-height)) / 2);
+    padding-block-start: calc((var(--size-48) - var(--type-heading-s-line-height)) / 2);
   }
 
   .ui-sheet__description {
     margin: 0;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-weight: var(--type-body-md-font-weight);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-weight: var(--type-body-s-font-weight);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
   }
 
   .ui-sheet__footer {
@@ -185,16 +185,18 @@ defineSlots<{
 
   .ui-sheet__title {
     margin: 0;
-    font-family: var(--type-heading-sm-font-family);
-    font-weight: var(--type-heading-sm-font-weight);
-    font-size: var(--type-heading-sm-font-size);
-    line-height: var(--type-heading-sm-line-height);
+    font-family: var(--type-heading-s-font-family);
+    font-weight: var(--type-heading-s-font-weight);
+    font-size: var(--type-heading-s-font-size);
+    line-height: var(--type-heading-s-line-height);
   }
 
   .ui-sheet__body {
     min-block-size: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
+    /* Без скроллбара: шторка — мобильный паттерн, листают пальцем (прокрутка, клавиатура и колесо работают) */
+    scrollbar-width: none;
   }
 
   /* Выезд снизу на пружине, уход — быстро; затемнение — плавно */

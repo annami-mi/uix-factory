@@ -83,7 +83,7 @@ describe("build tokens", () => {
   it("алиас + uix.alpha даёт hex с альфой (как composed-color в Figma)", () => {
     const glass = schemeBlock("glass", "dark");
     // foreground = white, text/secondary = foreground @ 0.6
-    expect(glass).toContain("--color-text-secondary: #ffffff99;");
+    expect(glass).toContain("--color-text-secondary: #f1f1f49e;");
     // ссылка внутри строки: тень accent собрана из роли color/accent/shadow (blue @ 0.2)
     expect(glass).toMatch(/--surface-accent-default-shadow: [^;]*#007aff33/);
   });

@@ -147,10 +147,10 @@ const offset = computed(() => tokenNumber("--space-2", 8));
     min-block-size: var(--size-44);
     padding-inline: var(--space-4);
     border-radius: var(--radius-full);
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     cursor: pointer;
     outline: none;
     user-select: none;
@@ -179,16 +179,16 @@ const offset = computed(() => tokenNumber("--space-2", 8));
   .ui-menu__separator {
     block-size: var(--stroke-1);
     margin-block: var(--space-1);
-    background: var(--color-border-default, GrayText);
+    background: var(--color-divider, GrayText);
   }
 
   .ui-menu__label {
     padding: var(--space-2) var(--space-4) var(--space-1);
     color: var(--color-text-tertiary, CanvasText);
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
-    line-height: var(--type-label-sm-line-height);
+    font-family: var(--type-label-xs-font-family);
+    font-weight: var(--type-label-xs-font-weight);
+    font-size: var(--type-label-xs-font-size);
+    line-height: var(--type-label-xs-line-height);
   }
 }
 </style>

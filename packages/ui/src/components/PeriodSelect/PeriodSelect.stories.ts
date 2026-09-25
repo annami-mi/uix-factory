@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { ref } from "vue";
-import { expect, userEvent, waitFor } from "storybook/test";
+import { expect } from "storybook/test";
 import { themeMatrix } from "../../../.storybook/story-helpers";
 import { resolvePeriod, type Period } from "../../utils/period";
 import Text from "../Text/Text.vue";
@@ -31,7 +31,7 @@ const meta = {
     template: `
       <div style="display: grid; gap: var(--space-3)">
         <PeriodSelect v-bind="args" v-model="period" />
-        <Text size="md" tone="secondary" data-testid="range">{{ period.from }} — {{ period.to }}</Text>
+        <Text size="s" tone="secondary" data-testid="range">{{ period.from }} — {{ period.to }}</Text>
       </div>
     `,
   }),
@@ -46,7 +46,7 @@ export const Default: Story = {
   },
 };
 
-/** Свой период: появляются поля дат. */
+/** Свой период: рядом — поле календаря (DatePicker), не позже «сегодня». */
 export const Custom: Story = {
   render: (args) => ({
     components: { PeriodSelect, Text },
@@ -54,16 +54,13 @@ export const Custom: Story = {
     template: `
       <div style="display: grid; gap: var(--space-3)">
         <PeriodSelect v-bind="args" v-model="period" />
-        <Text size="md" tone="secondary" data-testid="range">{{ period.from }} — {{ period.to }}</Text>
+        <Text size="s" tone="secondary" data-testid="range">{{ period.from }} — {{ period.to }}</Text>
       </div>
     `,
   }),
   play: async ({ canvas }) => {
-    const from = await canvas.findByLabelText("С");
-    await userEvent.clear(from);
-    await userEvent.type(from, "2026-09-10");
-    // «С» позже «По» — «По» подтягивается
-    await waitFor(() => expect(canvas.getByTestId("range")).toHaveTextContent("2026-09-10 — 2026-09-10"));
+    // Свой период — поле календаря с диапазоном словами
+    await expect(await canvas.findByRole("button", { name: "Даты" })).toHaveTextContent("1–31 авг. 2026");
   },
 };
 

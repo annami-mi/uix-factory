@@ -19,13 +19,14 @@
 Шкалы 1:1 с Figma collection `primitives`, имена совпадают (`space/4` → `--space-4`).
 
 - `color/mono/*`, `color/palette/*` — исходные цвета. Только для ссылок из тем.
-- `space/*` (0–24 → 0–96px), `size/*` (12–64), `breakpoint/md` (768px, только в коде; в JS — `breakpoints` из `@uix/tokens`, т.к. в `@media` нельзя `var()`), `radius/*` (0–8, `full`, `sheet`), `stroke/*` (0–3), `opacity/*` (0–100 → 0–1).
+- `space/*` (0–24 → 0–96px), `size/*` (12–64), `breakpoint/m` (768px, только в коде; в JS — `breakpoints` из `@uix/tokens`, т.к. в `@media` нельзя `var()`), `radius/*` (0–8, `full`, `sheet`), `stroke/*` (0–3), `opacity/*` (0–100 → 0–1).
 - `blur/*` — **имя = радиус в Figma, значение = CSS**: радиус Figma ≈ 2× CSS `blur()`, поэтому `blur/24` = `12px`. Использовать как `blur({blur.24})`.
 - `duration/*` — `instant/fast/normal/slow/slower` из Figma.
 - `font/family/sans`, `font/weight/{regular,medium,semibold}`, `font/size/*`, `font/line-height/*`.
 - `type/<role>/<size>` — текстовые стили Figma как composite (`display`, `heading/*`, `body/*`, `label/*`, `caption`). В CSS раскладываются на `--type-<role>-<size>-{font-family,font-weight,font-size,line-height}`.
+- **Шкала текста (2026-09-25):** `m` — размер по умолчанию. `body/l` 18/28 (лид), `body/m` 16/24 (основной), `body/s` 14/20 (вторичный, таблицы), `body/xs` 12/16 (сноски); `label/l` 18/24, `label/m` 16/20 (кнопки), `label/s` 14/16, `label/xs` 12/16; `caption` 11/14. Основной текст не мельче 16px (размер браузера по умолчанию, iOS не зумит поле ввода).
 
-**Только в коде** (помечены в `$description`): `space/px`, `stroke/icon` (1.5px — толщина линии иконок Lucide), `scale/pressed`, `duration/{press,release,spinner,spinner-reduced}`, `easing/spring-*`, `type/label/lg`. В Figma не переносятся автоматически — см. `docs/figma-todo.md`.
+**Только в коде** (помечены в `$description`): `space/px`, `stroke/icon` (1.5px — толщина линии иконок Lucide), `scale/pressed`, `duration/{press,release,spinner,spinner-reduced}`, `easing/spring-*`, `type/body/l`, `type/label/l` (18px). В Figma не переносятся автоматически — см. `docs/figma-todo.md`.
 
 ## Семантика стилистики (`themes/<стилистика>/<схема>.json` → `color/*`)
 
@@ -67,10 +68,23 @@
 
 - `color/text/link` — цвет ссылок (≥ 4.5:1 на фоне и плашках; на тёмных схемах светлее акцента).
 - `color/badge/<tone>/{bg,fg}` — тонированные плашки Badge и Alert (`neutral`, `accent`, `success`, `warning`, `danger`).
-- Раскладка: `size/container/{sm,md,lg}`, `size/grid-item/{sm,md,lg}`, `layout/gutter` (16 → 40, `clamp`), `layout/section` (48 → 96), `breakpoint/md` (768, только для JS).
+- Раскладка: `size/container/{s,m,l}`, `size/grid-item/{s,m,l}`, `layout/gutter` (16 → 40, `clamp`), `layout/section` (48 → 96), `breakpoint/m` (768, только для JS).
 - Типографика: `type/hero` — плавный 32 → 64px, `font/line-height/tight` (1.1).
 - Моушн: `scale/pressed-surface` (0.98, нажатие карточки), `scale/popover-enter` (0.96, появление панелей), `duration/toast` (5 с).
 - `z-index/popover`, `radius/sheet`, `stroke/icon` (1.5px).
+
+## Тон и тишина (2026-09-25)
+
+Премиальность — не максимальный контраст, а спокойная иерархия при соблюдении WCAG (текст ≥ 4.5:1 — проверяет `contrast.test.ts`).
+
+- **Без чистых чёрного и белого:** `color/mono/ink` #202227 (припылённый графит) — текст светлых схем, затемнения, фокус neutral; `color/mono/snow` #f1f1f4 — текст тёмных. Фон тёмного glass — #141417, neutral dark — #161619. Чистые цвета остаются только в тенях и бликах стекла.
+- **Иерархия текста мягче:** вторичный заметно тише основного (glass light 0.74, glass dark 0.62; neutral — #5d5f67 / #a6a6ae), третичный — у нижней границы 4.5:1. На цветной кнопке текст — сплошной `snow` (альфа роняла контраст).
+- **Кромки стекла кнопок** (`color/accent/glass-border*`, `surface/neutral/*/border`) — ≈ вдвое тише Figma: блик, а не обводка.
+- **Разделители** — отдельная роль `color/divider` (6% тона): аккордеон, Divider, разделители меню, строки таблиц; сетка графиков (`color/chart/grid`) — тем же тоном. `color/border/*` — только рамки контролов.
+- **Всплывающие панели** (`surface/popover/*`: Select, меню, подсказки, Toast, Dialog, Sheet) — «толстое» стекло Liquid Glass: заливка 66% (light) / 68% (dark), `blur(40px) saturate(180%)` (`blur/80` — только в коде). Подложка угадывается цветом, но не читается.
+- **Скроллбары:** в шторке — нет (мобильный паттерн); в DataTable и табличном двойнике — невидимы, пока указатель не над областью (тонкие, `color/border/default`, без дорожки; место занято всегда — раскладка не прыгает).
+- **Календарь** `surface/calendar/{range,preview}` — полоса выбранного диапазона и предпросмотр: оттенок акцента (10–18% / 5–8%); текст на ней ≥ 4.5:1 (тест токенов).
+- **Таблица** `surface/table/{header-bg,header-backdrop,row-hover-bg,row-selected-bg}`: липкая шапка почти в цвет страницы (glass — полупрозрачная с размытием), наведение — 3–4% тона, выбранная строка — лёгкий оттенок акцента. Никаких «зебр».
 
 ## Графики (ADR-0007)
 
@@ -81,7 +95,7 @@
 - `color/chart/sequential/1…7` — одна синяя шкала для величины (тепловая карта); в тёмной схеме якорь перевёрнут (мало — темнее, ближе к фону).
 - `color/chart/status/{good,warning,serious,critical}` — только для состояния (Meter), всегда с иконкой и текстом; не для серий.
 - `color/chart/{grid,axis,muted}` — сетка, базовая линия/перекрестье, контекстные серии при выделении — от `foreground` с альфой.
-- Примитивы: `size/chart/{sm,md,lg}` (высоты 160/240/320), `size/chart/tick` (72 — мин. шаг делений X), `size/chart/bar` (24 — макс. толщина столбца), `spring/data/{damping,frequency}` (0.86 / 11 — пружина значений, почти без перелёта).
+- Примитивы: `size/chart/{s,m,l}` (высоты 160/240/320), `size/chart/tick` (72 — мин. шаг делений X), `size/chart/bar` (24 — макс. толщина столбца), `spring/data/{damping,frequency}` (0.86 / 11 — пружина значений, почти без перелёта).
 
 ## Тест контраста токенов
 

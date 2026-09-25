@@ -42,8 +42,8 @@ const props = withDefaults(
     xLabel?: string;
     /** Заголовок столбца значений в таблице */
     valueLabel?: string;
-    /** Высота кольца: size/chart/{sm,md,lg} */
-    height?: "sm" | "md" | "lg";
+    /** Высота кольца: size/chart/{s,m,l} */
+    height?: "s" | "m" | "l";
     /** Имя диаграммы без ChartCard */
     label?: string;
     /** Текст пустого состояния */
@@ -55,7 +55,7 @@ const props = withDefaults(
     totalLabel: "Всего",
     xLabel: "Категория",
     valueLabel: "Значение",
-    height: "md",
+    height: "m",
     emptyText: "Нет данных за этот период",
   },
 );
@@ -249,7 +249,7 @@ const tableRows = computed(() =>
     min-inline-size: 0;
   }
 
-  /* Mobile-first: кольцо, под ним легенда; шире size/container/sm (640px; в @container нельзя var()) — рядом */
+  /* Mobile-first: кольцо, под ним легенда; шире size/container/s (640px; в @container нельзя var()) — рядом */
   .ui-donut__layout {
     display: grid;
     gap: var(--space-4);
@@ -263,15 +263,15 @@ const tableRows = computed(() =>
     }
 
     .ui-donut__plot {
-      inline-size: var(--size-chart-md);
+      inline-size: var(--size-chart-m);
     }
 
-    .ui-donut[data-height="sm"] .ui-donut__plot {
-      inline-size: var(--size-chart-sm);
+    .ui-donut[data-height="s"] .ui-donut__plot {
+      inline-size: var(--size-chart-s);
     }
 
-    .ui-donut[data-height="lg"] .ui-donut__plot {
-      inline-size: var(--size-chart-lg);
+    .ui-donut[data-height="l"] .ui-donut__plot {
+      inline-size: var(--size-chart-l);
     }
   }
 
@@ -279,15 +279,15 @@ const tableRows = computed(() =>
     position: relative;
     display: grid;
     place-items: center;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
   }
 
-  .ui-donut[data-height="sm"] .ui-donut__plot {
-    block-size: var(--size-chart-sm);
+  .ui-donut[data-height="s"] .ui-donut__plot {
+    block-size: var(--size-chart-s);
   }
 
-  .ui-donut[data-height="lg"] .ui-donut__plot {
-    block-size: var(--size-chart-lg);
+  .ui-donut[data-height="l"] .ui-donut__plot {
+    block-size: var(--size-chart-l);
   }
 
   svg {
@@ -308,7 +308,7 @@ const tableRows = computed(() =>
     grid-area: 1 / 1;
     display: grid;
     justify-items: center;
-    max-inline-size: calc(var(--size-chart-md) - 2 * var(--size-chart-bar) - 2 * var(--space-4));
+    max-inline-size: calc(var(--size-chart-m) - 2 * var(--size-chart-bar) - 2 * var(--space-4));
     text-align: center;
     pointer-events: none;
   }
@@ -316,17 +316,17 @@ const tableRows = computed(() =>
   /* Крупное число — пропорциональные цифры */
   .ui-donut__center-value {
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-heading-md-font-family);
-    font-weight: var(--type-heading-md-font-weight);
-    font-size: var(--type-heading-md-font-size);
-    line-height: var(--type-heading-md-line-height);
+    font-family: var(--type-heading-m-font-family);
+    font-weight: var(--type-heading-m-font-weight);
+    font-size: var(--type-heading-m-font-size);
+    line-height: var(--type-heading-m-line-height);
   }
 
   .ui-donut__center-label {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-sm-font-family);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
   }
 
   /* Фокус-кольцо вокруг диска; указатель проходит к сегментам */
@@ -343,12 +343,12 @@ const tableRows = computed(() =>
     outline-offset: var(--stroke-2);
   }
 
-  /* Общие колонки у всех строк (subgrid) — доли и значения выровнены; ширина — не шире size/grid-item/lg */
+  /* Общие колонки у всех строк (subgrid) — доли и значения выровнены; ширина — не шире size/grid-item/l */
   .ui-donut__legend {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto auto;
     gap: var(--space-1) 0;
-    max-inline-size: var(--size-grid-item-lg);
+    max-inline-size: var(--size-grid-item-l);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -363,9 +363,9 @@ const tableRows = computed(() =>
     min-block-size: var(--size-32);
     padding-inline: var(--space-2);
     border-radius: var(--radius-2);
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
     transition:
       opacity var(--duration-normal) ease,
       background-color var(--duration-fast) ease;
@@ -400,7 +400,7 @@ const tableRows = computed(() =>
 
   .ui-donut__legend-value {
     color: var(--color-text-primary, CanvasText);
-    font-weight: var(--type-label-md-font-weight);
+    font-weight: var(--type-label-s-font-weight);
     font-variant-numeric: tabular-nums;
     text-align: end;
   }
@@ -408,11 +408,11 @@ const tableRows = computed(() =>
   .ui-donut__empty {
     display: grid;
     place-items: center;
-    block-size: var(--size-chart-md);
+    block-size: var(--size-chart-m);
     margin: 0;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-size: var(--type-body-md-font-size);
+    font-family: var(--type-body-s-font-family);
+    font-size: var(--type-body-s-font-size);
   }
 
   .ui-donut__live {

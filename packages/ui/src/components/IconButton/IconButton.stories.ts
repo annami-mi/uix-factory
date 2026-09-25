@@ -71,6 +71,25 @@ export const Examples: Story = {
   }),
 };
 
+/** Размеры — как у Button: квадрат s 40 / m 48 / l 56. */
+export const Sizes: Story = {
+  render: () => ({
+    components: { IconButton, Heart },
+    template: `
+      <div style="display: flex; align-items: center; gap: var(--space-3)">
+        <IconButton label="Размер s" size="s"><Heart /></IconButton>
+        <IconButton label="Размер m"><Heart /></IconButton>
+        <IconButton label="Размер l" size="l"><Heart /></IconButton>
+      </div>
+    `,
+  }),
+  play: async ({ canvas }) => {
+    const box = (name: string) => canvas.getByRole("button", { name }).getBoundingClientRect();
+    await expect([box("Размер s").width, box("Размер m").width, box("Размер l").width]).toEqual([40, 48, 56]);
+    await expect(box("Размер l").height).toBe(56);
+  },
+};
+
 const variants = ["primary", "secondary", "ghost"] as const;
 const states = [
   { name: "default", props: {} },

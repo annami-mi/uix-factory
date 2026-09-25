@@ -56,18 +56,18 @@ export const Overview: Story = {
     template: `
       <Stack gap="6">
         <Stack gap="4">
-          <Heading :level="1" size="md">Обзор</Heading>
+          <Heading :level="1" size="m">Обзор</Heading>
           <div style="max-inline-size: 720px"><PeriodSelect v-model="period" :now="NOW" /></div>
         </Stack>
 
-        <Grid min="sm" :columns="4" gap="3">
+        <Grid min="s" :columns="4" gap="3">
           <StatTile label="Выручка" :value="total" :value-format="rub" :delta="0.124" delta-label="к прошлому периоду" :trend="data.map(d => d.revenue)" />
           <StatTile label="Визиты" :value="visits" :delta="0.057" delta-label="к прошлому периоду" :series="3" :trend="data.map(d => d.organic + d.ads)" />
           <StatTile label="Конверсия" :value="0.034" :value-format="{ style: 'percent', maximumFractionDigits: 1 }" :delta="-0.004" delta-label="к прошлому периоду" />
           <StatTile label="Отток" :value="0.042" :value-format="{ style: 'percent', maximumFractionDigits: 1 }" :delta="0.08" delta-label="к прошлому периоду" :up-is-good="false" />
         </Grid>
 
-        <Grid min="lg" :columns="2" gap="3">
+        <Grid min="l" :columns="2" gap="3">
           <ChartCard :heading-level="2" title="Выручка" description="По дням за период">
             <LineChart :data="data" x="date" :series="[{ key: 'revenue', label: 'Выручка' }]" area :value-format="rub" />
           </ChartCard>
@@ -82,7 +82,7 @@ export const Overview: Story = {
           </ChartCard>
         </Grid>
 
-        <Grid min="lg" :columns="2" gap="3">
+        <Grid min="l" :columns="2" gap="3">
           <ChartCard :heading-level="2" title="Популярные страницы" description="Просмотры">
             <BarChart :data="topPages" x="page" x-label="Страница" orientation="horizontal" :series="[{ key: 'views', label: 'Просмотры' }]" :value-format="{ maximumFractionDigits: 0 }" />
           </ChartCard>

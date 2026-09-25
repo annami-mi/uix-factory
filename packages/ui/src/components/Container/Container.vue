@@ -1,18 +1,18 @@
 <script setup lang="ts">
 /**
  * Контейнер страницы: центрирует контент, ограничивает ширину, даёт поля по краям.
- * Ширина — size/container/{sm,md,lg} (или full), поля — layout/gutter (16 → 40px плавно, без media query).
+ * Ширина — size/container/{s,m,l} (или full), поля — layout/gutter (16 → 40px плавно, без media query).
  */
 import type { ContainerSize } from "../../types";
 
 withDefaults(
   defineProps<{
-    /** Максимальная ширина: sm 640 (текст, формы), md 960, lg 1200 (лендинг), full — без ограничения */
+    /** Максимальная ширина: s 640 (текст, формы), m 960, l 1200 (лендинг), full — без ограничения */
     size?: ContainerSize;
     /** Тег */
     as?: string;
   }>(),
-  { size: "lg", as: "div" },
+  { size: "l", as: "div" },
 );
 
 defineSlots<{ default: () => unknown }>();
@@ -31,7 +31,7 @@ defineSlots<{ default: () => unknown }>();
 <style scoped>
 @layer components {
   .ui-container {
-    --_max: var(--size-container-lg);
+    --_max: var(--size-container-l);
 
     box-sizing: border-box;
     inline-size: 100%;
@@ -40,12 +40,12 @@ defineSlots<{ default: () => unknown }>();
     padding-inline: var(--layout-gutter);
   }
 
-  .ui-container[data-size="sm"] {
-    --_max: var(--size-container-sm);
+  .ui-container[data-size="s"] {
+    --_max: var(--size-container-s);
   }
 
-  .ui-container[data-size="md"] {
-    --_max: var(--size-container-md);
+  .ui-container[data-size="m"] {
+    --_max: var(--size-container-m);
   }
 
   .ui-container[data-size="full"] {

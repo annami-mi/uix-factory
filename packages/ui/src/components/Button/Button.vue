@@ -13,7 +13,7 @@
  * (слой ::after). Блик вспыхивает быстро и гаснет медленно. Layout не меняется.
  *
  * Токены (роли, не значения): surface-{accent,neutral}-{default,hover,pressed,disabled,loading}-*,
- * color-text-on-accent / primary / disabled, color-state-focus, type-label-lg-*.
+ * color-text-on-accent / primary / disabled, color-state-focus, type-label-m-*.
  * Fallback-и — системные цвета CSS, чтобы кнопка оставалась читаемой вне [data-theme].
  */
 import { computed, ref } from "vue";
@@ -24,8 +24,12 @@ const props = withDefaults(
     /** Роль поверхности, см. packages/tokens surface.accent / surface.neutral */
     /** primary — главное действие, secondary — второстепенное, ghost — без плашки в покое (третьестепенное, тулбары) */
     variant?: "primary" | "secondary" | "ghost";
-    /** v1: один размер — комфортный для тача (48px, Figma size/48). Компактный desktop-вариант — после реального SaaS-кейса. */
-    size?: "md";
+    /**
+     * Размер: m — по умолчанию, комфортный для тача (size/48, label/m 16px); l — крупный CTA (size/56, label/l 18px);
+     * s — компактный для тулбаров и плотных десктопных экранов (size/40, label/s 14px), не по умолчанию;
+     *   на тач-экране (pointer: coarse) дорастает до size/44 — зона касания.
+     */
+    size?: "s" | "m" | "l";
     /** Нативный `disabled` (для `as="a"` — `aria-disabled`, клик гасится) */
     disabled?: boolean;
     /** Только спиннер, `aria-busy="true"`, клик заблокирован; лейбл остаётся доступным именем */
@@ -35,7 +39,7 @@ const props = withDefaults(
   }>(),
   {
     variant: "primary",
-    size: "md",
+    size: "m",
     disabled: false,
     loading: false,
     as: "button",
@@ -100,6 +104,7 @@ const pressStyle = computed(() =>
     :is="as"
     class="ui-button"
     :class="[`ui-button--${variant}`]"
+    :data-size="size"
     :type="as === 'button' ? 'button' : undefined"
     :disabled="as === 'button' ? inactive : undefined"
     :aria-disabled="as === 'a' && inactive ? 'true' : undefined"
@@ -143,19 +148,25 @@ const pressStyle = computed(() =>
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    /* Размер — внутренние переменные; m по умолчанию, s/lg — ниже */
+    --_height: var(--size-48);
+    --_padding: var(--space-4);
+    --_icon: var(--size-20);
+    --_icon-only: var(--size-24);
+
     gap: var(--space-2);
-    min-block-size: var(--size-48);
-    padding-inline: var(--space-4);
+    min-block-size: var(--_height);
+    padding-inline: var(--_padding);
     /* Оптическая компенсация: лейбл визуально садится ниже центра — поднимаем на 1px снизу */
     padding-block-end: var(--space-px);
     border: 0;
     border-radius: var(--radius-full);
     background: none;
     cursor: pointer;
-    font-family: var(--type-label-lg-font-family);
-    font-weight: var(--type-label-lg-font-weight);
-    font-size: var(--type-label-lg-font-size);
-    line-height: var(--type-label-lg-line-height);
+    font-family: var(--type-label-m-font-family);
+    font-weight: var(--type-label-m-font-weight);
+    font-size: var(--type-label-m-font-size);
+    line-height: var(--type-label-m-line-height);
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -316,15 +327,48 @@ const pressStyle = computed(() =>
     --_backdrop: var(--surface-ghost-loading-backdrop, none);
   }
 
-  /* --- только иконка (IconButton): квадрат size/48, иконка size/24 --- */
+  /* --- размеры: высота, поля, кегль (type/label/*), иконка --- */
+  .ui-button[data-size="s"] {
+    --_height: var(--size-40);
+    --_padding: var(--space-3);
+    --_icon: var(--size-16);
+    --_icon-only: var(--size-20);
+
+    gap: var(--space-1);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
+  }
+
+  /* Компактная — только для точного указателя: на тач-экране зона касания не меньше size/44 */
+  @media (pointer: coarse) {
+    .ui-button[data-size="s"] {
+      --_height: var(--size-44);
+    }
+  }
+
+  .ui-button[data-size="l"] {
+    --_height: var(--size-56);
+    --_padding: var(--space-6);
+    --_icon: var(--size-24);
+    --_icon-only: var(--size-24);
+
+    font-family: var(--type-label-l-font-family);
+    font-weight: var(--type-label-l-font-weight);
+    font-size: var(--type-label-l-font-size);
+    line-height: var(--type-label-l-line-height);
+  }
+
+  /* --- только иконка (IconButton): квадрат высоты кнопки, иконка крупнее обычной --- */
   .ui-button--icon {
-    inline-size: var(--size-48);
+    inline-size: var(--_height);
     padding-inline: 0;
   }
 
   .ui-button--icon .ui-button__icon {
-    inline-size: var(--size-24);
-    block-size: var(--size-24);
+    inline-size: var(--_icon-only);
+    block-size: var(--_icon-only);
   }
 
   .ui-button--icon .ui-button__label {
@@ -372,8 +416,8 @@ const pressStyle = computed(() =>
   .ui-button__icon {
     display: inline-flex;
     flex: none;
-    inline-size: var(--size-20);
-    block-size: var(--size-20);
+    inline-size: var(--_icon);
+    block-size: var(--_icon);
   }
 
   .ui-button__icon > :deep(svg) {

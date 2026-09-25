@@ -14,8 +14,8 @@ const meta = {
         component: [
           "Заголовок. **Уровень** (`level` → h1…h6, структура для скринридера) и **размер** (`size` → стиль `type/*`) независимы.",
           "",
-          "- `hero` — первый экран, плавно 32 → 64px; `display`, `lg`, `md`, `sm` — стили Figma.",
-          "- По умолчанию размер — по уровню: h1 → display, h2 → lg, h3 → md, h4–h6 → sm.",
+          "- `hero` — первый экран, плавно 32 → 64px; `display`, `l`, `m`, `s` — стили Figma.",
+          "- По умолчанию размер — по уровню: h1 → display, h2 → l, h3 → m, h4–h6 → s.",
           "- Длинные заголовки переносятся сбалансированно (`text-wrap: balance`).",
         ].join("\n"),
       },
@@ -24,7 +24,7 @@ const meta = {
   args: { level: 2 },
   argTypes: {
     level: { control: "inline-radio", options: [1, 2, 3, 4, 5, 6] },
-    size: { control: "inline-radio", options: [undefined, "hero", "display", "lg", "md", "sm"] },
+    size: { control: "inline-radio", options: [undefined, "hero", "display", "l", "m", "s"] },
     default: { control: false },
   },
   render: (args) => ({
@@ -52,15 +52,16 @@ export const Scale: Story = {
       <div style="display: grid; gap: var(--space-4)">
         <Heading :level="1" size="hero">Hero — первый экран</Heading>
         <Heading :level="2" size="display">Display 32/38</Heading>
-        <Heading :level="2">Heading lg 24/30</Heading>
-        <Heading :level="3">Heading md 20/26</Heading>
-        <Heading :level="4">Heading sm 16/22</Heading>
+        <Heading :level="2">Heading l 24/30</Heading>
+        <Heading :level="3">Heading m 20/26</Heading>
+        <Heading :level="4">Heading s 16/22</Heading>
         <Divider />
-        <Text>Body lg 16/24 — основной текст на мобильном.</Text>
-        <Text size="md" tone="secondary">Body md 14/20, secondary — пояснения.</Text>
-        <Text size="sm" tone="tertiary">Body sm 12/16, tertiary — мета-информация.</Text>
+        <Text size="l">Body l 18/28 — лид, вводный абзац.</Text>
+        <Text>Body m 16/24 — основной текст.</Text>
+        <Text size="s" tone="secondary">Body s 14/20, secondary — пояснения, таблицы.</Text>
+        <Text size="xs" tone="tertiary">Body xs 12/16, tertiary — мета-информация.</Text>
         <Text size="caption" tone="tertiary">Caption 11/14</Text>
-        <Text size="sm" tone="danger">Danger — текст ошибки</Text>
+        <Text size="xs" tone="danger">Danger — текст ошибки</Text>
       </div>
     `,
   }),

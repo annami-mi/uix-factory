@@ -4,23 +4,24 @@
     "background": {
       "default": {
         "$type": "color",
-        "$value": "#141416"
+        "$value": "#161619"
       }
     },
     "foreground": {
       "default": {
         "$type": "color",
-        "$value": "#f4f4f5"
+        "$value": "#e8e8ec",
+        "$description": "решение 2026-09-25: без чистого чёрного/белого — припылённые тона, иерархия текста мягче (docs/figma-todo.md)"
       }
     },
     "text": {
       "primary": {
         "$type": "color",
-        "$value": "#f4f4f5"
+        "$value": "#e8e8ec"
       },
       "secondary": {
         "$type": "color",
-        "$value": "#b4b4bb"
+        "$value": "#a6a6ae"
       },
       "tertiary": {
         "$type": "color",
@@ -48,7 +49,7 @@
     "icon": {
       "primary": {
         "$type": "color",
-        "$value": "#f4f4f5"
+        "$value": "{color.foreground.default}"
       },
       "secondary": {
         "$type": "color",
@@ -80,6 +81,14 @@
         "$extensions": {
           "uix.alpha": 0.16
         }
+      }
+    },
+    "divider": {
+      "$type": "color",
+      "$value": "{color.foreground.default}",
+      "$description": "вспомогательные линии — разделители аккордеона, меню, строк таблиц, Divider: еле видимые (2026-09-25). Рамки контролов — color/border/*",
+      "$extensions": {
+        "uix.alpha": 0.06
       }
     },
     "surface": {
@@ -378,11 +387,8 @@
       },
       "grid": {
         "$type": "color",
-        "$value": "{color.foreground.default}",
-        "$description": "сетка: тонкая, на шаг от фона, сплошная",
-        "$extensions": {
-          "uix.alpha": 0.08
-        }
+        "$value": "{color.divider}",
+        "$description": "сетка графиков — тем же еле видимым тоном, что разделители"
       },
       "axis": {
         "$type": "color",
@@ -713,7 +719,7 @@
     "scrim": {
       "bg": {
         "$type": "color",
-        "$value": "{color.mono.black}",
+        "$value": "{color.mono.ink}",
         "$extensions": {
           "uix.alpha": 0.6
         },
@@ -981,6 +987,55 @@
       "indicator-shadow": {
         "$type": "other",
         "$value": "none"
+      }
+    },
+    "table": {
+      "header-bg": {
+        "$type": "color",
+        "$value": "{color.background.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: липкая шапка — почти в цвет страницы, полупрозрачная, чтобы строки уходили под неё без полосы",
+        "$extensions": {
+          "uix.alpha": 0.94
+        }
+      },
+      "header-backdrop": {
+        "$type": "other",
+        "$value": "none",
+        "$description": "плоская стилистика — без размытия"
+      },
+      "row-hover-bg": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: наведение на строку — 3–4% тона",
+        "$extensions": {
+          "uix.alpha": 0.04
+        }
+      },
+      "row-selected-bg": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "таблица (DataTable, 2026-09-25): разница «еле заметная» — премиальная тишина вместо полос: выбранная строка — лёгкий оттенок акцента (выбор виден и по флажку)",
+        "$extensions": {
+          "uix.alpha": 0.12
+        }
+      }
+    },
+    "calendar": {
+      "range": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "календарь (2026-09-25): полоса выбранного диапазона и предпросмотр при наведении — оттенок акцента, тише выбранных краёв: дни внутри диапазона",
+        "$extensions": {
+          "uix.alpha": 0.18
+        }
+      },
+      "preview": {
+        "$type": "color",
+        "$value": "{color.accent.default}",
+        "$description": "календарь (2026-09-25): полоса выбранного диапазона и предпросмотр при наведении — оттенок акцента, тише выбранных краёв: предпросмотр диапазона до второго клика",
+        "$extensions": {
+          "uix.alpha": 0.08
+        }
       }
     }
   }

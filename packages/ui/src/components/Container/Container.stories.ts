@@ -11,13 +11,13 @@ const meta = {
     docs: {
       description: {
         component:
-          "Центрирует контент и ограничивает ширину: `sm` 640 (текст, формы), `md` 960, `lg` 1200 (лендинг), `full`. Поля по краям — `layout/gutter`, 16 → 40px плавно (без media query).",
+          "Центрирует контент и ограничивает ширину: `s` 640 (текст, формы), `m` 960, `l` 1200 (лендинг), `full`. Поля по краям — `layout/gutter`, 16 → 40px плавно (без media query).",
       },
     },
   },
-  args: { size: "md" },
+  args: { size: "m" },
   argTypes: {
-    size: { control: "inline-radio", options: ["sm", "md", "lg", "full"] },
+    size: { control: "inline-radio", options: ["s", "m", "l", "full"] },
     as: { control: false },
     default: { control: false },
   },

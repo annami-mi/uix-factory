@@ -76,10 +76,10 @@ const visibleCount = () => props.items.filter((i) => !i.hidden).length;
     border-radius: var(--radius-full);
     background: none;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-weight: var(--type-body-md-font-weight);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-weight: var(--type-body-s-font-weight);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition:

@@ -30,12 +30,12 @@ withDefaults(
     align-self: stretch;
     margin: 0;
     border: 0;
-    border-block-start: var(--stroke-1) solid var(--color-border-default, GrayText);
+    border-block-start: var(--stroke-1) solid var(--color-divider, GrayText);
   }
 
   .ui-divider[data-orientation="vertical"] {
     border-block-start: 0;
-    border-inline-start: var(--stroke-1) solid var(--color-border-default, GrayText);
+    border-inline-start: var(--stroke-1) solid var(--color-divider, GrayText);
   }
 }
 </style>

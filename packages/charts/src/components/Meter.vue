@@ -100,17 +100,17 @@ const statusText = computed(() =>
 
   .ui-meter__label {
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-label-md-font-family);
-    font-weight: var(--type-label-md-font-weight);
-    font-size: var(--type-label-md-font-size);
-    line-height: var(--type-label-md-line-height);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
   }
 
   .ui-meter__value {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-sm-font-family);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     font-variant-numeric: tabular-nums;
   }
 
@@ -142,9 +142,9 @@ const statusText = computed(() =>
     align-items: center;
     gap: var(--space-1);
     margin: 0;
-    font-family: var(--type-body-sm-font-family);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-status-warning, CanvasText);
   }
 

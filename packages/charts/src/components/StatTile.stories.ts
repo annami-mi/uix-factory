@@ -18,7 +18,7 @@ const meta = {
           "Плитка KPI: «число и есть график». Значение — пропорциональные цифры, при появлении и смене — счётчик на пружине (скринридер читает итог).",
           "",
           "- **Дельта** знает, хорошо ли «вверх» (`upIsGood`): рост оттока — плохо. Смысл — иконкой и текстом, не только цветом.",
-          "- **Ряд KPI** — `Grid min=\"sm\"` из `@uix/ui`: 1–2 колонки на телефоне, 4 на десктопе, без медиа-запросов.",
+          "- **Ряд KPI** — `Grid min=\"s\"` из `@uix/ui`: 1–2 колонки на телефоне, 4 на десктопе, без медиа-запросов.",
           "- `loading` — прежнее значение приглушено, без скелетона.",
         ].join("\n"),
       },
@@ -83,7 +83,7 @@ export const KpiRow: Story = {
           <Button :variant="week ? 'secondary' : 'primary'" @click="week = false">30 дней</Button>
           <Button :variant="week ? 'primary' : 'secondary'" @click="week = true">7 дней</Button>
         </Stack>
-        <Grid min="sm" :columns="4" gap="3">
+        <Grid min="s" :columns="4" gap="3">
           <StatTile label="Выручка" :value="week ? 1_512_900 : 6_284_300" :value-format="rub" :delta="week ? 0.031 : 0.124" delta-label="к прошлому периоду" :trend="revenue.slice(week ? -7 : 0).map(d => d.revenue)" />
           <StatTile label="Визиты из поиска" :value="sum('organic')" :delta="week ? -0.018 : 0.057" delta-label="к прошлому периоду" :series="3" :trend="traffic.slice(week ? -7 : 0).map(d => d.organic)" />
           <StatTile label="Конверсия" :value="week ? 0.036 : 0.034" :value-format="{ style: 'percent', maximumFractionDigits: 1 }" :delta="0" delta-label="к прошлому периоду" />

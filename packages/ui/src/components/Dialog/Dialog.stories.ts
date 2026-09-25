@@ -26,10 +26,10 @@ const meta = {
       },
     },
   },
-  args: { title: "Удалить адрес?", description: "Адрес «ул. Ленина, 5» пропадёт из списка доставки.", size: "sm", presentation: "auto" },
+  args: { title: "Удалить адрес?", description: "Адрес «ул. Ленина, 5» пропадёт из списка доставки.", size: "s", presentation: "auto" },
   argTypes: {
     presentation: { control: "inline-radio", options: ["auto", "dialog", "sheet"] },
-    size: { control: "inline-radio", options: ["sm", "md"] },
+    size: { control: "inline-radio", options: ["s", "m"] },
     open: { control: false },
   },
   render: (args) => ({
@@ -97,7 +97,7 @@ export const WithForm: Story = {
       <Button @click="open = true">Добавить адрес</Button>
       <Dialog v-bind="args" v-model:open="open">
         <Stack gap="4">
-          <Text size="md" tone="secondary">Курьер привезёт заказ по этому адресу.</Text>
+          <Text size="s" tone="secondary">Курьер привезёт заказ по этому адресу.</Text>
           <Input label="Улица и дом" placeholder="ул. Ленина, 5" autocomplete="street-address" />
           <Input label="Квартира" inputmode="numeric" />
         </Stack>

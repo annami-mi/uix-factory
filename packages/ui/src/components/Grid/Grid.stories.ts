@@ -11,16 +11,16 @@ const meta = {
         component: [
           "Сетка карточек без media query: колонок столько, сколько помещается при минимальной ширине ячейки (`size/grid-item/*`). На телефоне — одна.",
           "",
-          "- `min`: `sm` 160 (логотипы), `md` 260 (карточки), `lg` 340 (отзывы, крупные карточки).",
+          "- `min`: `s` 160 (логотипы), `m` 260 (карточки), `l` 340 (отзывы, крупные карточки).",
           "- `columns` — максимум колонок на широком экране.",
           "- `gap` — ключ шкалы `space/*`.",
         ].join("\n"),
       },
     },
   },
-  args: { min: "md", gap: "4" },
+  args: { min: "m", gap: "4" },
   argTypes: {
-    min: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    min: { control: "inline-radio", options: ["s", "m", "l"] },
     gap: { control: "select", options: ["2", "3", "4", "5", "6", "8"] },
     as: { control: false },
     default: { control: false },
@@ -39,26 +39,26 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Число колонок зависит от ширины: при 390px и min=md — одна колонка. */
+/** Число колонок зависит от ширины: при 390px и min=m — одна колонка. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const grid = canvasElement.querySelector(".ui-grid") as HTMLElement;
     const columns = getComputedStyle(grid).gridTemplateColumns.split(" ").length;
-    const minItem = parseFloat(getComputedStyle(grid).getPropertyValue("--size-grid-item-md"));
+    const minItem = parseFloat(getComputedStyle(grid).getPropertyValue("--size-grid-item-m"));
     // колонок ровно столько, сколько помещается при минимальной ширине ячейки
     await expect(columns).toBe(Math.max(1, Math.floor((grid.clientWidth + 16) / (minItem + 16))));
   },
 };
 
 export const LogoWall: Story = {
-  name: "Logo wall (min sm)",
-  args: { min: "sm", gap: "3" },
+  name: "Logo wall (min s)",
+  args: { min: "s", gap: "3" },
 };
 
 /** Не больше 3 колонок на широком экране. */
 export const MaxThreeColumns: Story = {
   name: "Max 3 columns",
-  args: { min: "sm", columns: 3 },
+  args: { min: "s", columns: 3 },
   globals: { viewport: { value: "desktop1440", isRotated: false } },
   play: async ({ canvasElement }) => {
     const grid = canvasElement.querySelector(".ui-grid") as HTMLElement;

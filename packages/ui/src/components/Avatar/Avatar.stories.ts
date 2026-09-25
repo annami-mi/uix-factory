@@ -20,8 +20,8 @@ const meta = {
       },
     },
   },
-  args: { name: "Анна Киселева", size: "md", decorative: false },
-  argTypes: { size: { control: "inline-radio", options: ["sm", "md", "lg"] } },
+  args: { name: "Анна Киселева", size: "m", decorative: false },
+  argTypes: { size: { control: "inline-radio", options: ["s", "m", "l"] } },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
@@ -57,9 +57,9 @@ export const Sizes: Story = {
     setup: () => ({ photo }),
     template: `
       <div style="display: flex; gap: var(--space-3); align-items: center">
-        <Avatar name="Анна Киселева" size="sm" />
+        <Avatar name="Анна Киселева" size="s" />
         <Avatar name="Борис Орлов" />
-        <Avatar name="Вера Лисина" size="lg" :src="photo" />
+        <Avatar name="Вера Лисина" size="l" :src="photo" />
       </div>
     `,
   }),

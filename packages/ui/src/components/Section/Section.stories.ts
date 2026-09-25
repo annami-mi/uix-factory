@@ -23,9 +23,9 @@ const meta = {
       },
     },
   },
-  args: { size: "lg", tone: "default" },
+  args: { size: "l", tone: "default" },
   argTypes: {
-    size: { control: "inline-radio", options: ["sm", "md", "lg", "full"] },
+    size: { control: "inline-radio", options: ["s", "m", "l", "full"] },
     tone: { control: "inline-radio", options: ["default", "subtle"] },
     as: { control: false },
     default: { control: false },
@@ -49,10 +49,10 @@ const meta = {
       <Section tone="subtle" aria-labelledby="features-title">
         <Stack gap="6">
           <Heading id="features-title" :level="2">Почему мы</Heading>
-          <Grid min="md" gap="4">
+          <Grid min="m" gap="4">
             <Stack v-for="f in ['Быстро', 'Свежо', 'Удобно']" :key="f" gap="2">
-              <Heading :level="3" size="sm">{{ f }}</Heading>
-              <Text size="md" tone="secondary">Короткое пояснение преимущества в одну-две строки.</Text>
+              <Heading :level="3" size="s">{{ f }}</Heading>
+              <Text size="s" tone="secondary">Короткое пояснение преимущества в одну-две строки.</Text>
             </Stack>
           </Grid>
         </Stack>

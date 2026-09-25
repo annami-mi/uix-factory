@@ -6,7 +6,7 @@
  * Атрибуты (`name`, `autocomplete`, `inputmode`, `required`, `aria-*`…) уходят на <input>,
  * `class`/`style` — на корень. Без `label` полю нужен `aria-label`.
  *
- * Отличие от макета (docs/figma-todo.md): текст 16px (`type/body/lg`, в Figma body/md 14px) —
+ * Отличие от макета (docs/figma-todo.md): текст 16px (`type/body/m`, в Figma body/md 14px) —
  * iOS Safari зумит страницу при фокусе на поле с текстом < 16px.
  */
 import { computed, ref, useAttrs } from "vue";
@@ -18,9 +18,9 @@ defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(
   defineProps<{
-    /** Видимая подпись над полем (label/sm) */
+    /** Видимая подпись над полем (label/xs) */
     label?: string;
-    /** Подсказка под полем (body/sm) */
+    /** Подсказка под полем (body/xs) */
     hint?: string;
     /** Текст ошибки: заменяет подсказку, красит подпись/бордер, ставит `aria-invalid` */
     error?: string;
@@ -151,10 +151,10 @@ defineExpose({
     background: none;
     color: inherit;
     caret-color: var(--color-accent-default, currentColor);
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
   }
 
   .ui-input__control::placeholder {

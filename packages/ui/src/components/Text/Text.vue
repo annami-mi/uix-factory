@@ -5,14 +5,14 @@
  */
 withDefaults(
   defineProps<{
-    /** lg 16/24 (основной на мобильном), md 14/20, sm 12/16, caption 11/14 */
-    size?: "lg" | "md" | "sm" | "caption";
+    /** l 18/28 (лид), m 16/24 (основной, по умолчанию), s 14/20 (вторичный), xs 12/16, caption 11/14 */
+    size?: "l" | "m" | "s" | "xs" | "caption";
     /** Цвет: primary, secondary (пояснения), tertiary (мета), danger */
     tone?: "primary" | "secondary" | "tertiary" | "danger";
     /** Тег: p, span, div, li… */
     as?: string;
   }>(),
-  { size: "lg", tone: "primary", as: "p" },
+  { size: "m", tone: "primary", as: "p" },
 );
 
 defineSlots<{ default: () => unknown }>();
@@ -33,22 +33,27 @@ defineSlots<{ default: () => unknown }>();
 @layer components {
   .ui-text {
     margin: 0;
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     color: var(--color-text-primary, CanvasText);
     text-wrap: pretty;
   }
 
-  .ui-text[data-size="md"] {
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+  .ui-text[data-size="l"] {
+    font-size: var(--type-body-l-font-size);
+    line-height: var(--type-body-l-line-height);
   }
 
-  .ui-text[data-size="sm"] {
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+  .ui-text[data-size="s"] {
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
+  }
+
+  .ui-text[data-size="xs"] {
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
   }
 
   .ui-text[data-size="caption"] {

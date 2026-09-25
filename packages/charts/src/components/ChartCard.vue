@@ -55,13 +55,13 @@ provide(chartContextKey, {
       <figcaption class="ui-chart-card__caption">
         <Heading
           :level="headingLevel"
-          size="sm"
+          size="s"
         >
           {{ title }}
         </Heading>
         <Text
           v-if="description"
-          size="md"
+          size="s"
           tone="secondary"
         >
           {{ description }}
@@ -109,7 +109,7 @@ provide(chartContextKey, {
     gap: var(--space-1);
     min-inline-size: 0;
     /* первая строка — на оси кнопки size/48 */
-    padding-block-start: calc((var(--size-48) - var(--type-heading-sm-line-height)) / 2);
+    padding-block-start: calc((var(--size-48) - var(--type-heading-s-line-height)) / 2);
   }
 
   .ui-chart-card__actions {

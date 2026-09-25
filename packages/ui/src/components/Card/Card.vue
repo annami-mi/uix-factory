@@ -13,10 +13,10 @@ withDefaults(
   defineProps<{
     /** Тег/компонент: div, article, li, a, button, NuxtLink */
     as?: string | Component;
-    /** Внутренний отступ: md — space/4 (мобильный), lg — space/6 */
-    padding?: "none" | "md" | "lg";
+    /** Внутренний отступ: m — space/4 (мобильный), l — space/6 */
+    padding?: "none" | "m" | "l";
   }>(),
-  { as: "div", padding: "md" },
+  { as: "div", padding: "m" },
 );
 
 defineSlots<{ default: () => unknown }>();
@@ -56,7 +56,7 @@ defineSlots<{ default: () => unknown }>();
     overflow: hidden;
   }
 
-  .ui-card[data-padding="lg"] {
+  .ui-card[data-padding="l"] {
     padding: var(--space-6);
   }
 

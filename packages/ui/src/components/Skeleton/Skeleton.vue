@@ -54,10 +54,10 @@ withDefaults(
     animation: ui-skeleton-shine var(--duration-spinner) ease-in-out infinite;
   }
 
-  /* Строка — высотой в строку body/lg (без «прыжка» при замене на текст) */
+  /* Строка — высотой в строку body/m (без «прыжка» при замене на текст) */
   .ui-skeleton[data-shape="text"] {
-    block-size: var(--type-body-lg-font-size);
-    margin-block: calc((var(--type-body-lg-line-height) - var(--type-body-lg-font-size)) / 2);
+    block-size: var(--type-body-m-font-size);
+    margin-block: calc((var(--type-body-m-line-height) - var(--type-body-m-font-size)) / 2);
     border-radius: var(--radius-full);
   }
 

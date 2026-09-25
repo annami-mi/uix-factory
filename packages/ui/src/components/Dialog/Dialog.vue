@@ -4,7 +4,7 @@
  * Поведение — Reka UI Dialog: фокус внутри и возвращается на элемент, который открыл диалог,
  * Esc и тап по фону закрывают, скролл страницы заблокирован. В Figma нет — токен-первый.
  *
- * - Десктоп (≥ breakpoint/md) — окно по центру, появляется на пружине.
+ * - Десктоп (≥ breakpoint/m) — окно по центру, появляется на пружине.
  * - Мобильный — шторка снизу (Sheet): до кнопок дотягивается большой палец.
  * `presentation` — `auto` (по ширине экрана) или явно `dialog` / `sheet`; до монтирования (SSR) — dialog.
  * Материал — surface/popover/*, затемнение — surface/scrim/*.
@@ -31,14 +31,14 @@ const props = withDefaults(
     title: string;
     /** Пояснение под заголовком (описание диалога) */
     description?: string;
-    /** Ширина окна на десктопе: sm — size/container/sm, md — size/container/md */
-    size?: "sm" | "md";
+    /** Ширина окна на десктопе: s — size/container/s, m — size/container/m */
+    size?: "s" | "m";
     /** Как показывать: по ширине экрана, окном по центру или шторкой */
     presentation?: "auto" | "dialog" | "sheet";
     /** Доступное имя кнопки закрытия */
     closeLabel?: string;
   }>(),
-  { size: "sm", presentation: "auto", closeLabel: "Закрыть" },
+  { size: "s", presentation: "auto", closeLabel: "Закрыть" },
 );
 
 /** Открыт ли диалог (v-model:open) */
@@ -60,7 +60,7 @@ function onOpenAutoFocus(event: Event) {
   (document.querySelector(".ui-dialog[data-state='open']") as HTMLElement | null)?.focus();
 }
 
-const isNarrow = useMediaQuery(`(width < ${breakpoints.md}px)`);
+const isNarrow = useMediaQuery(`(width < ${breakpoints.m}px)`);
 const mode = computed(() =>
   props.presentation === "auto" ? (isNarrow.value ? "sheet" : "dialog") : props.presentation,
 );
@@ -144,7 +144,7 @@ const mode = computed(() =>
   }
 
   .ui-dialog {
-    --_max: var(--size-container-sm);
+    --_max: var(--size-container-s);
 
     position: fixed;
     inset: 0;
@@ -166,8 +166,8 @@ const mode = computed(() =>
     outline: none;
   }
 
-  .ui-dialog[data-size="md"] {
-    --_max: var(--size-container-md);
+  .ui-dialog[data-size="m"] {
+    --_max: var(--size-container-m);
   }
 
   .ui-dialog__header {
@@ -182,24 +182,24 @@ const mode = computed(() =>
     flex: 1;
     gap: var(--space-1);
     min-inline-size: 0;
-    padding-block-start: calc((var(--size-48) - var(--type-heading-md-line-height)) / 2);
+    padding-block-start: calc((var(--size-48) - var(--type-heading-m-line-height)) / 2);
   }
 
   .ui-dialog__title {
     margin: 0;
-    font-family: var(--type-heading-md-font-family);
-    font-weight: var(--type-heading-md-font-weight);
-    font-size: var(--type-heading-md-font-size);
-    line-height: var(--type-heading-md-line-height);
+    font-family: var(--type-heading-m-font-family);
+    font-weight: var(--type-heading-m-font-weight);
+    font-size: var(--type-heading-m-font-size);
+    line-height: var(--type-heading-m-line-height);
   }
 
   .ui-dialog__description {
     margin: 0;
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-body-md-font-family);
-    font-weight: var(--type-body-md-font-weight);
-    font-size: var(--type-body-md-font-size);
-    line-height: var(--type-body-md-line-height);
+    font-family: var(--type-body-s-font-family);
+    font-weight: var(--type-body-s-font-weight);
+    font-size: var(--type-body-s-font-size);
+    line-height: var(--type-body-s-line-height);
   }
 
   .ui-dialog__body {

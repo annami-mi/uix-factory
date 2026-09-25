@@ -8,7 +8,7 @@
  * - Круг size/24 с обводкой ≥ 3:1 к фону; выбранный — акцент и точка; строка — зона касания size/44.
  * - `hint`/`error` группы связаны с <fieldset> через aria-describedby; ошибка ставит aria-invalid.
  * - `variant="tiles"` — плитки-плашки вместо кружков (объём памяти, тариф, размер): короткие варианты,
- *   которые хочется сравнить взглядом; сетка от ширины контейнера (≥ size/grid-item/sm на плитку).
+ *   которые хочется сравнить взглядом; сетка от ширины контейнера (≥ size/grid-item/s на плитку).
  * - Когда вариантов много (> 5–6) или нужен поиск — Select.
  */
 import { computed, useId } from "vue";
@@ -146,10 +146,10 @@ const message = computed(() => props.error || props.hint);
   .ui-radio-group__legend {
     padding: 0;
     margin-block-end: var(--space-2);
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
-    line-height: var(--type-label-sm-line-height);
+    font-family: var(--type-label-xs-font-family);
+    font-weight: var(--type-label-xs-font-weight);
+    font-size: var(--type-label-xs-font-size);
+    line-height: var(--type-label-xs-line-height);
     color: var(--color-text-secondary, CanvasText);
   }
 
@@ -163,19 +163,19 @@ const message = computed(() => props.error || props.hint);
     column-gap: var(--space-6);
   }
 
-  /* Плитки: столько колонок, сколько влезает по size/grid-item/sm (на телефоне — две) */
+  /* Плитки: столько колонок, сколько влезает по size/grid-item/s (на телефоне — две) */
   .ui-radio-group__tiles {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--size-grid-item-sm)), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--size-grid-item-s)), 1fr));
     gap: var(--space-3);
   }
 
   .ui-radio-group__message {
     margin: 0;
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-tertiary, CanvasText);
   }
 
@@ -261,19 +261,19 @@ const message = computed(() => props.error || props.hint);
   }
 
   .ui-radio__label {
-    font-family: var(--type-body-lg-font-family);
-    font-weight: var(--type-body-lg-font-weight);
-    font-size: var(--type-body-lg-font-size);
-    line-height: var(--type-body-lg-line-height);
+    font-family: var(--type-body-m-font-family);
+    font-weight: var(--type-body-m-font-weight);
+    font-size: var(--type-body-m-font-size);
+    line-height: var(--type-body-m-line-height);
     color: var(--color-text-primary, CanvasText);
     cursor: pointer;
   }
 
   .ui-radio__description {
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-tertiary, CanvasText);
   }
 

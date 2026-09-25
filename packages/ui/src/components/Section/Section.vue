@@ -16,7 +16,7 @@ withDefaults(
     /** Тег: section, header, footer, aside */
     as?: string;
   }>(),
-  { size: "lg", tone: "default", as: "section" },
+  { size: "l", tone: "default", as: "section" },
 );
 
 defineSlots<{ default: () => unknown }>();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * Плитка KPI — «число и есть график»: подпись, крупное значение, дельта к прошлому периоду, спарклайн.
- * Ряд KPI — `Grid min="sm"` из @uix/ui (контейнерная раскладка: 1–2 колонки на телефоне, 4 на десктопе).
+ * Ряд KPI — `Grid min="s"` из @uix/ui (контейнерная раскладка: 1–2 колонки на телефоне, 4 на десктопе).
  *
  * - Значение — пропорциональные цифры (не tabular: крупное число с моноширинными цифрами «разваливается»);
  *   при появлении и смене — счётчик на пружине данных. Скринридер читает итог, не промежуточные числа.
@@ -127,19 +127,19 @@ const deltaSr = computed(() => {
 
   .ui-stat-tile__label {
     color: var(--color-text-secondary, CanvasText);
-    font-family: var(--type-label-md-font-family);
-    font-weight: var(--type-label-md-font-weight);
-    font-size: var(--type-label-md-font-size);
-    line-height: var(--type-label-md-line-height);
+    font-family: var(--type-label-s-font-family);
+    font-weight: var(--type-label-s-font-weight);
+    font-size: var(--type-label-s-font-size);
+    line-height: var(--type-label-s-line-height);
   }
 
   /* Крупное число — пропорциональные цифры, тот же гротеск */
   .ui-stat-tile__value {
     color: var(--color-text-primary, CanvasText);
-    font-family: var(--type-heading-lg-font-family);
-    font-weight: var(--type-heading-lg-font-weight);
-    font-size: var(--type-heading-lg-font-size);
-    line-height: var(--type-heading-lg-line-height);
+    font-family: var(--type-heading-l-font-family);
+    font-weight: var(--type-heading-l-font-weight);
+    font-size: var(--type-heading-l-font-size);
+    line-height: var(--type-heading-l-line-height);
     white-space: nowrap;
   }
 
@@ -148,16 +148,16 @@ const deltaSr = computed(() => {
     flex-wrap: wrap;
     align-items: center;
     column-gap: var(--space-2);
-    font-family: var(--type-body-sm-font-family);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
   }
 
   .ui-stat-tile__delta-value {
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    font-weight: var(--type-label-sm-font-weight);
+    font-weight: var(--type-label-xs-font-weight);
   }
 
   .ui-stat-tile__delta-value svg {

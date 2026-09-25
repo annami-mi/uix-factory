@@ -24,7 +24,7 @@ const meta = {
     components: { Link },
     setup: () => ({ args }),
     template: `
-      <p style="margin: 0; max-inline-size: 32em; font-size: var(--type-body-lg-font-size); line-height: var(--type-body-lg-line-height)">
+      <p style="margin: 0; max-inline-size: 32em; font-size: var(--type-body-m-font-size); line-height: var(--type-body-m-line-height)">
         Оформляя заказ, вы соглашаетесь с <Link v-bind="args" href="#terms">условиями доставки</Link> и правилами возврата.
       </p>
     `,
@@ -61,7 +61,7 @@ export const StateMatrix: Story = {
   render: () => ({
     components: { Link },
     template: `
-      <div style="display: grid; gap: var(--space-4); font-size: var(--type-body-lg-font-size); line-height: var(--type-body-lg-line-height)">
+      <div style="display: grid; gap: var(--space-4); font-size: var(--type-body-m-font-size); line-height: var(--type-body-m-line-height)">
         <p id="link-default" style="margin: 0">Обычная: <Link href="#">условия доставки</Link></p>
         <p id="link-hover" style="margin: 0">Наведение: <Link href="#">условия доставки</Link></p>
         <p id="link-focused" style="margin: 0">Фокус: <Link href="#">условия доставки</Link></p>

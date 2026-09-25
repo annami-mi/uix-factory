@@ -127,10 +127,10 @@ function toggle(value: string, checked: boolean) {
   .ui-checkbox-group__legend {
     padding: 0;
     margin-block-end: var(--space-2);
-    font-family: var(--type-label-sm-font-family);
-    font-weight: var(--type-label-sm-font-weight);
-    font-size: var(--type-label-sm-font-size);
-    line-height: var(--type-label-sm-line-height);
+    font-family: var(--type-label-xs-font-family);
+    font-weight: var(--type-label-xs-font-weight);
+    font-size: var(--type-label-xs-font-size);
+    line-height: var(--type-label-xs-line-height);
     color: var(--color-text-secondary, CanvasText);
   }
 
@@ -138,19 +138,19 @@ function toggle(value: string, checked: boolean) {
     display: grid;
   }
 
-  /* Плитки: столько колонок, сколько влезает по size/grid-item/sm (на телефоне — две) */
+  /* Плитки: столько колонок, сколько влезает по size/grid-item/s (на телефоне — две) */
   .ui-checkbox-group__tiles {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--size-grid-item-sm)), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--size-grid-item-s)), 1fr));
     gap: var(--space-3);
   }
 
   .ui-checkbox-group__message {
     margin: 0;
-    font-family: var(--type-body-sm-font-family);
-    font-weight: var(--type-body-sm-font-weight);
-    font-size: var(--type-body-sm-font-size);
-    line-height: var(--type-body-sm-line-height);
+    font-family: var(--type-body-xs-font-family);
+    font-weight: var(--type-body-xs-font-weight);
+    font-size: var(--type-body-xs-font-size);
+    line-height: var(--type-body-xs-line-height);
     color: var(--color-text-tertiary, CanvasText);
   }
 
