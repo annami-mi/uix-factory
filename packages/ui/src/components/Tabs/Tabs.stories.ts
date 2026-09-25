@@ -94,7 +94,7 @@ export const StateMatrix: Story = {
 };
 
 const m = themeMatrix(StateMatrix);
-export const MatrixGlassDark = m.glassDark;
-export const MatrixGlassLight = m.glassLight;
-export const MatrixNeutralLight = m.neutralLight;
-export const MatrixNeutralDark = m.neutralDark;
+export const MatrixGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const MatrixGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };

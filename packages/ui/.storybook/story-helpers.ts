@@ -2,11 +2,14 @@
  * Помощники для историй.
  *
  * `themeMatrix(story)` — та же история во всех комбинациях стилистика × схема (ADR-0005):
- * каждая — отдельный тест, поэтому axe проверяет контраст в каждой. В Docs не выводятся.
+ * каждая — отдельный тест, поэтому axe проверяет контраст в каждой (тест-раннер не переключает тулбар).
+ * Людям они не нужны — есть тулбар. Спрятать из сайдбара и Docs можно только литеральными тегами
+ * в самом экспорте: индекс Storybook читает CSF статически и не видит теги из вызова функции.
+ * Тег `test` остаётся — Vitest их гоняет.
  * Экспорты в CSF должны быть статическими, поэтому результат раскладывается вручную:
  *
  *   const m = themeMatrix(StateMatrix);
- *   export const MatrixGlassDark = m.glassDark; …
+ *   export const MatrixGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] }; …
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Globals в Storybook — Record<string, any>
 type AnyStory = { name?: string; tags?: string[]; globals?: Record<string, any> };

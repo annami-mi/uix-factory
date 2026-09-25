@@ -63,7 +63,7 @@ export const Tones: Story = {
 };
 
 const m = themeMatrix(Tones);
-export const TonesGlassDark = m.glassDark;
-export const TonesGlassLight = m.glassLight;
-export const TonesNeutralLight = m.neutralLight;
-export const TonesNeutralDark = m.neutralDark;
+export const TonesGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const TonesGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const TonesNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const TonesNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };

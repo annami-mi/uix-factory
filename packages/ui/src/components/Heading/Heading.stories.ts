@@ -67,7 +67,7 @@ export const Scale: Story = {
 };
 
 const m = themeMatrix(Scale);
-export const ScaleGlassDark = m.glassDark;
-export const ScaleGlassLight = m.glassLight;
-export const ScaleNeutralLight = m.neutralLight;
-export const ScaleNeutralDark = m.neutralDark;
+export const ScaleGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const ScaleGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const ScaleNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const ScaleNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };

@@ -80,6 +80,10 @@ const PAIRS: [string, string, number][] = [
   // Dialog, Toast, Tooltip, меню: текст на материале панели
   ["color-text-primary", "surface-popover-bg", 4.5],
   ["color-text-secondary", "surface-popover-bg", 4.5],
+  // Графики: подписи осей и значений на карточке, первые серии и статусы — различимы на карточке
+  ["color-text-tertiary", "surface-card-bg", 4.5],
+  ["color-chart-series-1", "surface-card-bg", 3],
+  ["color-chart-series-2", "surface-card-bg", 2.8],
   ["color-text-secondary", "surface-card-bg", 4.5],
 ];
 

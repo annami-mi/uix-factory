@@ -7,9 +7,12 @@
  *   отправка формы — из коробки. `name` генерируется, если не задан.
  * - Круг size/24 с обводкой ≥ 3:1 к фону; выбранный — акцент и точка; строка — зона касания size/44.
  * - `hint`/`error` группы связаны с <fieldset> через aria-describedby; ошибка ставит aria-invalid.
+ * - `variant="tiles"` — плитки-плашки вместо кружков (объём памяти, тариф, размер): короткие варианты,
+ *   которые хочется сравнить взглядом; сетка от ширины контейнера (≥ size/grid-item/sm на плитку).
  * - Когда вариантов много (> 5–6) или нужен поиск — Select.
  */
 import { computed, useId } from "vue";
+import ChoiceTile from "../ChoiceTile/ChoiceTile.vue";
 
 export interface RadioOption {
   value: string;
@@ -22,16 +25,20 @@ export interface RadioOption {
 const props = defineProps<{
   /** Подпись группы (legend) */
   label: string;
+  /** Варианты */
   options: RadioOption[];
   /** Подсказка под группой */
   hint?: string;
   /** Текст ошибки: заменяет подсказку, красит обводку, ставит aria-invalid */
   error?: string;
+  /** Вся группа недоступна */
   disabled?: boolean;
   /** Имя в форме; по умолчанию — сгенерированное */
   name?: string;
-  /** Раскладка вариантов */
+  /** Раскладка вариантов списка (у плиток — сетка по ширине) */
   orientation?: "vertical" | "horizontal";
+  /** Список с кружками или плитки-плашки */
+  variant?: "list" | "tiles";
 }>();
 
 /** Выбранное значение (v-model) */
@@ -49,13 +56,36 @@ const message = computed(() => props.error || props.hint);
     :data-invalid="error ? '' : undefined"
     :data-disabled="disabled || undefined"
     :data-orientation="orientation ?? 'vertical'"
+    :data-variant="variant ?? 'list'"
     :disabled="disabled"
     :aria-describedby="message ? messageId : undefined"
   >
     <legend class="ui-radio-group__legend">
       {{ label }}
     </legend>
-    <div class="ui-radio-group__options">
+    <div
+      v-if="variant === 'tiles'"
+      class="ui-radio-group__tiles"
+    >
+      <ChoiceTile
+        v-for="option in options"
+        :id="`${uid}-${option.value}`"
+        :key="option.value"
+        type="radio"
+        :name="groupName"
+        :value="option.value"
+        :checked="model === option.value"
+        :label="option.label"
+        :description="option.description"
+        :disabled="disabled || option.disabled"
+        :invalid="!!error"
+        @change="model = option.value"
+      />
+    </div>
+    <div
+      v-else
+      class="ui-radio-group__options"
+    >
       <div
         v-for="option in options"
         :key="option.value"
@@ -131,6 +161,13 @@ const message = computed(() => props.error || props.hint);
     display: flex;
     flex-wrap: wrap;
     column-gap: var(--space-6);
+  }
+
+  /* Плитки: столько колонок, сколько влезает по size/grid-item/sm (на телефоне — две) */
+  .ui-radio-group__tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--size-grid-item-sm)), 1fr));
+    gap: var(--space-3);
   }
 
   .ui-radio-group__message {

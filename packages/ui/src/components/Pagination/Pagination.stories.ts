@@ -60,7 +60,7 @@ export const Middle: Story = {
 };
 
 const m = themeMatrix(Middle);
-export const MiddleGlassDark = m.glassDark;
-export const MiddleGlassLight = m.glassLight;
-export const MiddleNeutralLight = m.neutralLight;
-export const MiddleNeutralDark = m.neutralDark;
+export const MiddleGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const MiddleGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const MiddleNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const MiddleNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };

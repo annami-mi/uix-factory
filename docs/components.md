@@ -177,6 +177,7 @@ Button с модификатором `ui-button--icon`: круг `size-48`, ик
 `color-text-link` (≥ 4.5:1 в каждой схеме), подчёркивание `stroke-1` → `stroke-2` при наведении, отступ `space-1`. `as` — NuxtLink/RouterLink. `external` — новая вкладка, иконка ↗ и пояснение для скринридера.
 
 ### RadioGroup
+`variant="tiles"` — плитки-плашки вместо кружков (см. ChoiceTile ниже).
 Нативные радио в `<fieldset>`/`<legend>`; `options` (`value`, `label`, `description?`, `disabled?`), `hint`, `error`, `orientation`. Круг `size-24`, токены `surface-control-*` (как Checkbox), точка `space-2` на пружине, строка `size-44`.
 
 ### Switch
@@ -239,3 +240,40 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 - `useMediaQuery(query)` — реактивное совпадение, до монтирования `false` (SSR).
 - `useToast()` — очередь уведомлений для `<Toaster />`.
 - `tokenNumber(name, fallback)` — число из CSS-токена для библиотек, которым нужны числа (задержки, отступы Reka).
+
+## Графики и SaaS (ADR-0007)
+
+Пакет `@uix/charts` (`packages/charts`): свои SVG-компоненты на Vue, из d3 — только математика. Цвета — токены `color/chart/*` (см. `docs/tokens.md`), числа для SVG — `chartMetrics()` через `tokenNumber`. У каждого графика: табличный двойник (ChartCard → «Показать таблицей»), клавиатура + живой регион, пустое состояние, reduced motion; истории с матрицей 4 схем (axe).
+
+### ChartCard
+`Card as="figure"` + figcaption (`Heading` уровня `headingLevel`, по умолчанию 3), слот `#actions`, переключатель «График / Таблица» (IconButton ghost). `loading` — прежний рендер `opacity-50` + `aria-busy`, без скелетона. Передаёт графику контекст (вид, заголовок).
+
+### ChartLegend / ChartTooltip / ChartTable
+Легенда — кнопки `aria-pressed` (последнюю видимую серию скрыть нельзя), образец — линия или прямоугольник. Подсказка — материал `surface/popover/*`, значение `type/label/md`, подпись `color-text-secondary`, `aria-hidden` (дублирует живой регион). Таблица — region с `tabindex`, подпись = заголовок графика, числа вправо, `tabular-nums`.
+
+### LineChart
+Линия `stroke/2`, конечные точки `space/1` с кольцом `color-chart-surface`, подложка `opacity/10`, сетка `color-chart-grid`, подписи осей `type/caption` + `color-text-tertiary`. Появление — прорисовка (clip), смена данных — пружина значений и шкалы. `emphasis` — остальные серии `color-chart-muted`.
+
+### BarChart
+Вертикальный/горизонтальный, группа/стек. Столбец ≤ `size/chart/bar`, конец скруглён `radius/1`, зазор `stroke/2`; появление волной по категориям. Подложка категории — `color-chart-grid`. Горизонтальный — высота по числу строк, подписи обрезаются многоточием.
+
+### DonutChart
+Доля от целого: ≤ 6 сегментов (хвост → «Другое», `color-chart-muted`), по убыванию; кольцо толщиной `size/chart/bar`, зазор `stroke/2`, скругление `radius/1`. Центр — итог (`type/heading/md`) или выбранная доля; остальные сегменты `opacity/30`. Легенда — прямые подписи на subgrid (доля `color-text-secondary`, значение `tabular-nums`), не шире `size/grid-item/lg`; в контейнере ≥ `size/container/sm` — справа от кольца. Появление — заметание, смена данных — пружина.
+
+### Sparkline / StatTile / Meter / Heatmap
+- **Sparkline** — `role="img"` с фразой «от … до …, минимум, максимум»; высота `size/40`.
+- **StatTile** — Card: подпись `type/label/md`, значение `type/heading/lg` (пропорциональные цифры, счётчик на пружине), дельта — иконка Lucide + текст `color-status-success/danger`, `upIsGood`. Ряд KPI — `Grid min="sm"`.
+- **Meter** — `role="meter"`, дорожка `color-chart-grid`, заливка `color-chart-series-1` / `status-warning` / `status-critical` + иконка и текст статуса.
+- **Heatmap** — 7 классов `color-chart-sequential-*`, зазор `stroke/2`, ячейка ≤ `size/40` (строка не ниже строки подписи), легенда шкалы; стрелки по двум осям.
+
+### CheckboxGroup (`@uix/ui`)
+Пара к RadioGroup: `<fieldset>`/`<legend>`, v-model — массив `value` в порядке опций. `variant="list"` — Checkbox строками, `variant="tiles"` — плитки.
+
+### ChoiceTile (внутренний, `@uix/ui`)
+Плитка RadioGroup/CheckboxGroup `variant="tiles"`: `<label>` с визуально скрытым нативным input (имя — `aria-labelledby` на подпись, цена/пояснение — `aria-describedby`). Материал secondary-кнопки `surface/neutral/{default,hover,pressed,disabled}/*`, нажатие — `scale/pressed-surface` на пружине. Выбранная — кольцо `surface-control-checked-border` (слой `::after`, outline остаётся фокусу) + галочка `surface-control-checked-bg/mark` в углу; ошибка — `surface-control-error-border`. Сетка — `auto-fill` по `size/grid-item/sm` (на телефоне две колонки).
+
+### DataTable (`@uix/ui`)
+Generic по строке. Mobile-first: в контейнере уже `size/container/sm` строки — карточки `surface-card-bg`, шапка — чипы сортировки `surface-neutral-default-bg`; шире — таблица, липкая шапка `color-chart-surface`, разделители `color-border-subtle`, наведение `surface-ghost-hover-bg`, выбранная строка `surface-option-highlighted-bg`. `aria-sort`, Checkbox для выбора (частичное «выбрать всё»), слоты `#cell-<key>`.
+
+### PeriodSelect (`@uix/ui`)
+Select пресетов (сегодня, 7/30/90 дней, с начала месяца, свой) + два `Input type="date"`. Значение `{ preset, from, to }`; утилиты `resolvePeriod`, `previousPeriod`, `periodDays` (`utils/period.ts`, юнит-тесты).

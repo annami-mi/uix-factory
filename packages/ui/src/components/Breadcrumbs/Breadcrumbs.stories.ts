@@ -38,7 +38,7 @@ export const Default: Story = {
 };
 
 const m = themeMatrix(Default);
-export const DefaultGlassDark = m.glassDark;
-export const DefaultGlassLight = m.glassLight;
-export const DefaultNeutralLight = m.neutralLight;
-export const DefaultNeutralDark = m.neutralDark;
+export const DefaultGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const DefaultGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const DefaultNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const DefaultNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };

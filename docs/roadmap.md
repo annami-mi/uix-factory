@@ -22,7 +22,11 @@
 
 ## Базовый набор (ADR-0006, 2026-09-24)
 
-Сверх плана по решению владельца собран базовый набор для лендингов → сайтов → магазина → SaaS: Link, RadioGroup, Switch, Card, Badge, Avatar, Skeleton, Accordion, Tabs, Dialog, Tooltip, DropdownMenu, Toast, Alert, Breadcrumbs, Pagination, NumberField (+ ghost-кнопка). Отложено до реального экрана: таблица данных, Combobox с поиском, DatePicker, секции лендинга (шаги 10–11).
+Сверх плана по решению владельца собран базовый набор для лендингов → сайтов → магазина → SaaS: Link, RadioGroup, Switch, Card, Badge, Avatar, Skeleton, Accordion, Tabs, Dialog, Tooltip, DropdownMenu, Toast, Alert, Breadcrumbs, Pagination, NumberField (+ ghost-кнопка). Отложено до реального экрана: Combobox с поиском, календарь DatePicker, секции лендинга (шаги 10–11).
+
+## Графики и SaaS (ADR-0007, 2026-09-24)
+
+Пакет `@uix/charts`: ChartCard, LineChart, BarChart, DonutChart, Sparkline, StatTile, Meter, Heatmap (+ легенда, подсказка, табличный двойник); в `@uix/ui` — DataTable и PeriodSelect. Пример сборки — история «Charts/Dashboard». Плитки выбора: RadioGroup/CheckboxGroup `variant="tiles"`. Дальше по реальным экранам SaaS: разброс, воронка, серверная сортировка/пагинация DataTable.
 
 Следующий шаг — 9: бриф и концепция эталонного лендинга, затем сборка страницы из набора.
 

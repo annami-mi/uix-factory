@@ -6,7 +6,8 @@ const config: StorybookConfig = {
     // Документация пропсов/слотов из TS-типов и JSDoc компонента
     options: { docgen: "vue-component-meta" },
   },
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.ts"],
+  // Истории графиков (@uix/charts) — в том же Storybook: общий деплой и те же тесты axe по схемам
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.ts", "../../charts/src/**/*.mdx", "../../charts/src/**/*.stories.ts"],
   addons: [
     "@storybook/addon-docs",
     "@storybook/addon-a11y",

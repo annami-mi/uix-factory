@@ -31,9 +31,9 @@
       "tertiary": {
         "$type": "color",
         "$value": "{color.foreground.default}",
-        "$description": "код (a11y): Figma 0.4 даёт 3.6:1 на фоне страницы — hint не проходит axe; 0.5 = 4.9:1 (docs/figma-todo.md)",
+        "$description": "код (a11y): Figma 0.4 — 3.6:1 на фоне; 0.55 — ≥ 4.5:1 и на фоне страницы, и на карточке (подписи осей, подсказки полей в карточке) (docs/figma-todo.md)",
         "$extensions": {
-          "uix.alpha": 0.5
+          "uix.alpha": 0.55
         }
       },
       "disabled": {
@@ -331,6 +331,122 @@
         "fg": {
           "$type": "color",
           "$value": "#ff8587"
+        }
+      }
+    },
+    "chart": {
+      "surface": {
+        "$type": "color",
+        "$value": "#343434",
+        "$description": "сплошной цвет карточки графика (surface/card поверх фона): зазоры 2px между сегментами и кольца 2px у точек — у стекла фон полупрозрачный, а разделитель должен быть сплошным"
+      },
+      "series": {
+        "1": {
+          "$type": "color",
+          "$value": "#3987e5",
+          "$description": "палитра графиков — проверена скриптом валидатора (светлота, хрома, различимость при дальтонизме, контраст) на фонах карточек этой схемы; см. ADR-0007"
+        },
+        "2": {
+          "$type": "color",
+          "$value": "#d95926"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "#199e70"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "#c98500"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "#d55181"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "#008300"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "#9085e9"
+        },
+        "8": {
+          "$type": "color",
+          "$value": "#e66767"
+        }
+      },
+      "sequential": {
+        "1": {
+          "$type": "color",
+          "$value": "#0d366b",
+          "$description": "1 — около нуля (сливается с фоном), 7 — максимум; в тёмной схеме якорь перевёрнут"
+        },
+        "2": {
+          "$type": "color",
+          "$value": "#184f95"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "#256abf"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "#3987e5"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "#6da7ec"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "#9ec5f4"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "#cde2fb"
+        }
+      },
+      "status": {
+        "good": {
+          "$type": "color",
+          "$value": "#0ca30c",
+          "$description": "статус графиков: хорошо → предупреждение → серьёзно → критично; всегда с иконкой и подписью"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "#fab219"
+        },
+        "serious": {
+          "$type": "color",
+          "$value": "#ec835a"
+        },
+        "critical": {
+          "$type": "color",
+          "$value": "#d03b3b"
+        }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "сетка: тонкая, на шаг от фона, сплошная",
+        "$extensions": {
+          "uix.alpha": 0.08
+        }
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "базовая линия и ось",
+        "$extensions": {
+          "uix.alpha": 0.2
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "приглушённая серия («Другое», контекст при выделении одной)",
+        "$extensions": {
+          "uix.alpha": 0.3
         }
       }
     }

@@ -90,7 +90,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Введение", "Foundations", ["Цвета", "Типографика", "Отступы и размеры", "Моушн"], "Layout", "Typography", "Components"],
+        order: ["Введение", "Foundations", ["Цвета", "Типографика", "Отступы и размеры", "Моушн"], "Layout", "Typography", "Components", "Charts"],
       },
     },
   },

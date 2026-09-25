@@ -274,6 +274,122 @@
           "$value": "#a3200f"
         }
       }
+    },
+    "chart": {
+      "surface": {
+        "$type": "color",
+        "$value": "#f8f8f8",
+        "$description": "сплошной цвет карточки графика (surface/card поверх фона): зазоры 2px между сегментами и кольца 2px у точек — у стекла фон полупрозрачный, а разделитель должен быть сплошным"
+      },
+      "series": {
+        "1": {
+          "$type": "color",
+          "$value": "#2a78d6",
+          "$description": "палитра графиков — проверена скриптом валидатора (светлота, хрома, различимость при дальтонизме, контраст) на фонах карточек этой схемы; см. ADR-0007"
+        },
+        "2": {
+          "$type": "color",
+          "$value": "#eb6834"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "#1baf7a"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "#eda100"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "#e87ba4"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "#008300"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "#4a3aa7"
+        },
+        "8": {
+          "$type": "color",
+          "$value": "#e34948"
+        }
+      },
+      "sequential": {
+        "1": {
+          "$type": "color",
+          "$value": "#cde2fb",
+          "$description": "1 — около нуля (сливается с фоном), 7 — максимум; в тёмной схеме якорь перевёрнут"
+        },
+        "2": {
+          "$type": "color",
+          "$value": "#9ec5f4"
+        },
+        "3": {
+          "$type": "color",
+          "$value": "#6da7ec"
+        },
+        "4": {
+          "$type": "color",
+          "$value": "#3987e5"
+        },
+        "5": {
+          "$type": "color",
+          "$value": "#256abf"
+        },
+        "6": {
+          "$type": "color",
+          "$value": "#184f95"
+        },
+        "7": {
+          "$type": "color",
+          "$value": "#0d366b"
+        }
+      },
+      "status": {
+        "good": {
+          "$type": "color",
+          "$value": "#0ca30c",
+          "$description": "статус графиков: хорошо → предупреждение → серьёзно → критично; всегда с иконкой и подписью"
+        },
+        "warning": {
+          "$type": "color",
+          "$value": "#fab219"
+        },
+        "serious": {
+          "$type": "color",
+          "$value": "#ec835a"
+        },
+        "critical": {
+          "$type": "color",
+          "$value": "#d03b3b"
+        }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "сетка: тонкая, на шаг от фона, сплошная",
+        "$extensions": {
+          "uix.alpha": 0.07
+        }
+      },
+      "axis": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "базовая линия и ось",
+        "$extensions": {
+          "uix.alpha": 0.2
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.foreground.default}",
+        "$description": "приглушённая серия («Другое», контекст при выделении одной)",
+        "$extensions": {
+          "uix.alpha": 0.25
+        }
+      }
     }
   },
   "surface": {

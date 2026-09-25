@@ -25,7 +25,7 @@ const props = withDefaults(
     /** Текст ошибки: заменяет подсказку, красит подпись/бордер, ставит `aria-invalid` */
     error?: string;
     placeholder?: string;
-    type?: "text" | "email" | "tel" | "url" | "search" | "password";
+    type?: "text" | "email" | "tel" | "url" | "search" | "password" | "date";
     disabled?: boolean;
     /** Спиннер справа, поле только для чтения, `aria-busy="true"` */
     loading?: boolean;
@@ -138,8 +138,11 @@ defineExpose({
 
 <style scoped>
 @layer components {
+  /* Ширина — только от капсулы: у нативного поля (особенно type=date) есть своя ширина,
+     которая иначе распирает узкую колонку */
   .ui-input__control {
     flex: 1;
+    inline-size: 0;
     min-inline-size: 0;
     margin: 0;
     padding: 0;

@@ -22,6 +22,7 @@ const meta = {
           "- Нативные радио в `<fieldset>`/`<legend>`: стрелки внутри группы, одна точка Tab, формы — из коробки.",
           "- Круг 24 с обводкой ≥ 3:1 к фону, выбранный — акцент и точка (появляется на пружине); строка — зона касания 44.",
           "- `hint` / `error` группы — через `aria-describedby`; вариантов больше 5–6 — лучше Select.",
+          "- `variant=\"tiles\"` — плитки-плашки вместо кружков: короткие варианты, которые сравнивают взглядом (объём, тариф). Материал — как у secondary-кнопки, выбранная — кольцо и галочка; нажатие — скейл на пружине.",
         ].join("\n"),
       },
     },
@@ -36,6 +37,7 @@ const meta = {
   },
   argTypes: {
     orientation: { control: "inline-radio", options: ["vertical", "horizontal"] },
+    variant: { control: "inline-radio", options: ["list", "tiles"] },
     "onUpdate:modelValue": { table: { disable: true } },
     modelValue: { control: false },
   },
@@ -77,6 +79,26 @@ export const Horizontal: Story = {
   },
 };
 
+const capacity: RadioOption[] = [
+  { value: "128", label: "128 ГБ", description: "79 990 ₽" },
+  { value: "256", label: "256 ГБ", description: "89 990 ₽" },
+  { value: "512", label: "512 ГБ", description: "109 990 ₽" },
+  { value: "1024", label: "1 ТБ", description: "Нет в наличии", disabled: true },
+];
+
+/** Плитки: вся плашка — зона касания, стрелки работают как у обычных радио. */
+export const Tiles: Story = {
+  args: { label: "Объём памяти", hint: undefined, variant: "tiles", options: capacity, modelValue: "256" },
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByText("128 ГБ"));
+    const small = canvas.getByRole("radio", { name: "128 ГБ" });
+    await expect(small).toBeChecked();
+    await expect(small).toHaveAccessibleDescription("79 990 ₽");
+    await userEvent.keyboard("{ArrowRight}");
+    await expect(canvas.getByRole("radio", { name: "256 ГБ" })).toBeChecked();
+  },
+};
+
 export const ErrorState: Story = {
   name: "Error",
   args: { error: "Выберите способ доставки" },
@@ -99,12 +121,15 @@ export const Disabled: Story = {
 export const StateMatrix: Story = {
   name: "State matrix",
   parameters: {
-    pseudo: { hover: ["#radio-hover .ui-radio"], focusVisible: ["#radio-focused .ui-radio__circle"] },
+    pseudo: {
+      hover: ["#radio-hover .ui-radio", "#tile-hover .ui-choice-tile"],
+      focusVisible: ["#radio-focused .ui-radio__circle", "#tile-focused .ui-choice-tile__input"],
+    },
     controls: { disable: true },
   },
   render: () => ({
     components: { RadioGroup },
-    setup: () => ({ delivery }),
+    setup: () => ({ delivery, capacity }),
     template: `
       <div style="display: grid; gap: var(--space-6)">
         <RadioGroup label="default" :options="delivery" model-value="courier" hint="Hint text" />
@@ -112,13 +137,18 @@ export const StateMatrix: Story = {
         <div id="radio-focused"><RadioGroup label="focused" :options="delivery.slice(0, 1)" /></div>
         <RadioGroup label="error" :options="delivery.slice(0, 2)" error="Текст ошибки" />
         <RadioGroup label="disabled" :options="delivery.slice(0, 2)" model-value="courier" hint="Hint text" disabled />
+        <RadioGroup label="tiles" variant="tiles" :options="capacity" model-value="256" />
+        <div id="tile-hover"><RadioGroup label="tiles hover" variant="tiles" :options="capacity.slice(0, 1)" /></div>
+        <div id="tile-focused"><RadioGroup label="tiles focused" variant="tiles" :options="capacity.slice(0, 1)" /></div>
+        <RadioGroup label="tiles error" variant="tiles" :options="capacity.slice(0, 2)" error="Выберите объём" />
+        <RadioGroup label="tiles disabled" variant="tiles" :options="capacity.slice(0, 2)" model-value="128" disabled />
       </div>
     `,
   }),
 };
 
 const m = themeMatrix(StateMatrix);
-export const MatrixGlassDark = m.glassDark;
-export const MatrixGlassLight = m.glassLight;
-export const MatrixNeutralLight = m.neutralLight;
-export const MatrixNeutralDark = m.neutralDark;
+export const MatrixGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const MatrixGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const MatrixNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };

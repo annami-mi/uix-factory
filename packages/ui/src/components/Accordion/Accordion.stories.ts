@@ -72,7 +72,7 @@ export const Opened: Story = {
 };
 
 const m = themeMatrix(Opened);
-export const OpenedGlassDark = m.glassDark;
-export const OpenedGlassLight = m.glassLight;
-export const OpenedNeutralLight = m.neutralLight;
-export const OpenedNeutralDark = m.neutralDark;
+export const OpenedGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
+export const OpenedGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
+export const OpenedNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
+export const OpenedNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
