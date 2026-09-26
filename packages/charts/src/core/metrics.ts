@@ -45,5 +45,3 @@ export const LAYOUT = {
   minTicksY: 3,
   minTicksX: 2,
 } as const;
-
-export type ChartMetrics = ReturnType<typeof chartMetrics>;

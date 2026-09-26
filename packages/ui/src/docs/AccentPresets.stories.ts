@@ -46,8 +46,7 @@ const meta = {
           "Шесть пресетов `{ accent, onAccent }` для `LookRecipe.accentColor` (ADR-0008): чип-хайлайт на тёмной плашке стилистики bento-contrast. Исходник — `packages/tokens/source/accent-presets.json`, в коде — `accentPresets` из `@uix/tokens`.",
           "",
           "- Контраст проверен тестом токенов: подпись на чипе ≥ 4.5:1, чип на плашке ≥ 3:1.",
-          "- **electric-blue** и **magenta-pop** — подпись исправлена на тёмную (белая давала 3.6 и 3.5).",
-          "- **violet-pulse** — оттенок чуть темнее исходного (`#8655f6` вместо `#8b5cf6`): исходный не давал 4.5:1 ни с белой, ни с тёмной подписью.",
+          "- Подпись на чипе — тёмная или белая, какая даёт ≥ 4.5:1: белая у electric-blue и lavender, тёмная у остальных.",
         ].join("\n"),
       },
     },
@@ -69,7 +68,7 @@ export const Preset: Story = {
   }),
   play: async ({ canvasElement }) => {
     const chip = canvasElement.querySelector(".ui-badge")!;
-    await expect(getComputedStyle(chip).backgroundColor).toBe("rgb(198, 255, 61)");
+    await expect(getComputedStyle(chip).backgroundColor).toBe("rgb(229, 254, 84)");
   },
 };
 

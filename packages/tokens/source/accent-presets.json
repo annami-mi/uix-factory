@@ -9,7 +9,8 @@
     "volt-lime": {
       "accent": {
         "$type": "color",
-        "$value": "#c6ff3d"
+        "$value": "#e5fe54",
+        "$description": "кислотный лайм по мотивам Ramp: «чёрные чернила + лайм» — ближе всего к bento-contrast"
       },
       "on-accent": {
         "$type": "color",
@@ -19,19 +20,19 @@
     "electric-blue": {
       "accent": {
         "$type": "color",
-        "$value": "#3b82ff"
+        "$value": "#0070f3",
+        "$description": "синий по мотивам Vercel"
       },
       "on-accent": {
         "$type": "color",
-        "$value": "#141417",
-        "$description": "подпись исправлена по тесту контраста (2026-09-26): в исходной таблице был #FFFFFF — 3.61:1 на акценте, ниже 4.5; тёмная — 5.10:1"
+        "$value": "#ffffff"
       }
     },
-    "violet-pulse": {
+    "lavender": {
       "accent": {
         "$type": "color",
-        "$value": "#8655f6",
-        "$description": "решение 2026-09-26: чуть темнее исходного #8b5cf6 — с белой подписью 4.54:1 (исходный не давал 4.5 ни с белой, ни с тёмной)"
+        "$value": "#5e6ad2",
+        "$description": "лавандовый по мотивам Linear"
       },
       "on-accent": {
         "$type": "color",
@@ -41,17 +42,19 @@
     "coral-signal": {
       "accent": {
         "$type": "color",
-        "$value": "#ff6b4a"
+        "$value": "#ff4b44",
+        "$description": "коралл по мотивам Monzo"
       },
       "on-accent": {
         "$type": "color",
         "$value": "#141417"
       }
     },
-    "teal-ledger": {
+    "signal-green": {
       "accent": {
         "$type": "color",
-        "$value": "#14c8a0"
+        "$value": "#00d632",
+        "$description": "чистый зелёный по мотивам Cash App"
       },
       "on-accent": {
         "$type": "color",
@@ -66,7 +69,7 @@
       "on-accent": {
         "$type": "color",
         "$value": "#141417",
-        "$description": "подпись исправлена по тесту контраста (2026-09-26): в исходной таблице был #FFFFFF — 3.53:1 на акценте, ниже 4.5; тёмная — 5.21:1"
+        "$description": "белая подпись на этой магенте не проходит 4.5:1"
       }
     }
   }

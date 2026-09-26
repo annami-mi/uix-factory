@@ -12,10 +12,10 @@
 | Secondary: то же | `surface-neutral-{default,hover,pressed,disabled,loading}-{bg,border,shadow,backdrop}`, `color-text-primary` |
 | Disabled-лейбл | `color-text-disabled` |
 | Focus | `color-state-focus`, `stroke-2` (внутренний бордер surface) |
-| Форма, размер, отступы | `radius-full`, `size-48`, `space-2`, `space-4`, `space-px` (снизу, оптическая компенсация), `stroke-1` |
+| Форма, размер, отступы | `radius-full`; `size` `s` / `m` / `l` — `size-40` (на тач-экране `size-44`) / `size-48` / `size-56`, поля `space-3` / `space-4` / `space-6`; `space-px` (снизу, оптическая компенсация), `stroke-1` |
 | Pressed (Liquid Glass: scale на пружине + блик из точки касания `surface-*-pressed-highlight`, слой `::after`) | `scale-pressed`, `duration-press` + `easing-spring-press` (нажатие), `duration-release` + `easing-spring-release` (отпускание); при `prefers-reduced-motion` — без scale |
-| Типографика | `type-label-m-*` (16/20 Medium — не сверено с Figma) |
-| Иконки (слоты `#start`/`#end`) | `size-20`, `stroke-icon`, цвет — `currentColor` |
+| Типографика | шрифт `--font-family-display` (кнопка — «голос» стилистики), кегль и начертание — `type-label-{s,m,l}-*` |
+| Иконки (слоты `#start`/`#end`) | `size-16` / `size-20` / `size-24` по размеру, `stroke-icon`, цвет — `currentColor` |
 | Спиннер | `size-20`, `stroke-2`, `opacity-30`, `duration-spinner`, `duration-spinner-reduced` |
 | Переходы | `duration-normal` (отключаются при `prefers-reduced-motion`) |
 
@@ -31,9 +31,7 @@
 - Иконки — слоты `#start`/`#end`, библиотека кита Lucide (`@lucide/vue`); Button к ней не привязан. В loading иконки скрыты.
 - Focus — только нативный `:focus-visible`, без пропа.
 
-**Шрифт:** `--font-family-display` (роль заголовков и крупных чисел — кнопка «голос» стилистики), кегль и начертание — `type-label-*`.
-
-**Размеры (`size`):** `s` — `size-40` (на тач-экране, `pointer: coarse`, — `size-44`), `space-3`, `type-label-s-*`, иконка `size-16` (компактный: тулбары, плотные экраны — не по умолчанию); `m` — `size-48`, `space-4`, `type-label-m-*`, иконка `size-20` (по умолчанию, тач); `l` — `size-56`, `space-6`, `type-label-l-*`, иконка `size-24` (CTA). IconButton — квадрат высоты кнопки.
+Размеры: `m` — по умолчанию (тач), `l` — крупный CTA, `s` — компактный для тулбаров и плотных экранов (не по умолчанию). IconButton — квадрат высоты кнопки.
 
 ## Spinner (`packages/ui/src/components/Spinner/Spinner.vue`)
 
@@ -46,7 +44,7 @@ Figma `spiner`. Декоративный (`aria-hidden`): загрузку со�
 
 ## FormField (`packages/ui/src/components/FormField/FormField.vue`)
 
-Подпись + подсказка/ошибка вокруг любого контрола (Input, дальше Select, Textarea). Отдаёт в слот `id`, `describedBy`, `invalid` — контрол ставит их на себя.
+Подпись + подсказка/ошибка вокруг любого контрола (Input, Select, Textarea, DatePicker). Отдаёт в слот `id`, `describedBy`, `invalid` — контрол ставит их на себя.
 
 | Что | Токены |
 |---|---|
@@ -130,7 +128,7 @@ Storybook: истории «Popover · open» и «Sheet · open» (открыт
 | Анимация | выезд снизу `duration-release` + `easing-spring-press`; при reduced motion — только проявление |
 | Отступы | `space-2`, `space-4`; снизу — `env(safe-area-inset-bottom)` |
 
-Поведение (Reka Dialog): фокус внутри, Esc и тап по затемнению закрывают, фокус возвращается на элемент, открывший шторку, скролл страницы заблокирован. Смахивания вниз пока нет.
+Поведение (Reka Dialog): фокус внутри, Esc и тап по затемнению закрывают, фокус возвращается на элемент, открывший шторку, скролл страницы заблокирован.
 
 Пропсы: `description` (описание диалога), `closable` (кнопка «Закрыть» в шапке), `initialFocus` (`first` — первый элемент, как у Select; `container` — сама шторка, как у Dialog). Слот `#footer` — действия, закреплены внизу.
 
@@ -219,7 +217,7 @@ Reka Accordion; `items` (`value`, `title`, `content?`, `disabled?`), `type` sing
 Reka Tabs; сегментированный контрол `surface-segmented-{track,indicator,indicator-border,indicator-shadow}`, плашка активной вкладки перетекает на пружине (`duration-release` + `easing-spring-release`). Вкладка `size-40`, `type-label-s-*`; `stretch` — поровну на всю ширину; иначе — горизонтальная прокрутка. Панель — слот с именем `value`.
 
 ### Dialog
-`presentation` auto / dialog / sheet (по `breakpoint/m`, SSR — dialog). Окно: `surface-popover-*`, `radius-8`, ширина `size-container-{sm,md}` в пределах полей, `z-index-popover`, затемнение `surface-scrim-*`, появление `scale-popover-enter` на пружине. Шторка — Sheet (`closable`, `initialFocus="container"`). Фокус при открытии — на окно (скринридер читает заголовок, без кольца на «Закрыть»), при закрытии — обратно на кнопку.
+`presentation` auto / dialog / sheet (по `breakpoint/m`, SSR — dialog). Окно: `surface-popover-*`, `radius-8`, ширина `size-container-{s,m}` в пределах полей, `z-index-popover`, затемнение `surface-scrim-*`, появление `scale-popover-enter` на пружине. Шторка — Sheet (`closable`, `initialFocus="container"`). Фокус при открытии — на окно (скринридер читает заголовок, без кольца на «Закрыть»), при закрытии — обратно на кнопку.
 
 ### Tooltip
 Reka Tooltip: наведение и фокус с клавиатуры, Esc, `aria-describedby`; задержка `duration-slower`, отступ `space-2`; материал `surface-popover-*`, `radius-3`, `type-body-s-*`. На сенсорных экранах не показывается — ничего важного.
@@ -247,7 +245,28 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 - `useToast()` — очередь уведомлений для `<Toaster />`.
 - `tokenNumber(name, fallback)` — число из CSS-токена для библиотек, которым нужны числа (задержки, отступы Reka).
 
-## Графики и SaaS (ADR-0007)
+## Группы выбора, данные и даты
+
+### CheckboxGroup
+Пара к RadioGroup: `<fieldset>`/`<legend>`, v-model — массив `value` в порядке опций. `variant="list"` — Checkbox строками, `variant="tiles"` — плитки.
+
+### ChoiceTile (внутренний)
+Плитка RadioGroup/CheckboxGroup `variant="tiles"`: `<label>` с визуально скрытым нативным input (имя — `aria-labelledby` на подпись, цена/пояснение — `aria-describedby`). Материал secondary-кнопки `surface/neutral/{default,hover,pressed,disabled}/*`, нажатие — `scale/pressed-surface` на пружине. Выбранная — кольцо `surface-control-checked-border` (слой `::after`, outline остаётся фокусу) + галочка `surface-control-checked-bg/mark` в углу; ошибка — `surface-control-error-border`. Сетка — `auto-fill` по `size/grid-item/s` (на телефоне две колонки).
+
+### DataTable
+Generic по строке. Mobile-first: в контейнере уже `size/container/s` строки — карточки `surface-card-bg`, шапка — чипы сортировки `surface-neutral-default-bg`; шире — таблица, липкая шапка `color-chart-surface`, разделители `color-border-subtle`, наведение `surface-ghost-hover-bg`, выбранная строка `surface-option-highlighted-bg`. `aria-sort`, Checkbox для выбора (частичное «выбрать всё»), слоты `#cell-<key>`.
+
+Типографика: ячейки `type-body-m-*` (16px — основной текст, как везде), заголовки колонок и чипы сортировки `type-label-s-*` (14px). Табличный двойник графиков — так же.
+### Calendar
+Reka UI Calendar / RangeCalendar (одна разметка на оба режима): `mode` `single`/`range`, `layout` `paged` (месяцы рядом, `months` 1–2) / `scroll` (вертикальная лента месяцев со своей прокруткой — мобильный). Значения `YYYY-MM-DD`. Ячейка `size-44` (точный указатель, `paged` — `size-40`), число `type-body-m-*` + `tabular-nums`; выбранный день и края диапазона — `surface-accent-default-bg` + `color-text-on-accent`; полоса — `surface-calendar-range` (предпросмотр до второго клика — `surface-calendar-preview`), от центра краёв, у краёв недели — скругление; сегодня — точка `color-accent-default`; дни других месяцев скрыты; недоступные — `color-text-disabled`, `unavailable` — зачёркнуты. Событие `pending` — диапазон начат, но не завершён.
+
+### DatePicker
+FormField + Field-кнопка (иконка календаря, значение словами через `Intl.DateTimeFormat#formatRange`). Десктоп — Reka Popover (кнопка поля своя, Reka — якорь), материал `surface-popover-*` на обёртке панели: пресеты `presets` слева (`surface-option-highlighted-bg` при наведении, галочка у активного), справа Calendar на 2 месяца; выбор закрывает. Мобильный — Sheet: пресеты чипами (`surface-neutral-default-bg`, активный — акцент), Calendar `layout="scroll"`, период применяется «Готово» (черновик; недоступна, пока период не завершён), одна дата — сразу.
+
+### PeriodSelect
+Select пресетов (сегодня, 7/30/90 дней, с начала месяца, свой) + DatePicker для своего периода (не позже «сегодня»). Значение `{ preset, from, to }`; утилиты `resolvePeriod`, `previousPeriod`, `periodDays` (`utils/period.ts`, юнит-тесты).
+
+## Графики (`@uix/charts`, ADR-0007)
 
 Пакет `@uix/charts` (`packages/charts`): свои SVG-компоненты на Vue, из d3 — только математика. Цвета — токены `color/chart/*` (см. `docs/tokens.md`), числа для SVG — `chartMetrics()` через `tokenNumber`. У каждого графика: табличный двойник (ChartCard → «Показать таблицей»), клавиатура + живой регион, пустое состояние, reduced motion; истории с матрицей 4 схем (axe).
 
@@ -274,25 +293,6 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 
 - **Sparkline** `variant="bars"` — встроенные мини-столбики: `color-chart-muted`, выделенный (`highlight`, по умолчанию последний) — `color-chart-highlight`; `accent` — линия цветом выделения.
 - **StatTile** `tone="inverted"` (Card tone), `trendVariant="bars"`.
-### CheckboxGroup (`@uix/ui`)
-Пара к RadioGroup: `<fieldset>`/`<legend>`, v-model — массив `value` в порядке опций. `variant="list"` — Checkbox строками, `variant="tiles"` — плитки.
-
-### ChoiceTile (внутренний, `@uix/ui`)
-Плитка RadioGroup/CheckboxGroup `variant="tiles"`: `<label>` с визуально скрытым нативным input (имя — `aria-labelledby` на подпись, цена/пояснение — `aria-describedby`). Материал secondary-кнопки `surface/neutral/{default,hover,pressed,disabled}/*`, нажатие — `scale/pressed-surface` на пружине. Выбранная — кольцо `surface-control-checked-border` (слой `::after`, outline остаётся фокусу) + галочка `surface-control-checked-bg/mark` в углу; ошибка — `surface-control-error-border`. Сетка — `auto-fill` по `size/grid-item/s` (на телефоне две колонки).
-
-### DataTable (`@uix/ui`)
-Generic по строке. Mobile-first: в контейнере уже `size/container/s` строки — карточки `surface-card-bg`, шапка — чипы сортировки `surface-neutral-default-bg`; шире — таблица, липкая шапка `color-chart-surface`, разделители `color-border-subtle`, наведение `surface-ghost-hover-bg`, выбранная строка `surface-option-highlighted-bg`. `aria-sort`, Checkbox для выбора (частичное «выбрать всё»), слоты `#cell-<key>`.
-
-Типографика: ячейки `type-body-m-*` (16px — основной текст, как везде), заголовки колонок и чипы сортировки `type-label-s-*` (14px). Табличный двойник графиков — так же.
-### Calendar (`@uix/ui`)
-Reka UI Calendar / RangeCalendar (одна разметка на оба режима): `mode` `single`/`range`, `layout` `paged` (месяцы рядом, `months` 1–2) / `scroll` (вертикальная лента месяцев со своей прокруткой — мобильный). Значения `YYYY-MM-DD`. Ячейка `size-44` (точный указатель, `paged` — `size-40`), число `type-body-m-*` + `tabular-nums`; выбранный день и края диапазона — `surface-accent-default-bg` + `color-text-on-accent`; полоса — `surface-calendar-range` (предпросмотр до второго клика — `surface-calendar-preview`), от центра краёв, у краёв недели — скругление; сегодня — точка `color-accent-default`; дни других месяцев скрыты; недоступные — `color-text-disabled`, `unavailable` — зачёркнуты. Событие `pending` — диапазон начат, но не завершён.
-
-### DatePicker (`@uix/ui`)
-FormField + Field-кнопка (иконка календаря, значение словами через `Intl.DateTimeFormat#formatRange`). Десктоп — Reka Popover (кнопка поля своя, Reka — якорь), материал `surface-popover-*` на обёртке панели: пресеты `presets` слева (`surface-option-highlighted-bg` при наведении, галочка у активного), справа Calendar на 2 месяца; выбор закрывает. Мобильный — Sheet: пресеты чипами (`surface-neutral-default-bg`, активный — акцент), Calendar `layout="scroll"`, период применяется «Готово» (черновик; недоступна, пока период не завершён), одна дата — сразу.
-
-### PeriodSelect (`@uix/ui`)
-Select пресетов (сегодня, 7/30/90 дней, с начала месяца, свой) + DatePicker для своего периода (не позже «сегодня»). Значение `{ preset, from, to }`; утилиты `resolvePeriod`, `previousPeriod`, `periodDays` (`utils/period.ts`, юнит-тесты).
-
 ## Паттерны (ADR-0008, `packages/ui/src/patterns`)
 
 Каркас и навигация приложения. Контракт навигации общий для всех вариантов (`navigation/types.ts`): `groups: NavGroup[]` (`value`, `label`, `icon`, `href?`, `badge?`), `current`, `label`, `linkAs` (NuxtLink/RouterLink), `tabBarItems` (до 5), событие `navigate`. Вариант выбирает composition root (`LookRecipe.appShell`). Mobile-first: на узком экране любой вариант — плавающая таб-панель внизу; с `breakpoint/m` (768px) — сайдбар слева.

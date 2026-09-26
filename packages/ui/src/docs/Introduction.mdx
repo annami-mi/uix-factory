@@ -8,38 +8,43 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 ## Принципы
 
-- **Mobile-first.** Всё проектируется и проверяется сначала на 360–390px (превью здесь по умолчанию — 390px), десктоп — расширение. Интерактивные элементы — комфортные для тача (кнопка — 48px).
+- **Mobile-first.** Всё проектируется и проверяется сначала на 360–390px (превью здесь по умолчанию — 390px), десктоп — расширение. Интерактивные элементы — комфортные для тача (кнопка — 48px, зоны касания ≥ 44px).
 - **Стилистика = токены.** Компонент ссылается только на роли (`--surface-accent-default-bg`, `--color-text-primary`), не на значения. Смена `data-theme` не требует правок компонента — это критерий приёмки.
 - **Доступность — часть готовности.** Каждая история проверяется axe; видимый фокус с клавиатуры, `prefers-reduced-motion`.
-- **Флагманская стилистика — «Жидкое стекло»** (канон Liquid Glass): материал поверхности, блики, пружинная анимация. Плоская `neutral` подставляет `none`/`transparent` в те же роли.
-- **Каждая стилистика — в светлой и тёмной схеме.** Без `data-scheme` схема следует настройке системы.
+- **Стилистики:** «Жидкое стекло» (`glass`, канон Liquid Glass — материал, блики, пружинная анимация), плоская `neutral` и `bento-contrast` (светлая bento-сетка с чёрными плашками и цветом-хайлайтом).
+- **Схемы:** светлая и тёмная; без `data-scheme` — по настройке системы. У `bento-contrast` пока только светлая.
+- **Параметры проекта** поверх стилистики: цвет-хайлайт (`data-accent`) и шрифтовая пара (`data-font-pair`).
 
 ## Что в ките
 
-Базовый набор (ADR-0006): **действия** (Button, IconButton, Link), **формы** (Input, Textarea, Select, NumberField, Checkbox, RadioGroup, Switch), **раскладка и текст** (Container, Stack, Grid, Section, Heading, Text, Divider), **контент** (Card, Badge, Avatar, Skeleton, Accordion, Tabs), **оверлеи и обратная связь** (Dialog, Sheet, Tooltip, DropdownMenu, Toast, Alert), **навигация** (Breadcrumbs, Pagination).
+- **Компоненты** (ADR-0006): действия (Button, IconButton, Link), формы (Input, Textarea, Select, NumberField, Checkbox, CheckboxGroup, RadioGroup, Switch, Calendar, DatePicker, PeriodSelect), раскладка и текст (Container, Stack, Grid, Section, Heading, Text, Divider), контент (Card, Badge, Avatar, Skeleton, Accordion, Tabs, DataTable), оверлеи и обратная связь (Dialog, Sheet, Tooltip, DropdownMenu, Toast, Alert), навигация (Breadcrumbs, Pagination).
+- **Паттерны** (ADR-0008): каркас приложения AppShell и навигация SidebarPanel / SidebarRail с мобильной таб-панелью.
+- **Графики** (`@uix/charts`, ADR-0007): LineChart, BarChart, DonutChart, Heatmap, Sparkline, StatTile, Meter, ChartCard с табличным двойником.
 
 ## Как смотреть
 
-- **Стилистика** — кисточка в тулбаре (`glass`, `neutral`) → `data-theme` на `<html>`.
-- **Схема** — кнопка контраста в тулбаре (светлая / тёмная / как в системе) → `data-scheme`. Каждая стилистика обязана иметь обе схемы (ADR-0005).
+- **Тема** и **Схема** в тулбаре → `data-theme` и `data-scheme` на `<html>`.
+- **Акцент** и **Шрифты** в тулбаре → `data-accent` и `data-font-pair` (параметры проекта).
 - **Viewport** — иконка устройства в тулбаре: 360 / 390 / 768 / 1440.
 - **Foundations** — токены (цвета, типографика, отступы, моушн), сгенерированы из `@uix/tokens`.
-- **Components** — у каждого компонента страница Docs (пропсы, слоты, все состояния) и истории. Истории — это тесты: их play-функции и axe прогоняются в Vitest (панель Testing внизу слева или `pnpm test:stories`).
+- **Components / Patterns / Charts** — у каждого страница Docs (пропсы, слоты, состояния) и истории; **Стилистики** — витрины целиком. Истории — это тесты: их play-функции и axe прогоняются в Vitest (панель Testing внизу слева или `pnpm test:stories`).
 
 ## Подключение в приложении
 
 ```ts
 import "@uix/ui/styles.css"; // слои каскада, токены всех тем, шрифт Golos Text
+import "@uix/ui/font-pairs/rubik-inter.css"; // по желанию: шрифтовая пара проекта
 import { Button, Toaster } from "@uix/ui"; // <Toaster /> — один раз в layout, если нужны уведомления
 ```
 
 ```html
-<html data-theme="glass" data-scheme="dark">  <!-- без data-scheme — по настройке системы -->
+<!-- без data-scheme — по настройке системы; data-accent и data-font-pair — по желанию -->
+<html data-theme="bento-contrast" data-scheme="light" data-accent="volt-lime" data-font-pair="rubik-inter">
 ```
 
 ## Документация в репозитории
 
-- `docs/tokens.md` — слои токенов, правила ссылок, как добавить стилистику.
+- `docs/tokens.md` — слои токенов, роли, стилистики, параметры проекта, как добавить стилистику.
 - `docs/components.md` — какие токены использует каждый компонент.
 - `docs/figma-code.md` — маппинг Figma → код; `docs/figma-todo.md` — что поправить в макете.
 - `docs/decisions/` — ADR.

@@ -16,7 +16,7 @@ let themes: Record<string, Record<string, Entry[]>>;
 let accent: { plate: string; presets: Record<string, { accent: string; onAccent: string }> };
 
 const PAGE: Record<string, string> = {
-  // bento-contrast: dark — псевдоним light (ADR-0005, исключение 2026-09-26)
+  // bento-contrast: dark — псевдоним light (исключение из ADR-0005)
   "bento-contrast/light": "#eff0f3",
   "bento-contrast/dark": "#eff0f3",
   "glass/dark": "#272727",
@@ -148,9 +148,9 @@ describe("акцент-пресеты", () => {
     expect(Object.keys(accent.presets)).toEqual([
       "volt-lime",
       "electric-blue",
-      "violet-pulse",
+      "lavender",
       "coral-signal",
-      "teal-ledger",
+      "signal-green",
       "magenta-pop",
     ]);
   });
