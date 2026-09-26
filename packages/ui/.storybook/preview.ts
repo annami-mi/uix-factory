@@ -75,7 +75,7 @@ const preview: Preview = {
           { value: "rubik-inter", title: "Rubik + Inter" },
           { value: "manrope-inter", title: "Manrope ExtraBold + Inter" },
           { value: "montserrat-inter", title: "Montserrat ExtraBold + Inter" },
-          { value: "raleway-inter", title: "Raleway Black + Inter" },
+          { value: "raleway-inter", title: "Raleway Bold + Inter" },
         ],
         dynamicTitle: true,
       },

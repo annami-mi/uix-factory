@@ -13,7 +13,7 @@ const PAIRS: { key: string; title: string; display: string; sans: string; weight
   { key: "rubik-inter", title: "Rubik + Inter", display: '"Rubik", sans-serif', sans: '"Inter", sans-serif' },
   { key: "manrope-inter", title: "Manrope ExtraBold + Inter", display: '"Manrope", sans-serif', sans: '"Inter", sans-serif', weight: "800" },
   { key: "montserrat-inter", title: "Montserrat ExtraBold + Inter", display: '"Montserrat", sans-serif', sans: '"Inter", sans-serif', weight: "800" },
-  { key: "raleway-inter", title: "Raleway Black + Inter", display: '"Raleway", sans-serif', sans: '"Inter", sans-serif', weight: "900", numeric: "lining-nums" },
+  { key: "raleway-inter", title: "Raleway Bold + Inter", display: '"Raleway", sans-serif', sans: '"Inter", sans-serif', weight: "700", numeric: "lining-nums" },
 ];
 
 /**
