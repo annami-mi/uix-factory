@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "allowImportingTsExtensions": true,
+    "rootDir": "..",
+    "outDir": "dist/types",
+    "types": ["vite/client"],
+    "paths": {
+      "@uix/ui": ["../ui/src/index.ts"],
+      "@uix/tokens": ["../tokens/src/index.ts"]
+    }
+  },
+  "include": ["../ui/src", "../charts/src", "../tokens/src", "../tokens/dist/*.ts"],
+  "exclude": ["../*/src/**/*.stories.ts", "../*/src/**/*.test.ts", "../*/src/**/stories", "../*/src/docs", "../*/src/**/__tests__"]
+}

@@ -38,6 +38,9 @@ jobs:
       - run: pnpm --filter @uix/ui exec playwright install --with-deps chromium
       - run: pnpm test
 
+      # Дистрибутив mi-kit (JS, CSS со шрифтами, типы) — проверка, что пакет собирается
+      - run: pnpm build:kit
+
       - name: Build Storybook
         run: pnpm build-storybook
 

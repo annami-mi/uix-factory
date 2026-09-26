@@ -16,14 +16,27 @@
 | `@uix/tokens` | DTCG JSON → CSS-переменные (`dist/*.css`), списки тем и брейкпоинтов для JS |
 | `@uix/ui` | Vue 3 компоненты (Reka UI для сложного поведения), паттерны каркаса приложения (AppShell, сайдбары), базовые стили, шрифт Golos Text и шрифтовые пары |
 | `@uix/charts` | Графики и KPI для SaaS: свои SVG-компоненты на Vue + математика d3, пружинная анимация, табличный двойник (ADR-0007) |
+| `mi-kit` | Всё вышеперечисленное одним пакетом для проектов: собранный JS, CSS со шрифтами, типы (`packages/kit`, ADR-0004) |
+
+`@uix/*` — внутренние пакеты монорепо, раздаются исходниками. В проекты уходит `mi-kit`.
 
 ## Подключение
 
-```ts
-import "@uix/ui/styles.css"; // слои каскада, токены всех тем, шрифт
-import "@uix/ui/font-pairs/rubik-inter.css"; // по желанию: шрифтовая пара проекта
-import { Button, Toaster } from "@uix/ui";
+```sh
+pnpm build:kit                              # собрать packages/kit/dist
+cd packages/kit && pnpm pack                # → mi-kit-<версия>.tgz
+npm i ../uix-factory/packages/kit/mi-kit-0.1.0.tgz  # в проекте: из архива (или из реестра, когда он будет)
 ```
+
+```ts
+import "mi-kit/styles.css"; // слои каскада, токены всех тем, шрифт — один раз в точке входа
+import "mi-kit/font-pairs/rubik-inter.css"; // по желанию: шрифтовая пара проекта
+import { Button, Toaster } from "mi-kit";
+import { LineChart, StatTile } from "mi-kit/charts";
+import { themes, accentPresets } from "mi-kit/tokens";
+```
+
+Нужен `vue` ^3.5 в проекте (peer-зависимость); Reka UI, Lucide и d3 ставятся вместе с китом. Стили кита лежат в `@layer` — CSS приложения без слоя их перебивает; свои сбросы и переопределения лучше класть в `@layer overrides`.
 
 ```html
 <!-- без data-scheme — по настройке системы; data-accent и data-font-pair — по желанию -->

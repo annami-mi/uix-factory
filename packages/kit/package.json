@@ -1,0 +1,54 @@
+{
+  "name": "mi-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vue 3 UI-кит: компоненты, графики, токены стилистик (glass, neutral, bento-contrast).",
+  "type": "module",
+  "license": "UNLICENSED",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/ui/src/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./charts": {
+      "types": "./dist/types/charts/src/index.d.ts",
+      "import": "./dist/charts.js"
+    },
+    "./tokens": {
+      "types": "./dist/types/tokens/src/index.d.ts",
+      "import": "./dist/tokens.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./font-pairs/*": "./dist/font-pairs/*",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@internationalized/date": "^3.12.4",
+    "@lucide/vue": "^1.47.0",
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "reka-ui": "^2.10.5"
+  },
+  "devDependencies": {
+    "@uix/charts": "workspace:*",
+    "@uix/tokens": "workspace:*",
+    "@uix/ui": "workspace:*",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "vite": "^8.3.0",
+    "vue": "^3.5.43",
+    "vue-tsc": "^3.3.11"
+  }
+}

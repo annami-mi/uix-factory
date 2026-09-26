@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build:tokens": "pnpm --filter @uix/tokens build",
+    "build:kit": "pnpm --filter mi-kit build",
     "storybook": "pnpm --filter @uix/ui storybook",
     "build-storybook": "pnpm --filter @uix/ui build-storybook",
     "typecheck": "pnpm -r --if-present typecheck",

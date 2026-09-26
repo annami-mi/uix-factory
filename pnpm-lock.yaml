@@ -243,6 +243,49 @@ importers:
         specifier: ^3.3.11
         version: 3.3.11(typescript@6.0.3)
 
+  packages/kit:
+    dependencies:
+      '@internationalized/date':
+        specifier: ^3.12.4
+        version: 3.12.4
+      '@lucide/vue':
+        specifier: ^1.47.0
+        version: 1.47.0(vue@3.5.43(typescript@6.0.3))
+      d3-array:
+        specifier: ^3.2.4
+        version: 3.2.4
+      d3-scale:
+        specifier: ^4.0.2
+        version: 4.0.2
+      d3-shape:
+        specifier: ^3.2.0
+        version: 3.2.0
+      reka-ui:
+        specifier: ^2.10.5
+        version: 2.10.5(vue@3.5.43(typescript@6.0.3))
+    devDependencies:
+      '@uix/charts':
+        specifier: workspace:*
+        version: link:../charts
+      '@uix/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+      '@uix/ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.9
+        version: 6.0.9(vite@8.3.0(@types/node@22.20.4)(esbuild@0.28.2))(vue@3.5.43(typescript@6.0.3))
+      vite:
+        specifier: ^8.3.0
+        version: 8.3.0(@types/node@22.20.4)(esbuild@0.28.2)
+      vue:
+        specifier: ^3.5.43
+        version: 3.5.43(typescript@6.0.3)
+      vue-tsc:
+        specifier: ^3.3.11
+        version: 3.3.11(typescript@6.0.3)
+
   packages/tokens: {}
 
   packages/ui:
