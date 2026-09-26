@@ -1,0 +1,19 @@
+/*
+  Шрифтовая пара «rubik-inter»: блочный и округлый, как Unbounded, но спокойнее и привычнее в проде + Inter для текста.
+  Подключение — один файл в проекте (после @uix/ui/styles.css) и data-font-pair="rubik-inter" на <html>;
+  на уровне сборки — LookRecipe.fontPair (ADR-0008). Роли: display — заголовки, крупные числа, кнопки;
+  sans — остальной текст. Кириллица проверена по таблицам глифов: алфавит, ё/Ё, «», —, №, ₽.
+  Шрифты — из пакета, без внешних запросов.
+*/
+@import "@fontsource/rubik/500.css" layer(base);
+@import "@fontsource/rubik/600.css" layer(base);
+@import "@fontsource/inter/400.css" layer(base);
+@import "@fontsource/inter/500.css" layer(base);
+@import "@fontsource/inter/600.css" layer(base);
+
+@layer tokens {
+  :root[data-font-pair="rubik-inter"] {
+    --font-family-display: "Rubik", sans-serif;
+    --font-family-sans: "Inter", sans-serif;
+  }
+}

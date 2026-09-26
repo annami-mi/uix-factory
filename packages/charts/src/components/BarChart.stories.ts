@@ -178,3 +178,4 @@ export const StackedGlassDark = { ...m.glassDark, play: undefined, tags: ["!dev"
 export const StackedGlassLight = { ...m.glassLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const StackedNeutralLight = { ...m.neutralLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const StackedNeutralDark = { ...m.neutralDark, play: undefined, tags: ["!dev", "!autodocs"] };
+export const StackedBentoLight = { ...m.bentoLight, play: undefined, tags: ["!dev", "!autodocs"] };

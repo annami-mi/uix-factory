@@ -31,6 +31,8 @@
 - Иконки — слоты `#start`/`#end`, библиотека кита Lucide (`@lucide/vue`); Button к ней не привязан. В loading иконки скрыты.
 - Focus — только нативный `:focus-visible`, без пропа.
 
+**Шрифт:** `--font-family-display` (роль заголовков и крупных чисел — кнопка «голос» стилистики), кегль и начертание — `type-label-*`.
+
 **Размеры (`size`):** `s` — `size-40` (на тач-экране, `pointer: coarse`, — `size-44`), `space-3`, `type-label-s-*`, иконка `size-16` (компактный: тулбары, плотные экраны — не по умолчанию); `m` — `size-48`, `space-4`, `type-label-m-*`, иконка `size-20` (по умолчанию, тач); `l` — `size-56`, `space-6`, `type-label-l-*`, иконка `size-24` (CTA). IconButton — квадрат высоты кнопки.
 
 ## Spinner (`packages/ui/src/components/Spinner/Spinner.vue`)
@@ -199,9 +201,11 @@ Button с модификатором `ui-button--icon`: круг `size-48`, ик
 ### Card
 Материал `surface-card-{bg,border,shadow,backdrop}`, `radius-6`, `padding` `m` (`space-4`) / `l` (`space-6`) / `none`. Кликабельная (`as="a" | "button"` / NuxtLink) — `surface-card-hover-bg`, `scale-pressed-surface` на пружине, кольцо фокуса.
 
+`tone="inverted"` — контрастная плашка (`surface-inverted-*`): переопределяет для вложенного `--color-text-*`, `--color-icon-*`, `--color-status-{success,danger}`, `--color-divider`, `--color-chart-{grid,muted,surface,highlight}` (highlight — `--color-spotlight`). Радиус — `surface-card-radius`.
 ### Badge
 `color-badge-{neutral,accent,success,warning,danger}-{bg,fg}` (текст ≥ 4.5:1 на плашке — тест токенов), `size-24`, `space-2`, `radius-full`, `type-label-xs-*`, ширина по содержимому; иконка — слот `#start` (`size-16`).
 
+`tone="spotlight"` — `--color-spotlight` / `--color-on-spotlight` (цвет-хайлайт проекта, accent-presets).
 ### Avatar
 Фото или инициалы (если фото нет или не загрузилось), `size-{32,40,48}`, `color-surface-hover` + `color-text-secondary`. `name` — доступное имя; `decorative` — скрыт, если имя написано рядом.
 
@@ -268,6 +272,8 @@ Reka NumberField (spinbutton, ↑/↓, min/max/step, `formatOptions`, `locale`) 
 - **Meter** — `role="meter"`, дорожка `color-chart-grid`, заливка `color-chart-series-1` / `status-warning` / `status-critical` + иконка и текст статуса.
 - **Heatmap** — 7 классов `color-chart-sequential-*`, зазор `stroke/2`, ячейка ≤ `size/40` (строка не ниже строки подписи), легенда шкалы; стрелки по двум осям.
 
+- **Sparkline** `variant="bars"` — встроенные мини-столбики: `color-chart-muted`, выделенный (`highlight`, по умолчанию последний) — `color-chart-highlight`; `accent` — линия цветом выделения.
+- **StatTile** `tone="inverted"` (Card tone), `trendVariant="bars"`.
 ### CheckboxGroup (`@uix/ui`)
 Пара к RadioGroup: `<fieldset>`/`<legend>`, v-model — массив `value` в порядке опций. `variant="list"` — Checkbox строками, `variant="tiles"` — плитки.
 
@@ -286,3 +292,20 @@ FormField + Field-кнопка (иконка календаря, значени�
 
 ### PeriodSelect (`@uix/ui`)
 Select пресетов (сегодня, 7/30/90 дней, с начала месяца, свой) + DatePicker для своего периода (не позже «сегодня»). Значение `{ preset, from, to }`; утилиты `resolvePeriod`, `previousPeriod`, `periodDays` (`utils/period.ts`, юнит-тесты).
+
+## Паттерны (ADR-0008, `packages/ui/src/patterns`)
+
+Каркас и навигация приложения. Контракт навигации общий для всех вариантов (`navigation/types.ts`): `groups: NavGroup[]` (`value`, `label`, `icon`, `href?`, `badge?`), `current`, `label`, `linkAs` (NuxtLink/RouterLink), `tabBarItems` (до 5), событие `navigate`. Вариант выбирает composition root (`LookRecipe.appShell`). Mobile-first: на узком экране любой вариант — плавающая таб-панель внизу; с `breakpoint/m` (768px) — сайдбар слева.
+
+### AppShell
+Page shell (здесь допустимы `@media` по ширине окна): слоты `nav`, `header`, по умолчанию — `<main id="ui-app-shell-main">`. Ссылка «Перейти к содержимому» — первый фокус (`surface-accent-default-bg`). Мобильный — снизу место под таб-панель (`size-56` + отступы + safe area); десктоп — сетка «навигация + контент», навигация липкая на всю высоту окна.
+
+### SidebarPanel
+Референс — Med.+ (`docs/reference-images/bento-contrast/02-ehr-med.jpg`). Материал — `surface-inverted-*` и `color-inverted-*` (тёмная в светлой схеме), ширина `size-grid-item-m`, радиус `surface-card-radius`. Пункт — круг `size-36` с иконкой + подпись `type-label-m-*`, зона касания `size-44`; активный — круг `color-spotlight` / `color-on-spotlight` и жирная подпись, `aria-current="page"`; наведение — `color-inverted-muted`. Счётчик — `Badge tone="spotlight"`. Слоты `brand`, `footer`.
+
+### SidebarRail
+Референс — Client Dashboard (`04-client-dashboard.jpg`). Кнопки-круги `size-48`: материал карточки (`surface-card-*`), активная — материал главной кнопки (`surface-accent-default-*`, `color-text-on-accent`). Подпись — `Tooltip` справа и `aria-label` (со счётчиком); есть новое — точка `color-spotlight`.
+
+### Мобильная таб-панель (внутренняя, `navigation/NavTabBar.vue`)
+Референс — Apple HIG, Tab bar. Плавает внизу над безопасной зоной, стекло всплывающих панелей (`surface-popover-*`), пункт `size-56`: иконка над подписью `type-label-xs-*` (длинная — многоточием); активный — плашка `surface-accent-default-bg` под иконкой.
+

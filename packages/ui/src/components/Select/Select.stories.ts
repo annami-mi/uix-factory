@@ -227,6 +227,7 @@ export const MatrixGlassDark = { ...combo("glass", "dark"), tags: ["!dev", "!aut
 export const MatrixGlassLight = { ...combo("glass", "light"), tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralLight = { ...combo("neutral", "light"), tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralDark = { ...combo("neutral", "dark"), tags: ["!dev", "!autodocs"] };
+export const MatrixBentoLight = { ...combo("bento-contrast", "light"), tags: ["!dev", "!autodocs"] };
 
 /** Открытая панель во всех комбинациях — контраст опций на материале панели. */
 const openCombo = (theme: string, scheme: string, presentation: "popover" | "sheet"): Story => ({
@@ -236,9 +237,11 @@ const openCombo = (theme: string, scheme: string, presentation: "popover" | "she
   globals: { theme, scheme, ...(presentation === "popover" ? desktop : {}) },
 });
 
-export const PopoverOpenGlassLight = openCombo("glass", "light", "popover");
-export const PopoverOpenNeutralLight = openCombo("neutral", "light", "popover");
-export const PopoverOpenNeutralDark = openCombo("neutral", "dark", "popover");
-export const SheetOpenGlassLight = openCombo("glass", "light", "sheet");
-export const SheetOpenNeutralLight = openCombo("neutral", "light", "sheet");
-export const SheetOpenNeutralDark = openCombo("neutral", "dark", "sheet");
+export const PopoverOpenGlassLight = { ...openCombo("glass", "light", "popover"), tags: ["!dev", "!autodocs"] };
+export const PopoverOpenNeutralLight = { ...openCombo("neutral", "light", "popover"), tags: ["!dev", "!autodocs"] };
+export const PopoverOpenNeutralDark = { ...openCombo("neutral", "dark", "popover"), tags: ["!dev", "!autodocs"] };
+export const PopoverOpenBentoLight = { ...openCombo("bento-contrast", "light", "popover"), tags: ["!dev", "!autodocs"] };
+export const SheetOpenGlassLight = { ...openCombo("glass", "light", "sheet"), tags: ["!dev", "!autodocs"] };
+export const SheetOpenNeutralLight = { ...openCombo("neutral", "light", "sheet"), tags: ["!dev", "!autodocs"] };
+export const SheetOpenNeutralDark = { ...openCombo("neutral", "dark", "sheet"), tags: ["!dev", "!autodocs"] };
+export const SheetOpenBentoLight = { ...openCombo("bento-contrast", "light", "sheet"), tags: ["!dev", "!autodocs"] };

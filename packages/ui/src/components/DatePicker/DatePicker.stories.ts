@@ -124,3 +124,4 @@ export const ErrorGlassDark = { ...m.glassDark, play: undefined, tags: ["!dev", 
 export const ErrorGlassLight = { ...m.glassLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const ErrorNeutralLight = { ...m.neutralLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const ErrorNeutralDark = { ...m.neutralDark, play: undefined, tags: ["!dev", "!autodocs"] };
+export const ErrorBentoLight = { ...m.bentoLight, play: undefined, tags: ["!dev", "!autodocs"] };

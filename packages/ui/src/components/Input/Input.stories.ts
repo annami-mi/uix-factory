@@ -194,3 +194,4 @@ export const MatrixGlassDark = { ...combo("glass", "dark"), tags: ["!dev", "!aut
 export const MatrixGlassLight = { ...combo("glass", "light"), tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralLight = { ...combo("neutral", "light"), tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralDark = { ...combo("neutral", "dark"), tags: ["!dev", "!autodocs"] };
+export const MatrixBentoLight = { ...combo("bento-contrast", "light"), tags: ["!dev", "!autodocs"] };

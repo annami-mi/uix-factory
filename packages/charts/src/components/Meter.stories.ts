@@ -61,3 +61,4 @@ export const LevelsGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const LevelsGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const LevelsNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const LevelsNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const LevelsBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

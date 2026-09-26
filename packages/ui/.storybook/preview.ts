@@ -1,10 +1,17 @@
 import type { Decorator, Preview } from "@storybook/vue3-vite";
 import { addons } from "storybook/preview-api";
 import { GLOBALS_UPDATED, SET_GLOBALS } from "storybook/internal/core-events";
-import { schemes, themes, type SchemeName, type ThemeName } from "@uix/tokens";
+import { accentPresets, schemes, themes, type SchemeName, type ThemeName } from "@uix/tokens";
 import { baseRules } from "./a11y";
 import { uixTheme } from "./theme";
 import "../src/styles/layers.css";
+// Шрифтовые пары (data-font-pair, LookRecipe.fontPair) — в Storybook все три, в проекте — только своя
+import "../src/styles/font-pairs/unbounded-inter.css";
+import "../src/styles/font-pairs/onest-golos.css";
+import "../src/styles/font-pairs/rubik-inter.css";
+import "../src/styles/font-pairs/manrope-inter.css";
+import "../src/styles/font-pairs/montserrat-inter.css";
+import "../src/styles/font-pairs/raleway-inter.css";
 
 /**
  * Две оси (ADR-0005): стилистика — data-theme, схема — data-scheme на <html>.
@@ -17,6 +24,12 @@ const applyTheme = (globals: Record<string, unknown>) => {
   if (themes.includes(globals.theme as ThemeName)) root.dataset.theme = globals.theme as string;
   if (schemes.includes(globals.scheme as SchemeName)) root.dataset.scheme = globals.scheme as string;
   else delete root.dataset.scheme; // «system» — по prefers-color-scheme
+  // Шрифтовая пара (data-font-pair); «kit» — шрифт кита, без атрибута
+  if (globals.fontPair && globals.fontPair !== "kit") root.dataset.fontPair = globals.fontPair as string;
+  else delete root.dataset.fontPair;
+  // Цвет-хайлайт проекта (data-accent, LookRecipe.accentColor); без атрибута — первый пресет
+  if (globals.accent && globals.accent in accentPresets) root.dataset.accent = globals.accent as string;
+  else delete root.dataset.accent;
 };
 const channel = addons.getChannel();
 channel.on(SET_GLOBALS, ({ globals }) => applyTheme(globals));
@@ -50,6 +63,32 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    fontPair: {
+      description: "Шрифтовая пара (data-font-pair): display — заголовки, числа, кнопки; sans — текст",
+      toolbar: {
+        title: "Шрифты",
+        icon: "type",
+        items: [
+          { value: "kit", title: "Кит: Golos Text" },
+          { value: "unbounded-inter", title: "Unbounded + Inter" },
+          { value: "onest-golos", title: "Onest + Golos Text" },
+          { value: "rubik-inter", title: "Rubik + Inter" },
+          { value: "manrope-inter", title: "Manrope ExtraBold + Inter" },
+          { value: "montserrat-inter", title: "Montserrat ExtraBold + Inter" },
+          { value: "raleway-inter", title: "Raleway Black + Inter" },
+        ],
+        dynamicTitle: true,
+      },
+    },
+    accent: {
+      description: "Цвет-хайлайт проекта (data-accent): чипы и выделение встроенных графиков",
+      toolbar: {
+        title: "Акцент",
+        icon: "circle",
+        items: Object.keys(accentPresets).map((value) => ({ value, title: value })),
+        dynamicTitle: true,
+      },
+    },
     scheme: {
       description: "Схема (data-scheme)",
       toolbar: {
@@ -66,6 +105,8 @@ const preview: Preview = {
   initialGlobals: {
     theme: themes.includes("glass" as ThemeName) ? "glass" : themes[0],
     scheme: "dark",
+    fontPair: "kit",
+    accent: "volt-lime",
     // Mobile-first: превью по умолчанию открывается на 390px (CLAUDE.md)
     viewport: { value: "mobile390", isRotated: false },
   },
@@ -90,7 +131,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Введение", "Foundations", ["Цвета", "Типографика", "Отступы и размеры", "Моушн"], "Layout", "Typography", "Components", "Charts"],
+        order: ["Введение", "Foundations", ["Цвета", "Типографика", "Отступы и размеры", "Моушн"], "Layout", "Typography", "Components", "Patterns", "Charts", "Стилистики"],
       },
     },
   },

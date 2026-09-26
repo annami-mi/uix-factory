@@ -163,7 +163,8 @@ const pressStyle = computed(() =>
     border-radius: var(--radius-full);
     background: none;
     cursor: pointer;
-    font-family: var(--type-label-m-font-family);
+    /* Кнопка — голос стилистики: шрифт роли display (заголовки, крупные числа), размер — label/* */
+    font-family: var(--font-family-display, sans-serif);
     font-weight: var(--type-label-m-font-weight);
     font-size: var(--type-label-m-font-size);
     line-height: var(--type-label-m-line-height);
@@ -335,7 +336,6 @@ const pressStyle = computed(() =>
     --_icon-only: var(--size-20);
 
     gap: var(--space-1);
-    font-family: var(--type-label-s-font-family);
     font-weight: var(--type-label-s-font-weight);
     font-size: var(--type-label-s-font-size);
     line-height: var(--type-label-s-line-height);
@@ -354,7 +354,6 @@ const pressStyle = computed(() =>
     --_icon: var(--size-24);
     --_icon-only: var(--size-24);
 
-    font-family: var(--type-label-l-font-family);
     font-weight: var(--type-label-l-font-weight);
     font-size: var(--type-label-l-font-size);
     line-height: var(--type-label-l-line-height);

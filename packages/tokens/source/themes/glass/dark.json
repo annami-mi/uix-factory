@@ -459,6 +459,52 @@
         "$extensions": {
           "uix.alpha": 0.3
         }
+      },
+      "highlight": {
+        "$type": "color",
+        "$value": "{color.chart.series.1}",
+        "$description": "выделенная метка встроенного графика (мини-столбики, ADR-0008 bento-contrast); на инвертированной плашке — spotlight проекта"
+      }
+    },
+    "inverted": {
+      "text-primary": {
+        "$type": "color",
+        "$value": "{color.mono.ink}",
+        "$description": "инвертированная плашка (Card tone=\"inverted\", 2026-09-26): тёмная в светлой схеме, светлая в тёмной — приём контраста материалов: основной текст"
+      },
+      "text-secondary": {
+        "$type": "color",
+        "$value": "{color.mono.ink}",
+        "$description": "инвертированная плашка (Card tone=\"inverted\", 2026-09-26): тёмная в светлой схеме, светлая в тёмной — приём контраста материалов: вторичный текст",
+        "$extensions": {
+          "uix.alpha": 0.72
+        }
+      },
+      "text-tertiary": {
+        "$type": "color",
+        "$value": "{color.mono.ink}",
+        "$description": "инвертированная плашка (Card tone=\"inverted\", 2026-09-26): тёмная в светлой схеме, светлая в тёмной — приём контраста материалов: третичный текст (≥ 4.5:1 на плашке)",
+        "$extensions": {
+          "uix.alpha": 0.66
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.mono.ink}",
+        "$description": "инвертированная плашка (Card tone=\"inverted\", 2026-09-26): тёмная в светлой схеме, светлая в тёмной — приём контраста материалов: столбики и сетка встроенных графиков на плашке",
+        "$extensions": {
+          "uix.alpha": 0.18
+        }
+      },
+      "success": {
+        "$type": "color",
+        "$value": "#116329",
+        "$description": "инвертированная плашка: статус текстом (дельты StatTile) — светлее/темнее обычного, ≥ 4.5:1 на плашке"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": "#b42318",
+        "$description": "инвертированная плашка: статус текстом (дельты StatTile) — светлее/темнее обычного, ≥ 4.5:1 на плашке"
       }
     }
   },
@@ -1028,6 +1074,11 @@
       "hover-bg": {
         "$type": "color",
         "$value": "{color.surface.hover}"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{radius.6}",
+        "$description": "радиус карточки — роль стилистики (bento-contrast крупнее)"
       }
     },
     "skeleton": {
@@ -1120,6 +1171,20 @@
         "$extensions": {
           "uix.alpha": 0.08
         }
+      }
+    },
+    "inverted": {
+      "bg": {
+        "$type": "color",
+        "$value": "#f5f5f7",
+        "$description": "инвертированная плашка (Card tone=\"inverted\", 2026-09-26): тёмная в светлой схеме, светлая в тёмной — приём контраста материалов",
+        "$extensions": {
+          "uix.alpha": 0.92
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": "#ffffff66"
       }
     }
   }

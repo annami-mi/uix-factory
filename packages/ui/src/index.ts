@@ -37,6 +37,11 @@ export { default as Text } from "./components/Text/Text.vue";
 export { default as Textarea } from "./components/Textarea/Textarea.vue";
 export { default as Toaster } from "./components/Toast/Toaster.vue";
 export { default as Tooltip } from "./components/Tooltip/Tooltip.vue";
+// Паттерны (ADR-0008): каркас и варианты навигации приложения с общим контрактом
+export { default as AppShell } from "./patterns/AppShell/AppShell.vue";
+export { default as SidebarPanel } from "./patterns/SidebarPanel/SidebarPanel.vue";
+export { default as SidebarRail } from "./patterns/SidebarRail/SidebarRail.vue";
+export type { NavGroup, NavItem } from "./patterns/navigation/types";
 export type { AccordionEntry } from "./components/Accordion/Accordion.vue";
 export type { ContainerSize, SpaceKey } from "./types";
 export type { DataTableColumn, DataTableSort } from "./components/DataTable/DataTable.vue";

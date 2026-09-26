@@ -76,8 +76,15 @@ function walkTokens(node, pathParts, refMap, emit) {
       const resolved = resolveToken(value, refMap);
       if (value.$type === "typography" && resolved && typeof resolved === "object") {
         const field = (v) => String(resolveValue(v, refMap));
-        emit([...nextPath, "font-family"].join("-"), field(resolved.fontFamily), value, nextPath);
-        emit([...nextPath, "font-weight"].join("-"), field(resolved.fontWeight), value, nextPath);
+        // Шрифт — ссылкой на переменную роли (--font-family-sans/display): стилистика или инструмент
+        // сравнения подменяют шрифт одной переменной, не переписывая каждый текстовый стиль
+        const familyRef = typeof resolved.fontFamily === "string" && resolved.fontFamily.match(/^\{font\.family\.([\w-]+)\}$/);
+        const family = familyRef ? `var(--font-family-${familyRef[1]})` : field(resolved.fontFamily);
+        emit([...nextPath, "font-family"].join("-"), family, value, nextPath);
+        // Вес роли display — тоже переменной: шрифтовая пара задаёт свой (Manrope/Nunito — 800)
+        const weightRef = typeof resolved.fontWeight === "string" && resolved.fontWeight.match(/^\{font\.weight\.(display)\}$/);
+        const weight = weightRef ? `var(--font-weight-${weightRef[1]})` : field(resolved.fontWeight);
+        emit([...nextPath, "font-weight"].join("-"), weight, value, nextPath);
         emit([...nextPath, "font-size"].join("-"), field(resolved.fontSize), value, nextPath);
         emit([...nextPath, "line-height"].join("-"), field(resolved.lineHeight), value, nextPath);
       } else {
@@ -117,6 +124,7 @@ const SCHEMES = ["light", "dark"];
 
 function cssBlock(selector, scheme, tree, refMap) {
   const lines = [`  color-scheme: ${scheme};`];
+  // (для псевдонима схемы сюда приходит схема-источник: bento-contrast dark → color-scheme: light)
   walkTokens(tree, [], refMap, (name, value) => {
     lines.push(`  --${name}: ${value};`);
   });
@@ -127,7 +135,7 @@ function cssBlock(selector, scheme, tree, refMap) {
  * CSS одной стилистики: две оси — data-theme (стилистика) и data-scheme (light/dark).
  * Без data-scheme схема следует системной настройке (prefers-color-scheme).
  */
-function themeCss(theme, schemeTrees, refsByScheme) {
+function themeCss(theme, schemeTrees, refsByScheme, colorSchemes = { light: "light", dark: "dark" }) {
   const t = `[data-theme="${theme}"]`;
   const auto = `${t}:not([data-scheme])`;
   const indent = (css) => css.replace(/^/gm, "  ").replace(/^  $/gm, "");
@@ -135,9 +143,9 @@ function themeCss(theme, schemeTrees, refsByScheme) {
     `/* ${theme}: light — явно или по умолчанию */`,
     cssBlock(`${t}[data-scheme="light"],\n${auto}`, "light", schemeTrees.light, refsByScheme.light),
     `/* ${theme}: dark — явно */`,
-    cssBlock(`${t}[data-scheme="dark"]`, "dark", schemeTrees.dark, refsByScheme.dark),
+    cssBlock(`${t}[data-scheme="dark"]`, colorSchemes.dark, schemeTrees.dark, refsByScheme.dark),
     `/* ${theme}: dark — по системной настройке, если data-scheme не задан */`,
-    `@media (prefers-color-scheme: dark) {\n${indent(cssBlock(auto, "dark", schemeTrees.dark, refsByScheme.dark))}}\n`,
+    `@media (prefers-color-scheme: dark) {\n${indent(cssBlock(auto, colorSchemes.dark, schemeTrees.dark, refsByScheme.dark))}}\n`,
   ].join("\n");
 }
 
@@ -167,22 +175,36 @@ export function buildTokens({ sourceDir = DEFAULT_SOURCE_DIR, distDir = DEFAULT_
   for (const theme of themeNames) {
     const trees = {};
     const refs = {};
+    const colorSchemes = {};
     docs.themes[theme] = {};
     for (const scheme of SCHEMES) {
       const file = join(themesDir, theme, `${scheme}.json`);
       if (!existsSync(file)) throw new Error(`Стилистика «${theme}» без схемы ${scheme}: нет ${file}`);
       trees[scheme] = loadJson(file);
+      colorSchemes[scheme] = scheme;
+      // Псевдоним схемы (исключение из ADR-0005, напр. bento-contrast пока только светлая):
+      // берём токены схемы-источника и её color-scheme
+      const alias = trees[scheme].$extensions?.["uix.scheme-alias"];
+      if (alias) {
+        if (!trees[alias]) throw new Error(`«${theme}/${scheme}»: псевдоним на «${alias}», которая ещё не загружена`);
+        trees[scheme] = trees[alias];
+        colorSchemes[scheme] = colorSchemes[alias];
+      }
       // Тема может ссылаться и на примитивы, и на собственные токены
       refs[scheme] = { ...primitiveRefs, ...flattenForRefs(trees[scheme], "", {}) };
       docs.themes[theme][scheme] = tokensToEntries(trees[scheme], refs[scheme]);
     }
-    writeFileSync(join(distDir, `${theme}.css`), themeCss(theme, trees, refs));
+    writeFileSync(join(distDir, `${theme}.css`), themeCss(theme, trees, refs, colorSchemes));
     log(`✓ dist/${theme}.css (${SCHEMES.join(", ")})`);
   }
 
   // --- index.css: удобный вход, подключает base + все темы ---
   const indexCss =
-    ['@import "./base.css";', ...themeNames.map((n) => `@import "./${n}.css";`)].join("\n") + "\n";
+    [
+      '@import "./base.css";',
+      ...(existsSync(join(sourceDir, "accent-presets.json")) ? ['@import "./accent-presets.css";'] : []),
+      ...themeNames.map((n) => `@import "./${n}.css";`),
+    ].join("\n") + "\n";
   writeFileSync(join(distDir, "index.css"), indexCss);
   log("✓ dist/index.css");
 
@@ -210,6 +232,41 @@ export function buildTokens({ sourceDir = DEFAULT_SOURCE_DIR, distDir = DEFAULT_
     `export const breakpoints = ${JSON.stringify(breakpoints)} as const;\n`;
   writeFileSync(join(distDir, "constants.ts"), constantsTs);
   log("✓ dist/constants.ts");
+
+  // --- accentPresets.ts: акцент-пресеты проекта (LookRecipe.accentColor, ADR-0008) — не часть темы ---
+  const presetsPath = join(sourceDir, "accent-presets.json");
+  const accent = existsSync(presetsPath) ? JSON.parse(readFileSync(presetsPath, "utf-8")) : null;
+  if (accent) {
+    const presets = Object.fromEntries(
+      Object.entries(accent.presets)
+        .filter(([k]) => !k.startsWith("$"))
+        .map(([name, p]) => [name, { accent: p.accent.$value, onAccent: p["on-accent"].$value }]),
+    );
+    docs.accentPresets = { plate: accent.plate.$value, presets };
+    const presetsTs =
+      "// Сгенерировано scripts/build.mjs из source/accent-presets.json — не редактировать вручную.\n" +
+      "/** Акцент-пресеты для LookRecipe.accentColor: акцент и цвет содержимого на нём (чип на тёмной плашке). */\n" +
+      `export const accentPresets = ${JSON.stringify(presets, null, 2)} as const;\n` +
+      "export type AccentPresetName = keyof typeof accentPresets;\n" +
+      "export type AccentPreset = { accent: string; onAccent: string };\n" +
+      "/** Тёмная плашка подачи чипа (inverted-карточка bento-contrast) — пока темы bento-contrast нет */\n" +
+      `export const accentPlate = ${JSON.stringify(accent.plate.$value)};\n`;
+    writeFileSync(join(distDir, "accentPresets.ts"), presetsTs);
+    log("✓ dist/accentPresets.ts");
+
+    // spotlight — цвет-хайлайт проекта (LookRecipe.accentColor): по умолчанию первый пресет,
+    // data-accent="<пресет>" на <html> выбирает другой; свой цвет — переменные --color-spotlight* инлайн
+    const [first] = Object.keys(presets);
+    const block = (sel, p) => `${sel} {\n  --color-spotlight: ${p.accent};\n  --color-on-spotlight: ${p.onAccent};\n}\n`;
+    const presetsCss =
+      "/* Сгенерировано scripts/build.mjs из source/accent-presets.json — не редактировать вручную. */\n" +
+      block(":root", presets[first]) +
+      Object.entries(presets)
+        .map(([name, p]) => block(`:root[data-accent="${name}"]`, p))
+        .join("");
+    writeFileSync(join(distDir, "accent-presets.css"), presetsCss);
+    log("✓ dist/accent-presets.css");
+  }
 
   // --- tokens.json: итоговые значения для документации ---
   writeFileSync(join(distDir, "tokens.json"), JSON.stringify(docs, null, 2) + "\n");

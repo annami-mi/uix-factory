@@ -72,3 +72,4 @@ export const ScaleGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const ScaleGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const ScaleNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const ScaleNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const ScaleBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

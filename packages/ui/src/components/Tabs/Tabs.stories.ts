@@ -98,3 +98,4 @@ export const MatrixGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const MatrixGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const MatrixBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

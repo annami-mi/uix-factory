@@ -1,7 +1,7 @@
 /**
  * Помощники для историй.
  *
- * `themeMatrix(story)` — та же история во всех комбинациях стилистика × схема (ADR-0005):
+ * `themeMatrix(story)` — та же история во всех комбинациях стилистика × схема (ADR-0005; bento-contrast — только light):
  * каждая — отдельный тест, поэтому axe проверяет контраст в каждой (тест-раннер не переключает тулбар).
  * Людям они не нужны — есть тулбар. Спрятать из сайдбара и Docs можно только литеральными тегами
  * в самом экспорте: индекс Storybook читает CSF статически и не видит теги из вызова функции.
@@ -26,5 +26,7 @@ export function themeMatrix<S extends AnyStory>(story: S) {
     glassLight: make("glass", "light"),
     neutralLight: make("neutral", "light"),
     neutralDark: make("neutral", "dark"),
+    // bento-contrast — только светлая (тёмная схема — псевдоним светлой, ADR-0005 исключение)
+    bentoLight: make("bento-contrast", "light"),
   };
 }

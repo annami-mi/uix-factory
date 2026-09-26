@@ -105,3 +105,4 @@ export const LimitsGlassDark = { ...m.glassDark, play: undefined, tags: ["!dev",
 export const LimitsGlassLight = { ...m.glassLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const LimitsNeutralLight = { ...m.neutralLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const LimitsNeutralDark = { ...m.neutralDark, play: undefined, tags: ["!dev", "!autodocs"] };
+export const LimitsBentoLight = { ...m.bentoLight, play: undefined, tags: ["!dev", "!autodocs"] };

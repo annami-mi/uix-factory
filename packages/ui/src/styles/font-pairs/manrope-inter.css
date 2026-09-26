@@ -1,0 +1,20 @@
+/*
+  Шрифтовая пара «manrope-inter»: мягче и тише — «приглушённый bento»: числа и заголовки ExtraBold + Inter для текста.
+  Подключение — один файл в проекте (после @uix/ui/styles.css) и data-font-pair="manrope-inter" на <html>;
+  на уровне сборки — LookRecipe.fontPair (ADR-0008). Роли: display — заголовки, крупные числа, кнопки;
+  sans — остальной текст. Кириллица проверена по таблицам глифов: алфавит, ё/Ё, «», —, №, ₽.
+  Шрифты — из пакета, без внешних запросов.
+*/
+@import "@fontsource/manrope/500.css" layer(base);
+@import "@fontsource/manrope/800.css" layer(base);
+@import "@fontsource/inter/400.css" layer(base);
+@import "@fontsource/inter/500.css" layer(base);
+@import "@fontsource/inter/600.css" layer(base);
+
+@layer tokens {
+  :root[data-font-pair="manrope-inter"] {
+    --font-family-display: "Manrope", sans-serif;
+    --font-family-sans: "Inter", sans-serif;
+    --font-weight-display: 800;
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$description": "Акцент-пресеты для LookRecipe.accentColor (ADR-0008 §2): пара { accent, on-accent } — чип-хайлайт на тёмной плашке стилистики bento-contrast. Это пресеты проекта, не токены темы: тема задаёт способ подачи, проект выбирает цвет. Контраст — test/contrast.test.ts.",
+  "plate": {
+    "$type": "color",
+    "$value": "#141417",
+    "$description": "тёмная плашка подачи акцент-чипа (inverted-карточка bento-contrast) — фон для проверки контраста, пока темы bento-contrast нет"
+  },
+  "presets": {
+    "volt-lime": {
+      "accent": {
+        "$type": "color",
+        "$value": "#c6ff3d"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#141417"
+      }
+    },
+    "electric-blue": {
+      "accent": {
+        "$type": "color",
+        "$value": "#3b82ff"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#141417",
+        "$description": "подпись исправлена по тесту контраста (2026-09-26): в исходной таблице был #FFFFFF — 3.61:1 на акценте, ниже 4.5; тёмная — 5.10:1"
+      }
+    },
+    "violet-pulse": {
+      "accent": {
+        "$type": "color",
+        "$value": "#8655f6",
+        "$description": "решение 2026-09-26: чуть темнее исходного #8b5cf6 — с белой подписью 4.54:1 (исходный не давал 4.5 ни с белой, ни с тёмной)"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#ffffff"
+      }
+    },
+    "coral-signal": {
+      "accent": {
+        "$type": "color",
+        "$value": "#ff6b4a"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#141417"
+      }
+    },
+    "teal-ledger": {
+      "accent": {
+        "$type": "color",
+        "$value": "#14c8a0"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#141417"
+      }
+    },
+    "magenta-pop": {
+      "accent": {
+        "$type": "color",
+        "$value": "#f23da0"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": "#141417",
+        "$description": "подпись исправлена по тесту контраста (2026-09-26): в исходной таблице был #FFFFFF — 3.53:1 на акценте, ниже 4.5; тёмная — 5.21:1"
+      }
+    }
+  }
+}

@@ -67,3 +67,4 @@ export const GlassDark = { ...m.glassDark, play: undefined, tags: ["!dev", "!aut
 export const GlassLight = { ...m.glassLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const NeutralLight = { ...m.neutralLight, play: undefined, tags: ["!dev", "!autodocs"] };
 export const NeutralDark = { ...m.neutralDark, play: undefined, tags: ["!dev", "!autodocs"] };
+export const BentoLight = { ...m.bentoLight, play: undefined, tags: ["!dev", "!autodocs"] };

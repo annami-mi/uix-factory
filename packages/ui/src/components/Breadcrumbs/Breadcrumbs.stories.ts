@@ -42,3 +42,4 @@ export const DefaultGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const DefaultGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const DefaultNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const DefaultNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const DefaultBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

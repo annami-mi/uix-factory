@@ -521,6 +521,11 @@
         "$type": "fontFamily",
         "$value": "\"Golos Text\", sans-serif",
         "$description": "шрифт раздаётся из @uix/ui (@fontsource/golos-text)"
+      },
+      "display": {
+        "$type": "fontFamily",
+        "$value": "\"Golos Text\", sans-serif",
+        "$description": "заголовки и крупные числа (Heading, StatTile, кнопки); по умолчанию — тот же шрифт, что sans; стилистика может задать свой (bento-contrast — пара на выбор, ADR-0008)"
       }
     },
     "weight": {
@@ -535,6 +540,11 @@
       "semibold": {
         "$type": "fontWeight",
         "$value": "600"
+      },
+      "display": {
+        "$type": "fontWeight",
+        "$value": "{font.weight.semibold}",
+        "$description": "вес заголовков и крупных чисел — роль: шрифтовая пара может задать свой (Manrope, Nunito — ExtraBold 800)"
       }
     },
     "size": {
@@ -632,8 +642,8 @@
       "$type": "typography",
       "$description": "только в коде: заголовок первого экрана: 32px на телефоне → 64px на десктопе, плавно",
       "$value": {
-        "fontFamily": "{font.family.sans}",
-        "fontWeight": "{font.weight.semibold}",
+        "fontFamily": "{font.family.display}",
+        "fontWeight": "{font.weight.display}",
         "fontSize": "clamp({font.size.32}, 5vw + {font.size.12}, {font.size.64})",
         "lineHeight": "{font.line-height.tight}"
       }
@@ -641,8 +651,8 @@
     "display": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{font.family.sans}",
-        "fontWeight": "{font.weight.semibold}",
+        "fontFamily": "{font.family.display}",
+        "fontWeight": "{font.weight.display}",
         "fontSize": "{font.size.32}",
         "lineHeight": "{font.line-height.38}"
       }
@@ -651,8 +661,8 @@
       "l": {
         "$type": "typography",
         "$value": {
-          "fontFamily": "{font.family.sans}",
-          "fontWeight": "{font.weight.semibold}",
+          "fontFamily": "{font.family.display}",
+          "fontWeight": "{font.weight.display}",
           "fontSize": "{font.size.24}",
           "lineHeight": "{font.line-height.30}"
         }
@@ -660,8 +670,8 @@
       "m": {
         "$type": "typography",
         "$value": {
-          "fontFamily": "{font.family.sans}",
-          "fontWeight": "{font.weight.semibold}",
+          "fontFamily": "{font.family.display}",
+          "fontWeight": "{font.weight.display}",
           "fontSize": "{font.size.20}",
           "lineHeight": "{font.line-height.26}"
         }
@@ -669,8 +679,8 @@
       "s": {
         "$type": "typography",
         "$value": {
-          "fontFamily": "{font.family.sans}",
-          "fontWeight": "{font.weight.semibold}",
+          "fontFamily": "{font.family.display}",
+          "fontWeight": "{font.weight.display}",
           "fontSize": "{font.size.16}",
           "lineHeight": "{font.line-height.22}"
         }

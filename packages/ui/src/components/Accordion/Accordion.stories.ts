@@ -76,3 +76,4 @@ export const OpenedGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const OpenedGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const OpenedNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const OpenedNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const OpenedBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

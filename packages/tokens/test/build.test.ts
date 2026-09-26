@@ -1,12 +1,14 @@
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { buildTokens } from "../scripts/build.mjs";
 
 let distDir: string;
 let themes: string[];
 
+const SOURCE_THEMES = join(dirname(fileURLToPath(import.meta.url)), "../source/themes");
 const read = (file: string) => readFileSync(join(distDir, file), "utf-8");
 const varNames = (css: string) => [...css.matchAll(/--([\w-]+):/g)].map((m) => m[1]).sort();
 const schemes = ["light", "dark"] as const;
@@ -44,7 +46,10 @@ describe("build tokens", () => {
     for (const theme of themes) {
       for (const scheme of schemes) {
         const body = schemeBlock(theme, scheme);
-        expect(body).toContain(`color-scheme: ${scheme};`);
+        // Схема-псевдоним (uix.scheme-alias, исключение из ADR-0005) наследует color-scheme источника
+        const source = JSON.parse(readFileSync(join(SOURCE_THEMES, theme, `${scheme}.json`), "utf-8"));
+        const alias = source.$extensions?.["uix.scheme-alias"];
+        expect(body).toContain(`color-scheme: ${alias ?? scheme};`);
         expect(varNames(body).length).toBeGreaterThan(0);
       }
     }

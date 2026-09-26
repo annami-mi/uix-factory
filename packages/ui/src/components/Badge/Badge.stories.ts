@@ -67,3 +67,4 @@ export const TonesGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const TonesGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const TonesNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const TonesNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const TonesBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

@@ -24,6 +24,7 @@
 - `duration/*` — `instant/fast/normal/slow/slower` из Figma.
 - `font/family/sans`, `font/weight/{regular,medium,semibold}`, `font/size/*`, `font/line-height/*`.
 - `type/<role>/<size>` — текстовые стили Figma как composite (`display`, `heading/*`, `body/*`, `label/*`, `caption`). В CSS раскладываются на `--type-<role>-<size>-{font-family,font-weight,font-size,line-height}`.
+- **Шрифтовые роли:** `font/family/sans` — текст, `font/family/display` — заголовки (`type/hero`, `display`, `heading/*`), крупные числа (StatTile, центр доната) и кнопки. По умолчанию обе — Golos Text. **Шрифтовые пары** (`@uix/ui/font-pairs/*.css` + `data-font-pair` на `<html>`, на уровне сборки — `LookRecipe.fontPair`): `unbounded-inter`, `onest-golos`, `rubik-inter`, `manrope-inter`, `montserrat-inter` (заголовки и числа ExtraBold через роль `font/weight/display`), `raleway-inter` (Black 900; цифры включены ровные, `lining-nums` — у Raleway по умолчанию «старого стиля») — проект подключает только свою; кириллица проверена по таблицам глифов. Текстовые стили ссылаются на роль переменной (`--type-heading-l-font-family: var(--font-family-display)`, вес — `var(--font-weight-display)`), поэтому стилистика или пара меняют шрифт и вес одной переменной.
 - **Шкала текста (2026-09-25):** `m` — размер по умолчанию. `body/l` 18/28 (лид), `body/m` 16/24 (основной), `body/s` 14/20 (вторичный, таблицы), `body/xs` 12/16 (сноски); `label/l` 18/24, `label/m` 16/20 (кнопки), `label/s` 14/16, `label/xs` 12/16; `caption` 11/14. Основной текст не мельче 16px (размер браузера по умолчанию, iOS не зумит поле ввода).
 
 **Только в коде** (помечены в `$description`): `space/px`, `stroke/icon` (1.5px — толщина линии иконок Lucide), `scale/pressed`, `duration/{press,release,spinner,spinner-reduced}`, `easing/spring-*`, `type/body/l`, `type/label/l` (18px). В Figma не переносятся автоматически — см. `docs/figma-todo.md`.
@@ -85,6 +86,23 @@
 - **Скроллбары:** в шторке — нет (мобильный паттерн); в DataTable и табличном двойнике — невидимы, пока указатель не над областью (тонкие, `color/border/default`, без дорожки; место занято всегда — раскладка не прыгает).
 - **Календарь** `surface/calendar/{range,preview}` — полоса выбранного диапазона и предпросмотр: оттенок акцента (10–18% / 5–8%); текст на ней ≥ 4.5:1 (тест токенов).
 - **Таблица** `surface/table/{header-bg,header-backdrop,row-hover-bg,row-selected-bg}`: липкая шапка почти в цвет страницы (glass — полупрозрачная с размытием), наведение — 3–4% тона, выбранная строка — лёгкий оттенок акцента. Никаких «зебр».
+
+## Стилистика bento-contrast (ADR-0008, 2026-09-26)
+
+`themes/bento-contrast/light.json` — светлая bento-сетка: страница `#eff0f3`, белые карточки без рамки и тени (`surface/card/radius` = `radius/8`, 32px — крупнее других стилистик), акцент — чёрный `#141417` (главные кнопки, выбранное, отмеченное), фокус — синий (чёрное кольцо на чёрной кнопке не видно), ссылки синие. Текст мягче, у нижней границы 4.5:1: вторичный `#60626b`, третичный `#63656c` (проверены и на плашках — бейджи, поля, поле с ошибкой).
+
+**Тёмной схемы пока нет** (решение 2026-09-26, исключение из ADR-0005): `dark.json` — псевдоним `"uix.scheme-alias": "light"`, сборка выдаёт светлые токены с `color-scheme: light`.
+
+Новые роли во всех стилистиках (набор переменных у всех комбинаций одинаковый):
+- `surface/card/radius` — радиус карточки;
+- `surface/inverted/{bg,border}`, `color/inverted/{text-primary,text-secondary,text-tertiary,muted,success,danger}` — инвертированная плашка (`Card tone="inverted"`): тёмная в светлой схеме, светлая в тёмной;
+- `color/chart/highlight` — выделенная метка встроенного графика (bento — чёрная; на инвертированной плашке — spotlight).
+
+**Spotlight** — цвет-хайлайт проекта из акцент-пресетов: `dist/accent-presets.css` задаёт `--color-spotlight` / `--color-on-spotlight` (по умолчанию `volt-lime`), `data-accent="<пресет>"` на `<html>` — другой (`LookRecipe.accentColor`). Не часть темы.
+
+## Акцент-пресеты (ADR-0008, bento-contrast)
+
+`source/accent-presets.json` → `dist/accentPresets.ts` (`accentPresets`, `accentPlate` из `@uix/tokens`). Пары `{ accent, onAccent }` для `LookRecipe.accentColor` — параметр проекта, не токены темы: тема bento-contrast задаёт подачу (чип на тёмной плашке `#141417`), проект выбирает цвет. Тест контраста: подпись на чипе ≥ 4.5:1, чип на плашке ≥ 3:1. `electric-blue` и `magenta-pop` — подпись тёмная (белая не проходила); `violet-pulse` — `#8655f6` вместо `#8b5cf6` (исходный не проходил ни с белой, ни с тёмной подписью).
 
 ## Графики (ADR-0007)
 

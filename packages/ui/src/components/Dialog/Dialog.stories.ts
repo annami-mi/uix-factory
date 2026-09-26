@@ -132,6 +132,7 @@ const open = (theme: string, scheme: string): Story => ({
   name: `With form (open) · ${theme} ${scheme}`,
   globals: { ...desktop, theme, scheme },
 });
-export const OpenGlassLight = open("glass", "light");
-export const OpenNeutralLight = open("neutral", "light");
-export const OpenNeutralDark = open("neutral", "dark");
+export const OpenGlassLight = { ...open("glass", "light"), tags: ["!dev", "!autodocs"] };
+export const OpenNeutralLight = { ...open("neutral", "light"), tags: ["!dev", "!autodocs"] };
+export const OpenNeutralDark = { ...open("neutral", "dark"), tags: ["!dev", "!autodocs"] };
+export const OpenBentoLight = { ...open("bento-contrast", "light"), tags: ["!dev", "!autodocs"] };

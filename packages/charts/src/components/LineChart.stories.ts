@@ -166,3 +166,4 @@ export const TrafficGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const TrafficGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const TrafficNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const TrafficNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const TrafficBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

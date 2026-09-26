@@ -64,3 +64,4 @@ export const MiddleGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const MiddleGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const MiddleNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const MiddleNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const MiddleBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

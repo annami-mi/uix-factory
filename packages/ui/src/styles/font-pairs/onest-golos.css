@@ -1,0 +1,17 @@
+/*
+  Шрифтовая пара «onest-golos»: плотный Onest для заголовков и чисел + Golos для текста.
+  Подключение — один файл в проекте (после @uix/ui/styles.css) и data-font-pair="onest-golos" на <html>;
+  на уровне сборки — LookRecipe.fontPair (ADR-0008). Роли: display — заголовки, крупные числа, кнопки;
+  sans — остальной текст. Кириллица проверена по таблицам глифов: алфавит, ё/Ё, «», —, №, ₽.
+  Шрифты — из пакета, без внешних запросов; Golos Text уже приходит с @uix/ui/styles.css.
+*/
+@import "@fontsource/onest/400.css" layer(base);
+@import "@fontsource/onest/500.css" layer(base);
+@import "@fontsource/onest/600.css" layer(base);
+
+@layer tokens {
+  :root[data-font-pair="onest-golos"] {
+    --font-family-display: "Onest", sans-serif;
+    --font-family-sans: "Golos Text", sans-serif;
+  }
+}

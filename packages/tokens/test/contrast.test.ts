@@ -13,8 +13,12 @@ import { buildTokens } from "../scripts/build.mjs";
 type Entry = { name: string; value: string };
 let distDir: string;
 let themes: Record<string, Record<string, Entry[]>>;
+let accent: { plate: string; presets: Record<string, { accent: string; onAccent: string }> };
 
 const PAGE: Record<string, string> = {
+  // bento-contrast: dark — псевдоним light (ADR-0005, исключение 2026-09-26)
+  "bento-contrast/light": "#eff0f3",
+  "bento-contrast/dark": "#eff0f3",
   "glass/dark": "#272727",
   "glass/light": "#e5e5ea",
   "neutral/dark": "#161619",
@@ -44,7 +48,9 @@ const ratio = (a: RGBA, b: RGBA) => {
 beforeAll(() => {
   distDir = mkdtempSync(join(tmpdir(), "uix-contrast-"));
   buildTokens({ distDir, log: () => {} });
-  themes = JSON.parse(readFileSync(join(distDir, "tokens.json"), "utf-8")).themes;
+  const docs = JSON.parse(readFileSync(join(distDir, "tokens.json"), "utf-8"));
+  themes = docs.themes;
+  accent = docs.accentPresets;
 });
 afterAll(() => rmSync(distDir, { recursive: true, force: true }));
 
@@ -57,6 +63,9 @@ const PAIRS: [string, string, number][] = [
   ["color-text-link", "page", 4.5],
   ["color-text-link", "color-surface-default", 4.5],
   ["color-text-primary", "surface-field-default-bg", 4.5],
+  // Плейсхолдер и подсказка — третичный текст на плашке поля (обычной и с ошибкой)
+  ["color-text-tertiary", "surface-field-default-bg", 4.5],
+  ["color-text-tertiary", "surface-field-error-bg", 4.5],
   ["color-text-on-accent", "surface-accent-default-bg", 4.5],
   ["surface-control-default-border", "page", 3],
   ["surface-control-checked-bg", "page", 3],
@@ -64,6 +73,15 @@ const PAIRS: [string, string, number][] = [
   ["surface-switch-track-off", "page", 3],
   ["surface-switch-track-on", "page", 3],
   ["color-state-focus", "page", 3],
+  // Инвертированная плашка (Card tone="inverted"): текст на ней
+  ["color-inverted-text-primary", "surface-inverted-bg", 4.5],
+  ["color-inverted-text-secondary", "surface-inverted-bg", 4.5],
+  ["color-inverted-text-tertiary", "surface-inverted-bg", 4.5],
+  ["color-inverted-muted", "surface-inverted-bg", 1.4],
+  ["color-inverted-success", "surface-inverted-bg", 4.5],
+  ["color-inverted-danger", "surface-inverted-bg", 4.5],
+  // Выделенная метка встроенного графика на карточке — графика, ≥ 3:1
+  ["color-chart-highlight", "surface-card-bg", 3],
   // Календарь: дни внутри выбранного диапазона и в предпросмотре
   ["color-text-primary", "surface-calendar-range", 4.5],
   ["color-text-primary", "surface-calendar-preview", 4.5],
@@ -110,4 +128,40 @@ describe("контраст токенов", () => {
       expect(failures).toEqual([]);
     });
   }
+});
+
+/**
+ * Акцент-пресеты (LookRecipe.accentColor): подпись на чипе — текст, ≥ 4.5:1; сам чип на тёмной плашке
+ * bento-contrast — графический элемент, ≥ 3:1 (WCAG 1.4.11).
+ */
+describe("акцент-пресеты", () => {
+  const check = (name: string) => {
+    const p = accent.presets[name]!;
+    const chip = parse(p.accent);
+    return {
+      label: ratio(parse(p.onAccent), chip),
+      onPlate: ratio(chip, parse(accent.plate)),
+    };
+  };
+
+  it("все шесть пресетов на месте", () => {
+    expect(Object.keys(accent.presets)).toEqual([
+      "volt-lime",
+      "electric-blue",
+      "violet-pulse",
+      "coral-signal",
+      "teal-ledger",
+      "magenta-pop",
+    ]);
+  });
+
+  it("подпись ≥ 4.5:1, чип на плашке ≥ 3:1", () => {
+    const failures: string[] = [];
+    for (const name of Object.keys(accent.presets)) {
+      const { label, onPlate } = check(name);
+      if (label < 4.5) failures.push(`${name}: подпись ${label.toFixed(2)} < 4.5`);
+      if (onPlate < 3) failures.push(`${name}: чип на плашке ${onPlate.toFixed(2)} < 3`);
+    }
+    expect(failures).toEqual([]);
+  });
 });

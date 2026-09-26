@@ -131,3 +131,41 @@ export const MatrixGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const MatrixGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const MatrixNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const MatrixBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };
+
+/**
+ * Инвертированная плашка (приём bento-contrast): тёмная в светлой схеме, светлая в тёмной. Вложенное само
+ * получает светлый текст, статусы и цвет выделения; чип — Badge tone="spotlight" (цвет-хайлайт проекта).
+ */
+export const Inverted: Story = {
+  render: () => ({
+    components: { Card, Stack, Heading, Text, Badge },
+    template: `
+      <div style="max-inline-size: 360px">
+        <Card tone="inverted" padding="l">
+          <Stack gap="2">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-2)">
+              <Text size="s" tone="secondary">Баланс портфеля</Text>
+              <Badge tone="spotlight">+12,4 %</Badge>
+            </div>
+            <Heading :level="3" size="display">1 284 300 ₽</Heading>
+            <Text size="xs" tone="tertiary">Обновлено сегодня в 10:24</Text>
+          </Stack>
+        </Card>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const card = canvasElement.querySelector('.ui-card[data-tone="inverted"]')!;
+    const title = card.querySelector("h3")!;
+    // Текст внутри — светлый на тёмной плашке (роль color/inverted/text-primary)
+    await expect(getComputedStyle(title).color).not.toBe(getComputedStyle(canvasElement).color);
+  },
+};
+
+const mi = themeMatrix(Inverted);
+export const InvertedGlassDark = { ...mi.glassDark, play: undefined, tags: ["!dev", "!autodocs"] };
+export const InvertedGlassLight = { ...mi.glassLight, play: undefined, tags: ["!dev", "!autodocs"] };
+export const InvertedNeutralLight = { ...mi.neutralLight, play: undefined, tags: ["!dev", "!autodocs"] };
+export const InvertedNeutralDark = { ...mi.neutralDark, play: undefined, tags: ["!dev", "!autodocs"] };
+export const InvertedBentoLight = { ...mi.bentoLight, play: undefined, tags: ["!dev", "!autodocs"] };

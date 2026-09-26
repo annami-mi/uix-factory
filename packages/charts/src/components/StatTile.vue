@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /**
  * Плитка KPI — «число и есть график»: подпись, крупное значение, дельта к прошлому периоду, спарклайн.
+ * `tone="inverted"` — контрастная плашка (bento-contrast); `trendVariant="bars"` — встроенные мини-столбики.
  * Ряд KPI — `Grid min="s"` из @uix/ui (контейнерная раскладка: 1–2 колонки на телефоне, 4 на десктопе).
  *
  * - Значение — пропорциональные цифры (не tabular: крупное число с моноширинными цифрами «разваливается»);
@@ -34,10 +35,14 @@ const props = withDefaults(
     trend?: number[];
     /** Слот палитры спарклайна */
     series?: number;
+    /** Встроенный график: линия тренда или мини-столбики (bento-contrast) */
+    trendVariant?: "line" | "bars";
+    /** Обычная плитка или инвертированная плашка (Card tone) */
+    tone?: "default" | "inverted";
     /** Идёт перезагрузка — прежнее значение приглушено */
     loading?: boolean;
   }>(),
-  { upIsGood: true, series: 1, loading: false },
+  { upIsGood: true, series: 1, loading: false, trendVariant: "line", tone: "default" },
 );
 
 const fmt = (v: number) => formatValue(v, props.valueFormat ?? { maximumFractionDigits: 1 });
@@ -48,7 +53,7 @@ const shown = computed(() => {
   return fmt(Number.isInteger(props.value) ? Math.round(v) : v);
 });
 
-const tone = computed(() => {
+const deltaTone = computed(() => {
   if (props.delta === undefined || props.delta === 0) return "neutral";
   return props.delta > 0 === props.upIsGood ? "good" : "bad";
 });
@@ -57,7 +62,7 @@ const deltaText = computed(() =>
 );
 const deltaSr = computed(() => {
   if (props.delta === undefined) return "";
-  const verdict = tone.value === "good" ? "хорошо" : tone.value === "bad" ? "плохо" : "без изменений";
+  const verdict = deltaTone.value === "good" ? "хорошо" : deltaTone.value === "bad" ? "плохо" : "без изменений";
   return `${deltaText.value} ${props.deltaLabel ?? ""} — ${verdict}`.replace(/\s+/g, " ");
 });
 </script>
@@ -65,6 +70,7 @@ const deltaSr = computed(() => {
 <template>
   <Card
     class="ui-stat-tile"
+    :tone="tone"
     :data-loading="loading || undefined"
     :aria-busy="loading ? 'true' : undefined"
   >
@@ -78,7 +84,7 @@ const deltaSr = computed(() => {
     <p
       v-if="delta !== undefined"
       class="ui-stat-tile__delta"
-      :data-tone="tone"
+      :data-tone="deltaTone"
     >
       <span
         class="ui-stat-tile__delta-value"
@@ -102,6 +108,8 @@ const deltaSr = computed(() => {
       :data="trend"
       :label="`${label}, динамика`"
       :series="series"
+      :variant="trendVariant"
+      :accent="tone === 'inverted'"
       :value-format="valueFormat"
     />
   </Card>

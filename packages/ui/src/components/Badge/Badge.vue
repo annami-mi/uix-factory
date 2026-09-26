@@ -6,7 +6,8 @@
  */
 withDefaults(
   defineProps<{
-    tone?: "neutral" | "accent" | "success" | "warning" | "danger";
+    /** spotlight — цвет-хайлайт проекта (accent-presets, data-accent): яркий чип, чаще на тёмной плашке */
+    tone?: "neutral" | "accent" | "success" | "warning" | "danger" | "spotlight";
   }>(),
   { tone: "neutral" },
 );
@@ -54,6 +55,11 @@ defineSlots<{
     font-size: var(--type-label-xs-font-size);
     line-height: var(--type-label-xs-line-height);
     white-space: nowrap;
+  }
+
+  .ui-badge[data-tone="spotlight"] {
+    --_bg: var(--color-spotlight, Highlight);
+    --_fg: var(--color-on-spotlight, HighlightText);
   }
 
   .ui-badge[data-tone="accent"] {

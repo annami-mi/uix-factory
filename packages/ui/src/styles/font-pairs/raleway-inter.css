@@ -1,0 +1,28 @@
+/*
+  Шрифтовая пара «raleway-inter»: элегантный Raleway Black (900) для заголовков и чисел + Inter для текста.
+  Подключение — один файл в проекте (после @uix/ui/styles.css) и data-font-pair="raleway-inter" на <html>;
+  на уровне сборки — LookRecipe.fontPair (ADR-0008). Роли: display — заголовки, крупные числа, кнопки;
+  sans — остальной текст. Кириллица проверена по таблицам глифов: алфавит, ё/Ё, «», —, №, ₽.
+  Шрифты — из пакета, без внешних запросов.
+*/
+@import "@fontsource/raleway/500.css" layer(base);
+@import "@fontsource/raleway/900.css" layer(base);
+@import "@fontsource/inter/400.css" layer(base);
+@import "@fontsource/inter/500.css" layer(base);
+@import "@fontsource/inter/600.css" layer(base);
+
+@layer tokens {
+  :root[data-font-pair="raleway-inter"] {
+    --font-family-display: "Raleway", sans-serif;
+    --font-family-sans: "Inter", sans-serif;
+    --font-weight-display: 900;
+  }
+}
+
+/* У Raleway цифры по умолчанию «старого стиля» (разной высоты) — для KPI и сумм нужны ровные.
+   Свойство наследуется; где компонент задаёт tabular-nums (таблицы, оси), это его выбор */
+@layer base {
+  :root[data-font-pair="raleway-inter"] {
+    font-variant-numeric: lining-nums;
+  }
+}

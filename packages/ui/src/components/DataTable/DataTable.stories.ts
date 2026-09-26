@@ -122,3 +122,4 @@ export const DesktopGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const DesktopGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const DesktopNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const DesktopNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const DesktopBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

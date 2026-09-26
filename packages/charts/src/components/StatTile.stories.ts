@@ -99,3 +99,4 @@ export const KpiGlassDark = { ...m.glassDark, tags: ["!dev", "!autodocs"] };
 export const KpiGlassLight = { ...m.glassLight, tags: ["!dev", "!autodocs"] };
 export const KpiNeutralLight = { ...m.neutralLight, tags: ["!dev", "!autodocs"] };
 export const KpiNeutralDark = { ...m.neutralDark, tags: ["!dev", "!autodocs"] };
+export const KpiBentoLight = { ...m.bentoLight, tags: ["!dev", "!autodocs"] };

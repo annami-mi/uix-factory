@@ -1,7 +1,12 @@
 <script setup lang="ts">
 /**
  * Карточка — плашка для группы контента (товар, преимущество, отзыв, тариф).
- * Материал — surface/card/* (в glass — Figma effect/glass/default), скругление radius/6.
+ * Материал — surface/card/* (в glass — Figma effect/glass/default), скругление — роль surface/card/radius
+ * (bento-contrast крупнее).
+ *
+ * `tone="inverted"` — контрастная плашка среди обычных карточек (приём bento-contrast): тёмная в светлой
+ * схеме, светлая в тёмной (surface/inverted/*). Вложенные компоненты получают текст, иконки, разделители,
+ * сетку графиков, цвет выделения (spotlight проекта) и статусы плашки — сами про неё не знают.
  *
  * `as="a"` / `as="button"` (или NuxtLink) — вся карточка кликабельна: подсветка при наведении,
  * scale на пружине при нажатии (как Button), кольцо фокуса. Внутри кликабельной карточки не должно
@@ -15,8 +20,10 @@ withDefaults(
     as?: string | Component;
     /** Внутренний отступ: m — space/4 (мобильный), l — space/6 */
     padding?: "none" | "m" | "l";
+    /** Обычная карточка или инвертированная плашка */
+    tone?: "default" | "inverted";
   }>(),
-  { as: "div", padding: "m" },
+  { as: "div", padding: "m", tone: "default" },
 );
 
 defineSlots<{ default: () => unknown }>();
@@ -27,6 +34,7 @@ defineSlots<{ default: () => unknown }>();
     :is="as"
     class="ui-card"
     :data-padding="padding"
+    :data-tone="tone"
     :data-interactive="as === 'a' || as === 'button' || typeof as !== 'string' ? '' : undefined"
     :type="as === 'button' ? 'button' : undefined"
   >
@@ -41,7 +49,7 @@ defineSlots<{ default: () => unknown }>();
     box-sizing: border-box;
     padding: var(--space-4);
     border: var(--stroke-1) solid var(--surface-card-border, transparent);
-    border-radius: var(--radius-6);
+    border-radius: var(--surface-card-radius, var(--radius-6));
     background: var(--surface-card-bg, Canvas);
     box-shadow: var(--surface-card-shadow, none);
     backdrop-filter: var(--surface-card-backdrop, none);
@@ -49,6 +57,27 @@ defineSlots<{ default: () => unknown }>();
     font: inherit;
     text-align: start;
     text-decoration: none;
+  }
+
+  /* Инвертированная плашка: материал и роли содержимого — из surface/inverted, color/inverted */
+  .ui-card[data-tone="inverted"] {
+    --color-text-primary: var(--color-inverted-text-primary);
+    --color-text-secondary: var(--color-inverted-text-secondary);
+    --color-text-tertiary: var(--color-inverted-text-tertiary);
+    --color-icon-primary: var(--color-inverted-text-primary);
+    --color-icon-secondary: var(--color-inverted-text-secondary);
+    --color-status-success: var(--color-inverted-success);
+    --color-status-danger: var(--color-inverted-danger);
+    --color-divider: var(--color-inverted-muted);
+    --color-chart-grid: var(--color-inverted-muted);
+    --color-chart-muted: var(--color-inverted-muted);
+    --color-chart-surface: var(--surface-inverted-bg);
+    --color-chart-highlight: var(--color-spotlight, var(--color-inverted-text-primary));
+
+    border-color: var(--surface-inverted-border, transparent);
+    background: var(--surface-inverted-bg, CanvasText);
+    box-shadow: none;
+    color: var(--color-text-primary, Canvas);
   }
 
   .ui-card[data-padding="none"] {
